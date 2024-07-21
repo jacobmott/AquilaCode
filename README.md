@@ -33,6 +33,7 @@ Run `npx nx list` to get a list of available plugins and whether they have gener
 
 Learn more about [code generators](https://nx.dev/features/generate-code) and [inferred tasks](https://nx.dev/concepts/inferred-tasks) in the docs.
 </details>
+
 ## Running tasks
 <details>
 To execute tasks with Nx use the following syntax:
@@ -55,6 +56,7 @@ npx nx run-many -t <target1> <target2> -p <proj1> <proj2>
 
 Targets can be defined in the `package.json` or `projects.json`. Learn more [in the docs](https://nx.dev/features/run-tasks).
 </details>
+
 ## Set up CI!
 <details>
 Nx comes with local caching already built-in (check your `nx.json`). On CI you might want to go a step further.
@@ -70,6 +72,7 @@ It will show tasks that you can run with Nx.
 
 - [Learn more about Exploring the Project Graph](https://nx.dev/core-features/explore-graph)
 </details>
+
 ## Connect with us!
 <details>
 - [Join the community](https://nx.dev/community)
