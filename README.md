@@ -666,7 +666,47 @@ For help, see: https://nodejs.org/en/docs/inspector
 <details>
   
 ```
-TODO
+[5.2][477][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode]
+$nx build angular-app
+
+> nx run angular-app:build:production
+
+- Building...
+Initial chunk files   | Names         |  Raw size | Estimated transfer size
+main-YEWAPI47.js      | main          | 214.98 kB |                56.63 kB
+polyfills-SCHOHYNV.js | polyfills     |  34.52 kB |                11.29 kB
+styles-5INURTSO.css   | styles        |   0 bytes |                 0 bytes
+
+                      | Initial total | 249.51 kB |                67.92 kB
+
+Output location: D:\OtherProjects\AquilaCode\dist\angular-app
+
+Application bundle generation complete. [3.638 seconds]
+
+
+
+
+ NX   Successfully ran target build for project angular-app
+
+
+[5.2][478][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode]
+$nx serve angular-app
+
+> nx run angular-app:serve:development
+
+- Building...
+Initial chunk files | Names         |  Raw size
+polyfills.js        | polyfills     |  90.23 kB |
+main.js             | main          |  34.82 kB |
+styles.css          | styles        | 107 bytes |
+
+                    | Initial total | 125.16 kB
+
+Application bundle generation complete. [0.768 seconds]
+
+Watch mode enabled. Watching for file changes...
+NOTE: Raw file sizes do not reflect development server per-request transformations.
+  ➜  Local:   http://localhost:4200/
 ```
 </details>
 
