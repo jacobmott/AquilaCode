@@ -64,7 +64,9 @@ Nx comes with local caching already built-in (check your `nx.json`). On CI you m
 - [Set up remote caching](https://nx.dev/features/share-your-cache)
 - [Set up task distribution across multiple machines](https://nx.dev/nx-cloud/features/distribute-task-execution)
 - [Learn more how to setup CI](https://nx.dev/recipes/ci)
+  
 </details>
+
 ## Explore the project graph
 <details>
 Run `npx nx graph` to show the graph of the workspace.
