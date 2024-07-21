@@ -77,7 +77,7 @@ It will show tasks that you can run with Nx.
 
 ## Commands ran to setup the nx project and initial repo/structure
 
-**Setting up nx monorepo for angular and nestjs
+**Setting up nx monorepo for angular and nestjs**
 
 Used this stackoverflow post to help
 https://stackoverflow.com/questions/77347982/nx-monorepo-nestjs-angular
@@ -154,7 +154,7 @@ PS D:\OtherProjects\AquilaCode>
 ```
 
 
-**To get around the above issue, Switched from vs code terminal (that uses powershell) To Cygwin/mono terminal
+**To get around the above issue, Switched from vs code terminal (that uses powershell) To Cygwin/mono terminal**
 
 Generate angular app
 ```
