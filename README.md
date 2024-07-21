@@ -622,3 +622,42 @@ drwxr-xr-x 1 jacob 197609    0 Jul 21 14:40 shared-lib
 $
 ```
 </details>
+
+## Building and Serving the application
+
+### Building and serving the nest app
+<details>
+  ```
+  [5.2][548][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode]
+$nx build nest-app
+
+> nx run nest-app:build
+
+> webpack-cli build --node-env=production
+
+chunk (runtime: main) main.js (main) 2.71 KiB [entry] [rendered]
+webpack compiled successfully (f60f6de829567d37)
+
+
+
+ NX   Successfully ran target build for project nest-app
+
+
+[5.2][549][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode]
+$nx serve nest-app
+
+> nx run nest-app:serve:development
+
+> webpack-cli build --node-env=production
+chunk (runtime: main) main.js (main) 2.71 KiB [entry] [rendered] NX   Successfully ran target build for project nest-app
+Nx read the output from the cache instead of running the command for 1 out of 1 tasks.
+Debugger listening on ws://localhost:9229/f550fa3f-6c66-4234-943c-be344d4795c8
+Debugger listening on ws://localhost:9229/f550fa3f-6c66-4234-943c-be344d4795c8
+For help, see: https://nodejs.org/en/docs/inspector
+
+[Nest] 30032  - 07/21/2024, 3:23:35 PM     LOG [NestFactory] Starting Nest application...
+[Nest] 30032  - 07/21/2024, 3:23:35 PM     LOG [InstanceLoader] AppModule dependencies initialized +4ms
+[Nest] 30032  - 07/21/2024, 3:23:35 PM     LOG � Application is running on: http://localhost:3000/api
+```
+</details>
+
