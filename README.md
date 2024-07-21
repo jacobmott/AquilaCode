@@ -627,7 +627,8 @@ $
 
 ### Building and serving the nest app
 <details>
-  ```
+  
+```
   [5.2][548][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode]
 $nx build nest-app
 
@@ -660,4 +661,13 @@ For help, see: https://nodejs.org/en/docs/inspector
 [Nest] 30032  - 07/21/2024, 3:23:35 PM     LOG � Application is running on: http://localhost:3000/api
 ```
 </details>
+
+### Building and serving the angular app
+<details>
+  
+```
+TODO
+```
+</details>
+
 
