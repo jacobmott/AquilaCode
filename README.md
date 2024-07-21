@@ -77,9 +77,9 @@ It will show tasks that you can run with Nx.
 
 ## Commands ran to setup the nx project and initial repo/structure
 
-**Setting up nx monorepo for angular and nestjs**
-
-Used this stackoverflow post to help
+### Setting up nx monorepo for angular and nestjs
+<details>
+**Used this stackoverflow post to help**
 
 https://stackoverflow.com/questions/77347982/nx-monorepo-nestjs-angular
 
@@ -312,8 +312,12 @@ UPDATE tsconfig.base.json
 
 Run "nx show project shared-lib" to view details about this project.
 ```
+<details>
 
-Setting up git repo
+  
+### Setting up git repo
+<details>
+
 ```
 
 [5.2][517][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode]
@@ -610,3 +614,4 @@ drwxr-xr-x 1 jacob 197609    0 Jul 21 14:40 shared-lib
 [5.2][537][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode]
 $
 ```
+<details>
