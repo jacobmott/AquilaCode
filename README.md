@@ -80,6 +80,7 @@ It will show tasks that you can run with Nx.
 **Setting up nx monorepo for angular and nestjs**
 
 Used this stackoverflow post to help
+
 https://stackoverflow.com/questions/77347982/nx-monorepo-nestjs-angular
 
 ```
