@@ -713,7 +713,8 @@ NOTE: Raw file sizes do not reflect development server per-request transformatio
   ➜  Local:   http://localhost:4200/
 ```
 
-![angular-app](https://github.com/user-attachments/assets/cda097a3-3043-4d75-8ea9-94229347a642)
+![angular-app](https://github.com/user-attachments/assets/7ea7a31e-0e02-4611-8d60-c76e6034b1ac)
+
 
 
 </details>
