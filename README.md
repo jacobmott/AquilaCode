@@ -77,7 +77,7 @@ It will show tasks that you can run with Nx.
 
 ## Commands ran to setup the nx project and initial repo/structure
 
-#### Setting up nx monorepo for angular and nestjs
+** Setting up nx monorepo for angular and nestjs
 
 Used this stackoverflow post to help
 https://stackoverflow.com/questions/77347982/nx-monorepo-nestjs-angular
@@ -151,10 +151,13 @@ At line:1 char:1
     + CategoryInfo          : SecurityError: (:) [], PSSecurityException
     + FullyQualifiedErrorId : UnauthorizedAccess
 PS D:\OtherProjects\AquilaCode>
+```
 
 
+**  To get around the above issue, Switched from vs code terminal (that uses powershell) To Cygwin/mono terminal
 
-
+Generate angular app
+```
 [5.2][513][jacob@jakesbeastmech][/d/OtherProjects]
 $cd AquilaCode/
 total 786K
@@ -221,7 +224,10 @@ found 0 vulnerabilities
  NX   � View Details of angular-app
 
 Run "nx show project angular-app" to view details about this project.
+```
 
+Generate nest app
+```
 [5.2][515][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode]
 $nx g @nx/nest:app nest-app
 
@@ -274,6 +280,10 @@ Run "nx show project nest-app-e2e" to view details about this project.
  NX   � View Details of nest-app
 
 Run "nx show project nest-app" to view details about this project.
+```
+
+Generate shared lib directory 
+```
 
 [5.2][516][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode]
 $nx g @nx/js:lib shared-lib
@@ -300,6 +310,10 @@ UPDATE tsconfig.base.json
  NX   � View Details of shared-lib
 
 Run "nx show project shared-lib" to view details about this project.
+```
+
+Setting up git repo
+```
 
 [5.2][517][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode]
 $ls -lt
@@ -317,11 +331,8 @@ drwxr-xr-x 1 jacob 197609    0 Jul 21 14:38 angular-app-e2e
 -rw-r--r-- 1 jacob 197609  126 Jul 21 14:38 jest.config.ts
 -rw-r--r-- 1 jacob 197609   88 Jul 21 14:38 jest.preset.js
 -rw-r--r-- 1 jacob 197609 2.4K Jul 21 14:36 README.md
-```
 
-#### Setting up git repo
 
-```
 [5.2][522][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode]
 $git init && git symbolic-ref HEAD refs/heads/main
 Reinitialized existing Git repository in D:/OtherProjects/AquilaCode/.git/
