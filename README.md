@@ -660,6 +660,10 @@ For help, see: https://nodejs.org/en/docs/inspector
 [Nest] 30032  - 07/21/2024, 3:23:35 PM     LOG [InstanceLoader] AppModule dependencies initialized +4ms
 [Nest] 30032  - 07/21/2024, 3:23:35 PM     LOG � Application is running on: http://localhost:3000/api
 ```
+
+![angular-app](https://github.com/user-attachments/assets/b7d89901-e149-440b-b17f-c1390046588f)
+
+
 </details>
 
 ### Building and serving the angular app
