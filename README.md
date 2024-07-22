@@ -750,3 +750,22 @@ https://docs.nestjs.com/techniques/performance
 Add nest-js-2024-07-21 20_49_25-.png image here
 
 </details>
+
+
+## 07/21/2024
+<details>
+  
+### Hosted API for GET/PUT/POST/DELETE for a "SHIP" server
+
+![nest-js-servedl2024-07-21 21_23_39-](https://github.com/user-attachments/assets/faf6a7f4-d563-4776-8c45-7762d0230ec6)
+![nest-js-api-postman2024-07-21 22_54_27-Downloads](https://github.com/user-attachments/assets/6ad0de51-ab53-482f-8ece-c34c4b9f2907)
+
+
+### Setup mongoose database
+
+![mongoose2024-07-21 22_55_34-](https://github.com/user-attachments/assets/20520c62-7ad3-4e3c-a36a-13fc6a1f2994)
+
+![mongoose2024-07-21 22_55_34-](https://github.com/user-attachments/assets/ebbb75da-dde0-4265-bfeb-a1adaa358289)
+
+</details>
+
