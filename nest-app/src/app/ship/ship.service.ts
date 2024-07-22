@@ -7,11 +7,6 @@ import { InjectModel } from "@nestjs/mongoose";
 export class ShipService {
   constructor(@InjectModel("Ship") private readonly shipModel: Model<Ship>) {}
 
-  private readonly ships: Ship[] = [
-    { id: "1", name: "USS Enterprise", speed: 9.6, crew: 1000 },
-    { id: "2", name: "USS EnterpriseBrother", speed: 9.6, crew: 1200 },
-  ];
-
   async findAll(): Promise<Ship[]> {
     return await this.shipModel.find();
   }
