@@ -1,6 +1,6 @@
 # AquilaCode
 
-A mono repo for a complete application(UI/Backend), using NX, NestJS(With Fastify), Angular, OpenAPI 3.0
+<img src="https://pngimg.com/uploads/rockets/rockets_PNG101054.png" width="50" />A mono repo for a complete application(UI/Backend), using NX, NestJS(With Fastify), Angular, OpenAPI 3.0 <img src="https://pngimg.com/uploads/rockets/rockets_PNG101054.png" width="50" />
 
 
 # $${\color{green}BoilerPlate \space NX \space docs \space stuff}$$
