@@ -724,4 +724,11 @@ NOTE: Raw file sizes do not reflect development server per-request transformatio
 
 </details>
 
+### Fastify has been setup instead of express for our nestjs backend
+<details>
+  
+https://docs.nestjs.com/techniques/performance
+
+</details>
+
 
