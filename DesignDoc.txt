@@ -1,0 +1,28 @@
+idea for the NX/Nestjs/angular site
+
+-Its a game
+-its a space game
+-You have a ship
+-its flying around in space
+-theres a grid
+-its moving along the grid
+-its got a x/y position on the grid
+-the grid is infinite
+-You dont control the ship
+-its automated
+-you can set it to stop or go
+-you can select a destination(galaxy, solor system, planet)
+-When you reach a destination, you are given choices based on the destination
+-Along the way you can encounter other ships
+-if they get within a certain distance, you can choose to engage or not
+-your ship has sections
+-each section can be configured
+-you get items for each section from fighting other ships and from destinations
+-you can play music from a music player
+-theres an AI presense on the ship you can chat with and it talks back
+
+-design
+-Its all angular with UI components
+-The ship is an angular UI component
+-you can select sections of the ship and each section is its own angular component
+-The grid the ship is on(the universe) is an angular component
