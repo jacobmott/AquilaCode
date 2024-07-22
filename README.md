@@ -765,7 +765,9 @@ Add nest-js-2024-07-21 20_49_25-.png image here
 
 ![mongoose2024-07-21 22_55_34-](https://github.com/user-attachments/assets/20520c62-7ad3-4e3c-a36a-13fc6a1f2994)
 
-![mongoose2024-07-21 22_55_34-](https://github.com/user-attachments/assets/ebbb75da-dde0-4265-bfeb-a1adaa358289)
+![AquilaCluster2024-07-21 22_58_12-Data _ Cloud_ MongoDB Cloud](https://github.com/user-attachments/assets/af8d46e9-3e98-47a1-ad56-1c16994c39db)
+
+
 
 </details>
 
