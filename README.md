@@ -2,6 +2,19 @@
 
 <img src="https://pngimg.com/uploads/rockets/rockets_PNG101054.png" width="25" />A mono repo for a complete application(UI/Backend), using NX, NestJS(W/ Fastify), Angular, OpenAPI3.0<img src="https://pngimg.com/uploads/rockets/rockets_PNG101054.png" width="25" />
 
+# $${\color{green}Figma \space Designs}$$
+
+<img src="https://github.com/user-attachments/assets/4dc1d9c1-8b8f-4f93-ba61-0b4651c8bb8d" width="800" />
+
+<img src="https://github.com/user-attachments/assets/b694b1ab-3f3c-4fa2-a59a-de547745857f" width="800" />
+
+
+# $${\color{green}Sample \space Ships \space(Midjourney \space generated)}$$
+
+<img src="https://github.com/user-attachments/assets/14115086-9c38-4704-a3a2-b15c0487a93f" width="400" />
+
+<img src="https://github.com/user-attachments/assets/1bf251d3-14a3-4ed4-9422-00167fb733d4" width="400" />
+
 # $${\color{green}BoilerPlate \space NX \space docs \space stuff}$$
 
 <a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
