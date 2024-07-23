@@ -760,7 +760,8 @@ https://docs.nestjs.com/techniques/performance
 
 <details>
 
-Add nest-js-2024-07-21 20_49_25-.png image here
+![2024-07-22 23_17_13-create-ship dto ts - AquilaCode (Workspace) - Visual Studio Code](https://github.com/user-attachments/assets/c8d505e9-3db6-4126-b4dd-723335a3cd06)
+
 
 </details>
 
