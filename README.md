@@ -1093,4 +1093,19 @@ npm notice Publishing to https://registry.npmjs.org/ with tag latest and default
 ```
 </details>
 
+## Generate angular service using NX
+
+<details>
+  
+```
+ $nx generate @nx/angular:service aquilacode-api --project=angular-app
+
+ NX  Generating @nx/angular:service
+
+CREATE angular-app/src/app/aquilacode-api.service.spec.ts
+CREATE angular-app/src/app/aquilacode-api.service.ts
+```
+</details>
+
+
 
