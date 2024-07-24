@@ -1,4 +1,4 @@
-<img width="1917" alt="apicall" src="https://github.com/user-attachments/assets/79fc0151-b916-412f-9b91-d3f9bc1e64d8"># AquilaCode
+# AquilaCode
 
 <img src="https://pngimg.com/uploads/rockets/rockets_PNG101054.png" width="25" />A mono repo for a complete application(UI/Backend), using NX, NestJS(W/ Fastify), Angular, OpenAPI3.0<img src="https://pngimg.com/uploads/rockets/rockets_PNG101054.png" width="25" />
 
