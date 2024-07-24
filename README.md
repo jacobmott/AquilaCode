@@ -1107,5 +1107,25 @@ CREATE angular-app/src/app/aquilacode-api.service.ts
 ```
 </details>
 
+## Added tailwind to angular app using NX
+<details>
+  
+```
+[5.2][516][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode]
+$nx g @nx/angular:setup-tailwind angular-app
+
+ NX  Generating @nx/angular:setup-tailwind
+
+UPDATE package.json
+CREATE angular-app/tailwind.config.js
+UPDATE angular-app/src/styles.css
+
+added 25 packages, removed 2 packages, and audited 1691 packages in 6s
+
+226 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+```
 
 
