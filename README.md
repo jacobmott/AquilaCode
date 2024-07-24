@@ -810,28 +810,24 @@ added 116 packages in 14s
 
 </details>
 
-## Generate client SDK
+## Generate client SDK and publish to npm
 
 <details>
   
 ```
- [5.2][482][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode/openapi]
-$npx openapi-generator-cli generate -i openapi.spec.yaml -g typescript-angular -o dist --additional-properties fileNaming=kebab-case,withInterfaces=true --generate-alias-as-model
+ [5.2][505][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode/openapi]
+$npx openapi-generator-cli generate -i openapi.spec.yaml -g typescript-angular -o dist --additional-properties fileNaming=kebab-case,supportsES6=true,npmName=aquilacode-api,snapshot=false,ngVersion=18.1.1,npmVersion=1.0.0
 [main] INFO  o.o.codegen.DefaultGenerator - Generating with dryRun=false
 [main] INFO  o.o.c.ignore.CodegenIgnoreProcessor - Output directory (D:\OtherProjects\AquilaCode\openapi\dist) does not exist, or is inaccessible. No file (.openapi-generator-ignore) will be evaluated.
 [main] INFO  o.o.codegen.DefaultGenerator - OpenAPI Generator: typescript-angular (client)
 [main] INFO  o.o.codegen.DefaultGenerator - Generator 'typescript-angular' is considered stable.
 [main] INFO  o.o.c.l.AbstractTypeScriptClientCodegen - Hint: Environment variable 'TS_POST_PROCESS_FILE' (optional) not defined. E.g. to format the source code, please try 'export TS_POST_PROCESS_FILE="/usr/local/bin/prettier --write"' (Linux/Mac)
 [main] INFO  o.o.c.l.AbstractTypeScriptClientCodegen - Note: To enable file post-processing, 'enablePostProcessFile' must be set to `true` (--enable-post-process-file for CLI).
-[main] WARN  o.o.codegen.DefaultCodegen - The value (generator's option) must be either boolean or string. Default to `false`.
-[main] INFO  o.o.c.l.TypeScriptAngularClientCodegen - generating code for Angular 18.0.0 ...
-[main] INFO  o.o.c.l.TypeScriptAngularClientCodegen -   (you can select the angular version by setting the additionalProperties (--additional-properties in CLI) ngVersion)
 [main] INFO  o.o.codegen.utils.URLPathUtils - 'host' (OAS 2.0) or 'servers' (OAS 3.0) not defined in the spec. Default to [http://localhost] for server URL [http://localhost/]
 [main] INFO  o.o.codegen.utils.URLPathUtils - 'host' (OAS 2.0) or 'servers' (OAS 3.0) not defined in the spec. Default to [http://localhost] for server URL [http://localhost/]
 [main] INFO  o.o.codegen.DefaultGenerator - Model CreateShipDto not generated since it's a free-form object
 [main] INFO  o.o.codegen.utils.URLPathUtils - 'host' (OAS 2.0) or 'servers' (OAS 3.0) not defined in the spec. Default to [http://localhost] for server URL [http://localhost/]
 [main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\dist\api\default.service.ts
-[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\dist\api\default.serviceInterface.ts
 [main] INFO  o.o.codegen.utils.URLPathUtils - 'host' (OAS 2.0) or 'servers' (OAS 3.0) not defined in the spec. Default to [http://localhost] for server URL [http://localhost/]
 [main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\dist\model\models.ts
 [main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\dist\api\api.ts
@@ -844,6 +840,9 @@ $npx openapi-generator-cli generate -i openapi.spec.yaml -g typescript-angular -
 [main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\dist\.gitignore
 [main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\dist\git_push.sh
 [main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\dist\README.md
+[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\dist\ng-package.json
+[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\dist\package.json
+[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\dist\tsconfig.json
 [main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\dist\.openapi-generator-ignore
 [main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\dist\.openapi-generator\VERSION
 [main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\dist\.openapi-generator\FILES
@@ -852,6 +851,245 @@ $npx openapi-generator-cli generate -i openapi.spec.yaml -g typescript-angular -
 # Please consider donation to help us maintain this project ?                 #
 # https://opencollective.com/openapi_generator/donate                          #
 ################################################################################
+[5.2][506][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode/openapi]
+$cd dist/
+total 37K
+drwxr-xr-x 1 jacob 197609    0 Jul 23 23:22 api
+-rw-r--r-- 1 jacob 197609 1016 Jul 23 23:22 api.module.ts
+-rw-r--r-- 1 jacob 197609 6.2K Jul 23 23:22 configuration.ts
+-rw-r--r-- 1 jacob 197609  555 Jul 23 23:22 encoder.ts
+-rwxr-xr-x 1 jacob 197609 1.8K Jul 23 23:22 git_push.sh
+-rw-r--r-- 1 jacob 197609  144 Jul 23 23:22 index.ts
+drwxr-xr-x 1 jacob 197609    0 Jul 23 23:22 model
+-rw-r--r-- 1 jacob 197609  112 Jul 23 23:22 ng-package.json
+-rw-r--r-- 1 jacob 197609  854 Jul 23 23:22 package.json
+-rw-r--r-- 1 jacob 197609 1.4K Jul 23 23:22 param.ts
+-rw-r--r-- 1 jacob 197609 5.6K Jul 23 23:22 README.md
+-rw-r--r-- 1 jacob 197609  654 Jul 23 23:22 tsconfig.json
+-rw-r--r-- 1 jacob 197609  219 Jul 23 23:22 variables.ts
+[5.2][507][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode/openapi/dist]
+$npm install
+
+added 282 packages, and audited 283 packages in 26s
+
+47 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+[5.2][508][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode/openapi/dist]
+$npm run build
+
+> aquilacode-api@1.0.0 build
+> ng-packagr -p ng-package.json
+
+Building Angular Package
+
+------------------------------------------------------------------------------
+Building entry point 'aquilacode-api'
+------------------------------------------------------------------------------
+- Compiling with Angular sources in Ivy partial compilation mode.
+✔ Compiling with Angular sources in Ivy partial compilation mode.
+✔ Generating FESM bundles
+- Copying assets
+✔ Copying assets
+- Writing package manifest
+ℹ Removing scripts section in package.json as it's considered a potential security vulnerability.
+ℹ Removing devDependencies section in package.json.
+✔ Writing package manifest
+✔ Built aquilacode-api
+
+------------------------------------------------------------------------------
+Built Angular Package
+ - from: D:\OtherProjects\AquilaCode\openapi\dist
+ - to:   D:\OtherProjects\AquilaCode\openapi\dist\dist
+------------------------------------------------------------------------------
+
+Build at: 2024-07-24T04:23:05.915Z - Time: 1778ms
+
+[5.2][509][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode/openapi/dist]
+$cd dist/
+total 28K
+drwxr-xr-x 1 jacob 197609    0 Jul 23 23:23 api
+-rw-r--r-- 1 jacob 197609  684 Jul 23 23:23 api.module.d.ts
+-rw-r--r-- 1 jacob 197609 3.9K Jul 23 23:23 configuration.d.ts
+-rw-r--r-- 1 jacob 197609  432 Jul 23 23:23 encoder.d.ts
+drwxr-xr-x 1 jacob 197609    0 Jul 23 23:23 esm2022
+drwxr-xr-x 1 jacob 197609    0 Jul 23 23:23 fesm2022
+-rw-r--r-- 1 jacob 197609  192 Jul 23 23:23 index.d.ts
+-rw-r--r-- 1 jacob 197609  846 Jul 23 23:23 package.json
+-rw-r--r-- 1 jacob 197609 1.4K Jul 23 23:23 param.d.ts
+-rw-r--r-- 1 jacob 197609 5.6K Jul 23 23:22 README.md
+-rw-r--r-- 1 jacob 197609  272 Jul 23 23:23 variables.d.ts
+[5.2][510][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode/openapi/dist/dist]
+$vi ^C
+[5.2][510][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode/openapi/dist/dist]
+$npm publish dist^C
+[5.2][510][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode/openapi/dist/dist]
+$cd ...
+bash: cd: ...: No such file or directory
+[5.2][511][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode/openapi/dist/dist]
+$cd ..
+total 213K
+drwxr-xr-x 1 jacob 197609    0 Jul 23 23:22 api
+-rw-r--r-- 1 jacob 197609 1016 Jul 23 23:22 api.module.ts
+-rw-r--r-- 1 jacob 197609 6.2K Jul 23 23:22 configuration.ts
+drwxr-xr-x 1 jacob 197609    0 Jul 23 23:23 dist
+-rw-r--r-- 1 jacob 197609  555 Jul 23 23:22 encoder.ts
+-rwxr-xr-x 1 jacob 197609 1.8K Jul 23 23:22 git_push.sh
+-rw-r--r-- 1 jacob 197609  144 Jul 23 23:22 index.ts
+drwxr-xr-x 1 jacob 197609    0 Jul 23 23:22 model
+-rw-r--r-- 1 jacob 197609  112 Jul 23 23:22 ng-package.json
+drwxr-xr-x 1 jacob 197609    0 Jul 23 23:23 node_modules
+-rw-r--r-- 1 jacob 197609  854 Jul 23 23:22 package.json
+-rw-r--r-- 1 jacob 197609 141K Jul 23 23:22 package-lock.json
+-rw-r--r-- 1 jacob 197609 1.4K Jul 23 23:22 param.ts
+-rw-r--r-- 1 jacob 197609 5.6K Jul 23 23:22 README.md
+-rw-r--r-- 1 jacob 197609  654 Jul 23 23:22 tsconfig.json
+-rw-r--r-- 1 jacob 197609  219 Jul 23 23:22 variables.ts
+[5.2][512][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode/openapi/dist]
+$npm publish dist
+npm notice
+npm notice �  dist@0.1.2
+npm notice Tarball Contents
+npm notice 13B .npmignore
+npm notice 200B HISTORY.md
+npm notice 7B README.md
+npm notice 1.4kB bin/dist.js
+npm notice 1.8kB lib/dist.js
+npm notice 602B package.json
+npm notice 4.5kB test/dist.test.js
+npm notice 89B test/fixtures/copyright.js
+npm notice 199B test/fixtures/input.js
+npm notice 289B test/fixtures/out/input.copyright.js
+npm notice 229B test/fixtures/out/input.copyright.min.js
+npm notice 199B test/fixtures/out/input.js
+npm notice 139B test/fixtures/out/input.min.js
+npm notice 20B test/mocha.opts
+npm notice Tarball Details
+npm notice name: dist
+npm notice version: 0.1.2
+npm notice filename: dist-0.1.2.tgz
+npm notice package size: 2.7 kB
+npm notice unpacked size: 9.7 kB
+npm notice shasum: 8898629cc251297e36d1354a9a9598619aba5b1a
+npm notice integrity: sha512-TmsZfJybRs3IZ[...]frqZyuqkz/sOQ==
+npm notice total files: 14
+npm notice
+npm error code ENEEDAUTH
+npm error need auth This command requires you to be logged in to https://registry.npmjs.org/
+npm error need auth You need to authorize this machine using `npm adduser`
+
+npm error A complete log of this run can be found in: C:\Users\jacob\AppData\Local\npm-cache\_logs\2024-07-24T04_24_06_978Z-debug-0.log
+[5.2][513][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode/openapi/dist]
+$npm adduser
+npm notice Log in on https://registry.npmjs.org/
+Create your account at:
+https://www.npmjs.com/login?next=/login/cli/f0a52e41-5119-49bc-a80f-8926ab07c78b
+
+[5.2][514][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode/openapi/dist]
+$npm login
+npm notice Log in on https://registry.npmjs.org/
+Login at:
+https://www.npmjs.com/login?next=/login/cli/701c8a9e-e5ae-46ea-9c89-c6e02fe47252
+Logged in on https://registry.npmjs.org/.
+[5.2][515][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode/openapi/dist]
+$^C
+[5.2][515][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode/openapi/dist]
+$npm publish dist
+npm notice
+npm notice �  dist@0.1.2
+npm notice Tarball Contents
+npm notice 13B .npmignore
+npm notice 200B HISTORY.md
+npm notice 7B README.md
+npm notice 1.4kB bin/dist.js
+npm notice 1.8kB lib/dist.js
+npm notice 602B package.json
+npm notice 4.5kB test/dist.test.js
+npm notice 89B test/fixtures/copyright.js
+npm notice 199B test/fixtures/input.js
+npm notice 289B test/fixtures/out/input.copyright.js
+npm notice 229B test/fixtures/out/input.copyright.min.js
+npm notice 199B test/fixtures/out/input.js
+npm notice 139B test/fixtures/out/input.min.js
+npm notice 20B test/mocha.opts
+npm notice Tarball Details
+npm notice name: dist
+npm notice version: 0.1.2
+npm notice filename: dist-0.1.2.tgz
+npm notice package size: 2.7 kB
+npm notice unpacked size: 9.7 kB
+npm notice shasum: 8898629cc251297e36d1354a9a9598619aba5b1a
+npm notice integrity: sha512-TmsZfJybRs3IZ[...]frqZyuqkz/sOQ==
+npm notice total files: 14
+npm notice
+npm notice Publishing to https://registry.npmjs.org/ with tag latest and default access
+npm error code E403
+npm error 403 403 Forbidden - PUT https://registry.npmjs.org/dist - You do not have permission to publish "dist". Are you logged in as the correct user?
+npm error 403 In most cases, you or one of your dependencies are requesting
+npm error 403 a package version that is forbidden by your security policy, or
+npm error 403 on a server you do not have access to.
+
+npm error A complete log of this run can be found in: C:\Users\jacob\AppData\Local\npm-cache\_logs\2024-07-24T04_25_10_949Z-debug-0.log
+[5.2][516][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode/openapi/dist]
+$npm publish dist^C
+[5.2][516][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode/openapi/dist]
+$cd dist
+total 28K
+drwxr-xr-x 1 jacob 197609    0 Jul 23 23:23 api
+-rw-r--r-- 1 jacob 197609  684 Jul 23 23:23 api.module.d.ts
+-rw-r--r-- 1 jacob 197609 3.9K Jul 23 23:23 configuration.d.ts
+-rw-r--r-- 1 jacob 197609  432 Jul 23 23:23 encoder.d.ts
+drwxr-xr-x 1 jacob 197609    0 Jul 23 23:23 esm2022
+drwxr-xr-x 1 jacob 197609    0 Jul 23 23:23 fesm2022
+-rw-r--r-- 1 jacob 197609  192 Jul 23 23:23 index.d.ts
+-rw-r--r-- 1 jacob 197609  846 Jul 23 23:23 package.json
+-rw-r--r-- 1 jacob 197609 1.4K Jul 23 23:23 param.d.ts
+-rw-r--r-- 1 jacob 197609 5.6K Jul 23 23:22 README.md
+-rw-r--r-- 1 jacob 197609  272 Jul 23 23:23 variables.d.ts
+[5.2][517][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode/openapi/dist/dist]
+$npm publish
+npm warn publish npm auto-corrected some errors in your package.json when publishing.  Please run "npm pkg fix" to address these errors.
+npm warn publish errors corrected:
+npm warn publish Removed invalid "scripts"
+npm warn publish "repository.url" was normalized to "git+https://github.com/GIT_USER_ID/GIT_REPO_ID.git"
+npm notice
+npm notice �  aquilacode-api@1.0.0
+npm notice Tarball Contents
+npm notice 5.7kB README.md
+npm notice 684B api.module.d.ts
+npm notice 187B api/api.d.ts
+npm notice 5.4kB api/default.service.d.ts
+npm notice 3.9kB configuration.d.ts
+npm notice 432B encoder.d.ts
+npm notice 4.5kB esm2022/api.module.mjs
+npm notice 667B esm2022/api/api.mjs
+npm notice 58.3kB esm2022/api/default.service.mjs
+npm notice 459B esm2022/aquilacode-api.mjs
+npm notice 16.7kB esm2022/configuration.mjs
+npm notice 1.8kB esm2022/encoder.mjs
+npm notice 698B esm2022/index.mjs
+npm notice 2.3kB esm2022/param.mjs
+npm notice 1.0kB esm2022/variables.mjs
+npm notice 22.5kB fesm2022/aquilacode-api.mjs
+npm notice 44.8kB fesm2022/aquilacode-api.mjs.map
+npm notice 192B index.d.ts
+npm notice 846B package.json
+npm notice 1.4kB param.d.ts
+npm notice 272B variables.d.ts
+npm notice Tarball Details
+npm notice name: aquilacode-api
+npm notice version: 1.0.0
+npm notice filename: aquilacode-api-1.0.0.tgz
+npm notice package size: 32.8 kB
+npm notice unpacked size: 172.7 kB
+npm notice shasum: a862aa8a8b1a783c2dbf06bb599f12912d891e92
+npm notice integrity: sha512-9bnA70d1XJ+sD[...]jnkr8aZX8aCJA==
+npm notice total files: 21
+npm notice
+npm notice Publishing to https://registry.npmjs.org/ with tag latest and default access
++ aquilacode-api@1.0.0
+[5.2][518][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode/openapi/dist/dist]
 ```
 </details>
 
