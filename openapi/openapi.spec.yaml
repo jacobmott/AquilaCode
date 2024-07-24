@@ -1,0 +1,76 @@
+---
+openapi: 3.0.0
+paths:
+  "/ship":
+    get:
+      operationId: findAll
+      parameters: []
+      responses:
+        "200":
+          description: ""
+    post:
+      operationId: createShip
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/CreateShipDto"
+      responses:
+        "201":
+          description: ""
+  "/ship/{id}":
+    get:
+      operationId: findOne
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+    delete:
+      operationId: deleteOne
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+    put:
+      operationId: updateOne
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/CreateShipDto"
+      responses:
+        "200":
+          description: ""
+info:
+  title: AquilaCode API
+  description: AquilaCode API, for controlling the universe
+  version: "1.0"
+  contact: {}
+tags:
+  - name: AquilaCode
+    description: ""
+servers: []
+components:
+  schemas:
+    CreateShipDto:
+      type: object
+      properties: {}
