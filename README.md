@@ -792,3 +792,67 @@ https://docs.nestjs.com/techniques/performance
 
 </details>
 
+## Setup openapi-generator
+
+<details>
+  
+```
+[5.2][475][jacob@jakesbeastmech][~]
+$npm install @openapitools/openapi-generator-cli -g
+npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+
+added 116 packages in 14s
+
+23 packages are looking for funding
+  run `npm fund` for details
+```
+
+</details>
+
+## Generate client SDK
+
+<details>
+  
+```
+  [5.2][479][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode/openapi]
+$npx openapi-generator-cli generate -i openapi.spec.yaml -g typescript-angular -o ../angular-app/src/app/core/modules/openapi --additional-properties fileNaming=kebab-case,withInterfaces=true --generate-alias-as-model
+[main] INFO  o.o.codegen.DefaultGenerator - Generating with dryRun=false
+[main] INFO  o.o.c.ignore.CodegenIgnoreProcessor - No .openapi-generator-ignore file found.
+[main] INFO  o.o.codegen.DefaultGenerator - OpenAPI Generator: typescript-angular (client)
+[main] INFO  o.o.codegen.DefaultGenerator - Generator 'typescript-angular' is considered stable.
+[main] INFO  o.o.c.l.AbstractTypeScriptClientCodegen - Hint: Environment variable 'TS_POST_PROCESS_FILE' (optional) not defined. E.g. to format the source code, please try 'export TS_POST_PROCESS_FILE="/usr/local/bin/prettier --write"' (Linux/Mac)
+[main] INFO  o.o.c.l.AbstractTypeScriptClientCodegen - Note: To enable file post-processing, 'enablePostProcessFile' must be set to `true` (--enable-post-process-file for CLI).
+[main] WARN  o.o.codegen.DefaultCodegen - The value (generator's option) must be either boolean or string. Default to `false`.
+[main] INFO  o.o.c.l.TypeScriptAngularClientCodegen - generating code for Angular 18.0.0 ...
+[main] INFO  o.o.c.l.TypeScriptAngularClientCodegen -   (you can select the angular version by setting the additionalProperties (--additional-properties in CLI) ngVersion)
+[main] INFO  o.o.codegen.utils.URLPathUtils - 'host' (OAS 2.0) or 'servers' (OAS 3.0) not defined in the spec. Default to [http://localhost] for server URL [http://localhost/]
+[main] INFO  o.o.codegen.utils.URLPathUtils - 'host' (OAS 2.0) or 'servers' (OAS 3.0) not defined in the spec. Default to [http://localhost] for server URL [http://localhost/]
+[main] INFO  o.o.codegen.DefaultGenerator - Model CreateShipDto not generated since it's a free-form object
+[main] INFO  o.o.codegen.utils.URLPathUtils - 'host' (OAS 2.0) or 'servers' (OAS 3.0) not defined in the spec. Default to [http://localhost] for server URL [http://localhost/]
+[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\..\angular-app\src\app\core\modules\openapi\api\default.service.ts
+[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\..\angular-app\src\app\core\modules\openapi\api\default.serviceInterface.ts
+[main] INFO  o.o.codegen.utils.URLPathUtils - 'host' (OAS 2.0) or 'servers' (OAS 3.0) not defined in the spec. Default to [http://localhost] for server URL [http://localhost/]
+[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\..\angular-app\src\app\core\modules\openapi\model\models.ts
+[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\..\angular-app\src\app\core\modules\openapi\api\api.ts
+[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\..\angular-app\src\app\core\modules\openapi\index.ts
+[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\..\angular-app\src\app\core\modules\openapi\api.module.ts
+[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\..\angular-app\src\app\core\modules\openapi\configuration.ts
+[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\..\angular-app\src\app\core\modules\openapi\variables.ts
+[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\..\angular-app\src\app\core\modules\openapi\encoder.ts
+[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\..\angular-app\src\app\core\modules\openapi\param.ts
+[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\..\angular-app\src\app\core\modules\openapi\.gitignore
+[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\..\angular-app\src\app\core\modules\openapi\git_push.sh
+[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\..\angular-app\src\app\core\modules\openapi\README.md
+[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\..\angular-app\src\app\core\modules\openapi\.openapi-generator-ignore
+[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\..\angular-app\src\app\core\modules\openapi\.openapi-generator\VERSION
+[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\..\angular-app\src\app\core\modules\openapi\.openapi-generator\FILES
+################################################################################
+# Thanks for using OpenAPI Generator.                                          #
+# Please consider donation to help us maintain this project ?                 #
+# https://opencollective.com/openapi_generator/donate                          #
+################################################################################
+```
+</details>
+
+
