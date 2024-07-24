@@ -815,10 +815,10 @@ added 116 packages in 14s
 <details>
   
 ```
-  [5.2][479][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode/openapi]
-$npx openapi-generator-cli generate -i openapi.spec.yaml -g typescript-angular -o ../angular-app/src/app/core/modules/openapi --additional-properties fileNaming=kebab-case,withInterfaces=true --generate-alias-as-model
+ [5.2][482][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode/openapi]
+$npx openapi-generator-cli generate -i openapi.spec.yaml -g typescript-angular -o dist --additional-properties fileNaming=kebab-case,withInterfaces=true --generate-alias-as-model
 [main] INFO  o.o.codegen.DefaultGenerator - Generating with dryRun=false
-[main] INFO  o.o.c.ignore.CodegenIgnoreProcessor - No .openapi-generator-ignore file found.
+[main] INFO  o.o.c.ignore.CodegenIgnoreProcessor - Output directory (D:\OtherProjects\AquilaCode\openapi\dist) does not exist, or is inaccessible. No file (.openapi-generator-ignore) will be evaluated.
 [main] INFO  o.o.codegen.DefaultGenerator - OpenAPI Generator: typescript-angular (client)
 [main] INFO  o.o.codegen.DefaultGenerator - Generator 'typescript-angular' is considered stable.
 [main] INFO  o.o.c.l.AbstractTypeScriptClientCodegen - Hint: Environment variable 'TS_POST_PROCESS_FILE' (optional) not defined. E.g. to format the source code, please try 'export TS_POST_PROCESS_FILE="/usr/local/bin/prettier --write"' (Linux/Mac)
@@ -830,23 +830,23 @@ $npx openapi-generator-cli generate -i openapi.spec.yaml -g typescript-angular -
 [main] INFO  o.o.codegen.utils.URLPathUtils - 'host' (OAS 2.0) or 'servers' (OAS 3.0) not defined in the spec. Default to [http://localhost] for server URL [http://localhost/]
 [main] INFO  o.o.codegen.DefaultGenerator - Model CreateShipDto not generated since it's a free-form object
 [main] INFO  o.o.codegen.utils.URLPathUtils - 'host' (OAS 2.0) or 'servers' (OAS 3.0) not defined in the spec. Default to [http://localhost] for server URL [http://localhost/]
-[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\..\angular-app\src\app\core\modules\openapi\api\default.service.ts
-[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\..\angular-app\src\app\core\modules\openapi\api\default.serviceInterface.ts
+[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\dist\api\default.service.ts
+[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\dist\api\default.serviceInterface.ts
 [main] INFO  o.o.codegen.utils.URLPathUtils - 'host' (OAS 2.0) or 'servers' (OAS 3.0) not defined in the spec. Default to [http://localhost] for server URL [http://localhost/]
-[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\..\angular-app\src\app\core\modules\openapi\model\models.ts
-[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\..\angular-app\src\app\core\modules\openapi\api\api.ts
-[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\..\angular-app\src\app\core\modules\openapi\index.ts
-[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\..\angular-app\src\app\core\modules\openapi\api.module.ts
-[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\..\angular-app\src\app\core\modules\openapi\configuration.ts
-[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\..\angular-app\src\app\core\modules\openapi\variables.ts
-[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\..\angular-app\src\app\core\modules\openapi\encoder.ts
-[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\..\angular-app\src\app\core\modules\openapi\param.ts
-[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\..\angular-app\src\app\core\modules\openapi\.gitignore
-[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\..\angular-app\src\app\core\modules\openapi\git_push.sh
-[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\..\angular-app\src\app\core\modules\openapi\README.md
-[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\..\angular-app\src\app\core\modules\openapi\.openapi-generator-ignore
-[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\..\angular-app\src\app\core\modules\openapi\.openapi-generator\VERSION
-[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\..\angular-app\src\app\core\modules\openapi\.openapi-generator\FILES
+[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\dist\model\models.ts
+[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\dist\api\api.ts
+[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\dist\index.ts
+[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\dist\api.module.ts
+[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\dist\configuration.ts
+[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\dist\variables.ts
+[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\dist\encoder.ts
+[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\dist\param.ts
+[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\dist\.gitignore
+[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\dist\git_push.sh
+[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\dist\README.md
+[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\dist\.openapi-generator-ignore
+[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\dist\.openapi-generator\VERSION
+[main] INFO  o.o.codegen.TemplateManager - writing file D:\OtherProjects\AquilaCode\openapi\dist\.openapi-generator\FILES
 ################################################################################
 # Thanks for using OpenAPI Generator.                                          #
 # Please consider donation to help us maintain this project ?                 #
