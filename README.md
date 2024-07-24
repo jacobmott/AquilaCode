@@ -785,3 +785,10 @@ https://docs.nestjs.com/techniques/performance
 
 </details>
 
+## OpenAPI3.0 spec
+<details>
+  
+<img width="1622" alt="swagger-api-spec-2024-07-23 21_36_40" src="https://github.com/user-attachments/assets/b4813d2f-3520-4039-b334-afcc1ab56856">
+
+</details>
+
