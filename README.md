@@ -1,4 +1,4 @@
-# AquilaCode
+<img width="1917" alt="apicall" src="https://github.com/user-attachments/assets/79fc0151-b916-412f-9b91-d3f9bc1e64d8"># AquilaCode
 
 <img src="https://pngimg.com/uploads/rockets/rockets_PNG101054.png" width="25" />A mono repo for a complete application(UI/Backend), using NX, NestJS(W/ Fastify), Angular, OpenAPI3.0<img src="https://pngimg.com/uploads/rockets/rockets_PNG101054.png" width="25" />
 
@@ -813,6 +813,12 @@ added 116 packages in 14s
 ## Generate client SDK and publish to npm
 
 <details>
+
+https://www.npmjs.com/package/aquilacode-api
+
+<img width="1898" alt="image" src="https://github.com/user-attachments/assets/1348e422-1970-4651-a835-d5a6c820c973">
+
+
   
 ```
  [5.2][505][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode/openapi]
@@ -1127,5 +1133,16 @@ added 25 packages, removed 2 packages, and audited 1691 packages in 6s
 
 found 0 vulnerabilities
 ```
+</details>
+
+## SDK for API is integrated in angular frontend
+## Calling API from angular to get all ships
+<details>
+
+
+<img width="1917" alt="apicall" src="https://github.com/user-attachments/assets/040ced41-eaca-43d6-961e-9a8e5ad22c50">
+
+</details>
+
 
 
