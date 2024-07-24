@@ -790,6 +790,9 @@ https://www.npmjs.com/package/aquilacode-api
 
   
 ```
+
+npx openapi-generator-cli generate -i openapi.spec.yaml -g typescript-angular -o dist --additional-properties fileNaming=kebab-case,supportsES6=true,npmName=aquilacode-api,snapshot=false,ngVersion=18.1.0,npmVersion=2.0.0
+
  [5.2][505][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode/openapi]
 $npx openapi-generator-cli generate -i openapi.spec.yaml -g typescript-angular -o dist --additional-properties fileNaming=kebab-case,supportsES6=true,npmName=aquilacode-api,snapshot=false,ngVersion=18.1.1,npmVersion=1.0.0
 [main] INFO  o.o.codegen.DefaultGenerator - Generating with dryRun=false
@@ -1113,7 +1116,3 @@ found 0 vulnerabilities
 
 </details>
 
-
-
-npx openapi-generator-cli generate -i openapi.spec.yaml -g typescript-angular -o dist --additional-properties fileNaming=kebab-case,supportsES6=true,npmName=aquilacode-api,snapshot=false,ngVersion=18.1.0,npmVersion=2.0.0
-```
