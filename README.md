@@ -1149,3 +1149,18 @@ found 0 vulnerabilities
 
 </details>
 
+
+## 07/25/2024 progress
+
+<details>
+  
+Added layout from figma to angular app
+Have sidebar and maincontent
+maincontent has a router setup to load whatever we want into it
+
+![2024-07-25 02_37_03-main-site3](https://github.com/user-attachments/assets/954585af-b159-4ec1-8646-81a777b69984)
+
+![2024-07-25 02_36_37-main-site](https://github.com/user-attachments/assets/492d5a56-e015-436b-8203-ecc2bc75cebc)
+
+  
+</details>
