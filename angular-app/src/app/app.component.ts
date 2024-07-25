@@ -6,10 +6,18 @@ import { OnInit } from "@angular/core";
 import { ApiModule } from "aquilacode-api";
 import { DefaultService } from "aquilacode-api";
 import { HttpClient } from "@angular/common/http";
+import { SidebarComponent } from "./sidebar/sidebar.component";
+import { MaincontentComponent } from "./maincontent/maincontent.component";
 
 @Component({
   standalone: true,
-  imports: [NxWelcomeComponent, RouterModule, ApiModule],
+  imports: [
+    NxWelcomeComponent,
+    RouterModule,
+    ApiModule,
+    SidebarComponent,
+    MaincontentComponent,
+  ],
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrl: "./app.component.css",
