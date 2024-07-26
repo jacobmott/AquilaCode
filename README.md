@@ -1164,3 +1164,16 @@ maincontent has a router setup to load whatever we want into it
 
   
 </details>
+
+
+## 07/26/2024 progress
+
+<details>
+  
+Worked on sidebar and maincontents top bar, added animations/translations/transitions, with gradients
+
+![2024-07-26_00-59-10](https://github.com/user-attachments/assets/e25c0cf8-bc6c-4c1b-b6a9-418f258ab86b)
+
+  
+</details>
+
