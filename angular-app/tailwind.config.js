@@ -9,11 +9,28 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundSize: {
+        "size-200": "200% 200%",
+      },
+      backgroundPosition: {
+        "pos-0": "0% 0%",
+        "pos-100": "100% 100%",
+      },
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+      },
       colors: {
         aquila: {
           50: "#2B2F53",
           400: "#1D1C34",
           900: "#1D1C34",
+        },
+        aquilapink: {
+          50: "#FFF3FF",
+          100: "#FFC0FF",
+          400: "#FF8DFF",
+          600: "#F75AFF",
+          900: "#C427FB",
         },
       },
     },
