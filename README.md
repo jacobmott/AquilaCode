@@ -1177,3 +1177,16 @@ Worked on sidebar and maincontents top bar, added animations/translations/transi
   
 </details>
 
+## 07/27/2024 progress
+
+<details>
+  
+Implemented the buttons on the sidebar, can copy from the one i did now that it works/looks correct
+Updated main content and top content
+Generated and added AI art thats animated
+Fixed/setup some routing"
+
+![2024-07-26_00-59-10](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/2024-07-27_05-07-12-progress.gif)
+
+  
+</details>
