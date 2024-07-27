@@ -764,7 +764,8 @@ https://docs.nestjs.com/techniques/performance
 
 <details>
 
-![2024-07-22 23_17_13-create-ship dto ts - AquilaCode (Workspace) - Visual Studio Code](https://github.com/user-attachments/assets/c8d505e9-3db6-4126-b4dd-723335a3cd06)
+![2024-07-22 23_17_13-create-ship dto ts - AquilaCode (Workspace) - Visual Studio Code](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/351183681-c8d505e9-3db6-4126-b4dd-723335a3cd06.png)
+
 
 
 </details>
@@ -775,15 +776,15 @@ https://docs.nestjs.com/techniques/performance
   
 ### Hosted API for GET/PUT/POST/DELETE for a "SHIP" server
 
-![nest-js-servedl2024-07-21 21_23_39-](https://github.com/user-attachments/assets/faf6a7f4-d563-4776-8c45-7762d0230ec6)
-![nest-js-api-postman2024-07-21 22_54_27-Downloads](https://github.com/user-attachments/assets/6ad0de51-ab53-482f-8ece-c34c4b9f2907)
+![nest-js-servedl2024-07-21 21_23_39-](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/350832062-6ad0de51-ab53-482f-8ece-c34c4b9f2907.png)
+![nest-js-api-postman2024-07-21 22_54_27-Downloads](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/350831859-faf6a7f4-d563-4776-8c45-7762d0230ec6.png)
 
 
 ### Setup mongoose database
 
-![mongoose2024-07-21 22_55_34-](https://github.com/user-attachments/assets/20520c62-7ad3-4e3c-a36a-13fc6a1f2994)
+![mongoose2024-07-21 22_55_34-](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/350832665-af8d46e9-3e98-47a1-ad56-1c16994c39db.png)
 
-![AquilaCluster2024-07-21 22_58_12-Data _ Cloud_ MongoDB Cloud](https://github.com/user-attachments/assets/af8d46e9-3e98-47a1-ad56-1c16994c39db)
+![AquilaCluster2024-07-21 22_58_12-Data _ Cloud_ MongoDB Cloud](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/350832186-20520c62-7ad3-4e3c-a36a-13fc6a1f2994.png)
 
 
 
@@ -792,7 +793,7 @@ https://docs.nestjs.com/techniques/performance
 ## OpenAPI3.0 spec
 <details>
   
-<img width="1622" alt="swagger-api-spec-2024-07-23 21_36_40" src="https://github.com/user-attachments/assets/b4813d2f-3520-4039-b334-afcc1ab56856">
+<img width="1622" alt="swagger-api-spec-2024-07-23 21_36_40" src="https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/351555236-b4813d2f-3520-4039-b334-afcc1ab56856.png">
 
 </details>
 
