@@ -19,7 +19,9 @@ https://www.youtube.com/watch?v=EYe-2ecVudc
 
 Original images i created from [midjourney](https://www.midjourney.com/explore?tab=top) 
 
+
 ![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/cobratomahawk_httpss.mj.run4Pjs3lpQrIo_Make_the_character_femal_53b0620c-7037-4b0e-9e0f-4f7c226a5d03.png)
+
 ![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/cobratomahawk_httpss.mj.run4Pjs3lpQrIo_Make_the_character_femal_3aedfc7a-ea7c-41c2-a96a-643a393c67d2.png)
 
 
