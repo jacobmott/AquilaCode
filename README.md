@@ -21,11 +21,9 @@ Original images I created from [midjourney](https://www.midjourney.com/explore?t
 
 
 
-![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/mj-1-ref.png)
+![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/mj-1-ref-compressed.png)
+![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/mj-2-ref-min-compressed.png)
 
-<img src="https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/mj-1-ref.png"  width="800" />
-
-<img src="https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/mj-2-ref.png"  width="800" />
 
 
 # $${\color{green}Figma \space Designs}$$
