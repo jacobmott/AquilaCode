@@ -696,7 +696,7 @@ $nx serve nest-app
 
 ```
 
-![nest-app](https://github.com/user-attachments/assets/dc8eaa28-66df-4a4b-8361-2f7edc4c30b4)
+![nest-app](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/350804215-dc8eaa28-66df-4a4b-8361-2f7edc4c30b4.png)
 
 
 </details>
@@ -746,7 +746,7 @@ NOTE: Raw file sizes do not reflect development server per-request transformatio
 
 ```
 
-![angular-app](https://github.com/user-attachments/assets/7ea7a31e-0e02-4611-8d60-c76e6034b1ac)
+![angular-app](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/350804285-7ea7a31e-0e02-4611-8d60-c76e6034b1ac.png)
 
 
 
