@@ -8,9 +8,9 @@
 
 # $${\color{green}Figma \space Designs}$$
 
-<img src="https://github.com/user-attachments/assets/4dc1d9c1-8b8f-4f93-ba61-0b4651c8bb8d" width="800" />
+<img src="https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/AquilaCodeGalaxy.jpg" width="800" />
 
-<img src="https://github.com/user-attachments/assets/b694b1ab-3f3c-4fa2-a59a-de547745857f" width="800" />
+<img src="https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/AquilaCodeShips.jpg" width="800" />
 
 
 # $${\color{green}Sample \space Ships \space(Midjourney \space generated)}$$
@@ -1191,3 +1191,29 @@ Fixed/setup some routing"
 ![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/2024-07-27_05-22-21.png)
   
 </details>
+
+
+## AWS S3 Screenshots And videos folders (Syncing/Pull/Push to)
+
+<details>
+The Screenshots for this github and some videos) folder is stored in s3 bucket
+Pull down from bucket
+  
+```
+  aws s3 cp --recursive s3://<bucket>/AquilaCode/Videos AquilaCode/Videos
+  aws s3 cp --recursive s3://<bucket>/AquilaCode/Screenshots AquilaCode/Screenshots    
+```
+
+Push to bucket
+```
+  aws s3 cp --recursive AquilaCode/Videos s3://<bucket>/AquilaCode/Videos
+  aws s3 cp --recursive AquilaCode/Screenshots s3://<bucket>/AquilaCode/Screenshots
+```
+
+Or just do a sync
+```
+  aws s3 sync AquilaCode/Videos s3://<bucket>/AquilaCode/Videos --delete
+  aws s3 sync AquilaCode/Screenshots s3://<bucket>/AquilaCode/Screenshots --delete
+
+```
+
