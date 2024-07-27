@@ -15,9 +15,9 @@
 
 # $${\color{green}Sample \space Ships \space(Midjourney \space generated)}$$
 
-<img src="https://github.com/user-attachments/assets/14115086-9c38-4704-a3a2-b15c0487a93f" width="400" />
+<img src="https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/battleship1.png" width="400" />
 
-<img src="https://github.com/user-attachments/assets/1bf251d3-14a3-4ed4-9422-00167fb733d4" width="400" />
+<img src="https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/cobratomahawk_large_spaceship_styled_.png" width="400" />
 
 # $${\color{green}BoilerPlate \space NX \space docs \space stuff}$$
 
