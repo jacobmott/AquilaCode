@@ -12,9 +12,9 @@
 
 Video created using images from midjourney using [genmo](https://www.genmo.ai/)
 
-https://www.youtube.com/watch?v=EYe-2ecVudc
+https://youtu.be/EYe-2ecVudc
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/EYe-2ecVudc/default.jpg)](https://www.youtube.com/watch?v=EYe-2ecVudc)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/EYe-2ecVudc/default.jpg)](https://youtu.be/EYe-2ecVudc)
 
 
 Original images I created from [midjourney](https://www.midjourney.com/explore?tab=top) 
