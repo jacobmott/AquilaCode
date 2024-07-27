@@ -4,7 +4,7 @@
 
 <img src="https://pngimg.com/uploads/rockets/rockets_PNG101054.png" width="25" />A mono repo for a complete application(UI/Backend), using NX, NestJS(W/ Fastify), Angular, OpenAPI3.0<img src="https://pngimg.com/uploads/rockets/rockets_PNG101054.png" width="25" />
 
-![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/2024-07-27_05-07-12-progress2.gif)
+![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/2024-07-27_05-22-21.png)
 
 # $${\color{green}Figma \space Designs}$$
 
@@ -1188,6 +1188,6 @@ Updated main content and top content
 Generated and added AI art thats animated
 Fixed/setup some routing"
 
-![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/2024-07-27_05-07-12-progress.gif2)
+![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/2024-07-27_05-22-21.png)
   
 </details>
