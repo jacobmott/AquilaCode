@@ -821,7 +821,7 @@ added 116 packages in 14s
 
 https://www.npmjs.com/package/aquilacode-api
 
-<img width="1898" alt="image" src="https://github.com/user-attachments/assets/1348e422-1970-4651-a835-d5a6c820c973">
+<img width="1898" alt="image" src="https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/351611040-1348e422-1970-4651-a835-d5a6c820c973.png">
 
 
   
@@ -1148,7 +1148,7 @@ found 0 vulnerabilities
 <details>
 
 
-<img width="1917" alt="apicall" src="https://github.com/user-attachments/assets/040ced41-eaca-43d6-961e-9a8e5ad22c50">
+<img width="1917" alt="apicall" src="https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/351610019-040ced41-eaca-43d6-961e-9a8e5ad22c50.png">
 
 </details>
 
@@ -1161,9 +1161,11 @@ Added layout from figma to angular app
 Have sidebar and maincontent
 maincontent has a router setup to load whatever we want into it
 
-![2024-07-25 02_37_03-main-site3](https://github.com/user-attachments/assets/954585af-b159-4ec1-8646-81a777b69984)
 
-![2024-07-25 02_36_37-main-site](https://github.com/user-attachments/assets/492d5a56-e015-436b-8203-ecc2bc75cebc)
+
+![2024-07-25 02_37_03-main-site3](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/352009764-954585af-b159-4ec1-8646-81a777b69984.png)
+
+![2024-07-25 02_36_37-main-site](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/352009785-492d5a56-e015-436b-8203-ecc2bc75cebc.png)
 
   
 </details>
@@ -1175,7 +1177,7 @@ maincontent has a router setup to load whatever we want into it
   
 Worked on sidebar and maincontents top bar, added animations/translations/transitions, with gradients
 
-![2024-07-26_00-59-10](https://github.com/user-attachments/assets/e25c0cf8-bc6c-4c1b-b6a9-418f258ab86b)
+![2024-07-26_00-59-10](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/352394333-e25c0cf8-bc6c-4c1b-b6a9-418f258ab86b.gif)
 
   
 </details>
