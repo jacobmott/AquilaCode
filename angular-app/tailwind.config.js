@@ -9,6 +9,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        tall: { raw: "(min-height: 800px)" },
+        // => @media (min-height: 800px) { ... }
+      },
       backgroundSize: {
         "size-200": "200% 200%",
       },
