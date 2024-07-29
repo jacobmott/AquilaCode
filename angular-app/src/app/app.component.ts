@@ -26,7 +26,10 @@ export class AppComponent implements OnInit {
   ships: any;
   ships2 = "";
 
-  constructor(private aquilacode: DefaultService, private http: HttpClient) {}
+  constructor(
+    private aquilacode: DefaultService,
+    private http: HttpClient,
+  ) {}
 
   ngOnInit() {
     this.aquilacode.findAll().subscribe((ships) => {

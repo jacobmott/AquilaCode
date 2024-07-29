@@ -8,12 +8,16 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/angular-app",
         "index": "angular-app/src/index.html",
         "browser": "angular-app/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [
+          "zone.js"
+        ],
         "tsConfig": "angular-app/tsconfig.app.json",
         "assets": [
           {
@@ -21,12 +25,14 @@
             "input": "angular-app/public"
           },
           {
-            "input": "angular-app/assets", // look in the project folder
+            "input": "angular-app/assets",
             "glob": "**/*",
-            "output": "./src" // put the file in the root of the output bundle
+            "output": "./src"
           }
         ],
-        "styles": ["angular-app/src/styles.css"],
+        "styles": [
+          "angular-app/src/styles.css"
+        ],
         "scripts": []
       },
       "configurations": {
@@ -48,10 +54,15 @@
         "development": {
           "optimization": false,
           "extractLicenses": false,
-          "sourceMap": true
+          "sourceMap": true,
+          "fileReplacements": [
+            {
+              "replace": "angular-app/src/environments/environment.ts",
+              "with": "angular-app/src/environments/environment.development.ts"
+            }
+          ]
         }
       },
-      
       "defaultConfiguration": "production"
     },
     "serve": {
@@ -77,7 +88,9 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
         "jestConfig": "angular-app/jest.config.ts"
       }
