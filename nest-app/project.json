@@ -13,10 +13,12 @@
       },
       "configurations": {
         "development": {
-          "buildTarget": "nest-app:build:development"
+          "buildTarget": "nest-app:build:development",
+          "host": "0.0.0.0"
         },
         "production": {
-          "buildTarget": "nest-app:build:production"
+          "buildTarget": "nest-app:build:production",
+          "host": "0.0.0.0"
         }
       }
     },

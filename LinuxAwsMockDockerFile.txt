@@ -1,0 +1,180 @@
+# syntax=docker/dockerfile:1
+
+# Comments are provided throughout this file to help you get started.
+# If you need more help, visit the Dockerfile reference guide at
+# https://docs.docker.com/go/dockerfile-reference/
+
+# Want to help us make this template better? Share your feedback here: https://forms.gle/ybq9Krt8jtBL3iCk7
+
+################################################################################
+# Pick a base image to serve as the foundation for the other build stages in
+# this file.
+#
+# For illustrative purposes, the following FROM command
+# is using the alpine image (see https://hub.docker.com/_/alpine).
+# By specifying the "latest" tag, it will also use whatever happens to be the
+# most recent version of that image when you build your Dockerfile.
+# If reproducability is important, consider using a versioned tag
+# (e.g., alpine:3.17.2) or SHA (e.g., alpine@sha256:c41ab5c992deb4fe7e5da09f67a8804a46bd0592bfdf0b1847dde0e0889d2bff).
+FROM public.ecr.aws/amazonlinux/amazonlinux:latest as build
+
+# Update installed packages and install Apache
+RUN <<EOF
+
+yum update -y
+yum install tar -y
+yum install gzip -y
+yum install xz  -y
+touch ~/.bashrc
+yum install tar -y
+yum install gzip -y
+yum install xz  -y
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+source ~/.bashrc
+source ~/.bashrc && nvm install 20.15.1
+source ~/.bashrc && nvm use 20.15.1
+source ~/.bashrc && nvm alias default 20.15.1
+echo 'export NODE_PATH=$NODE_PATH:`npm root -g`' >> ~/.bashrc
+cat ~/.bashrc
+echo $NODE_PATH
+node --version
+EOF
+################################################################################
+WORKDIR /AquilaCode
+
+COPY nx.json .
+COPY package-lock.json .
+COPY package.json .
+COPY jest.config.ts .
+COPY jest.preset.js .
+#COPY start.sh .
+
+
+
+RUN source ~/.bashrc && npm install
+RUN source ~/.bashrc && npm i -g nx
+
+
+RUN node --version
+
+# Set NX_DAEMON environment variable to false to prevent nx from running in daemon mode
+ENV NX_DAEMON=false
+
+COPY . .
+
+RUN nx build nest-app
+
+RUN nx build angular-app
+
+# Create a new stage for the runtime image
+#FROM public.ecr.aws/amazonlinux/amazonlinux:latest as runtime
+#RUN yum update -y
+#RUN dnf install -y nodejs
+
+#RUN npm i -g nx
+# Set the working directory
+#WORKDIR /AquilaCode
+
+# Copy build artifacts from the build stage
+#COPY --from=build /AquilaCode/dist/angular-app /AquilaCode/dist/angular-app
+#COPY --from=build /AquilaCode/dist/nest-app /AquilaCode/dist/nest-app
+
+# Expose ports
+EXPOSE 4200
+#RUN chmod +x start.sh
+CMD ["nx", "serve nest-app", "serve angular-app"]
+#CMD ["/start.sh"]
+
+
+
+
+
+
+
+
+
+
+# syntax=docker/dockerfile:1
+
+# Comments are provided throughout this file to help you get started.
+# If you need more help, visit the Dockerfile reference guide at
+# https://docs.docker.com/go/dockerfile-reference/
+
+# Want to help us make this template better? Share your feedback here: https://forms.gle/ybq9Krt8jtBL3iCk7
+
+################################################################################
+# Pick a base image to serve as the foundation for the other build stages in
+# this file.
+#
+# For illustrative purposes, the following FROM command
+# is using the alpine image (see https://hub.docker.com/_/alpine).
+# By specifying the "latest" tag, it will also use whatever happens to be the
+# most recent version of that image when you build your Dockerfile.
+# If reproducability is important, consider using a versioned tag
+# (e.g., alpine:3.17.2) or SHA (e.g., alpine@sha256:c41ab5c992deb4fe7e5da09f67a8804a46bd0592bfdf0b1847dde0e0889d2bff).
+FROM alpine:latest as build
+
+# Update installed packages and install Apache
+ENV NVM_DIR ~/.nvm
+
+ENV NODE_VERSION 20.15.1
+
+# Install nvm with node and npm
+#RUN <<EOF
+RUN apk update
+RUN apk upgrade
+RUN touch ~/.bashrc
+RUN apk --no-cache add curl
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash
+run . ~/.bashrc
+RUN . $NVM_DIR/nvm.sh
+RUN nvm install $NODE_VERSION 
+RUN nvm alias default $NODE_VERSION
+RUN nvm use default
+#EOF
+
+################################################################################
+WORKDIR /AquilaCode
+
+COPY nx.json .
+COPY package-lock.json .
+COPY package.json .
+COPY jest.config.ts .
+COPY jest.preset.js .
+#COPY start.sh .
+
+
+
+RUN npm install
+RUN npm i -g nx
+
+
+RUN node --version
+
+# Set NX_DAEMON environment variable to false to prevent nx from running in daemon mode
+ENV NX_DAEMON=false
+
+COPY . .
+
+RUN nx build nest-app
+
+RUN nx build angular-app
+
+# Create a new stage for the runtime image
+#FROM public.ecr.aws/amazonlinux/amazonlinux:latest as runtime
+#RUN yum update -y
+#RUN dnf install -y nodejs
+
+#RUN npm i -g nx
+# Set the working directory
+#WORKDIR /AquilaCode
+
+# Copy build artifacts from the build stage
+#COPY --from=build /AquilaCode/dist/angular-app /AquilaCode/dist/angular-app
+#COPY --from=build /AquilaCode/dist/nest-app /AquilaCode/dist/nest-app
+
+# Expose ports
+EXPOSE 4200
+#RUN chmod +x start.sh
+CMD ["nx", "serve nest-app", "serve angular-app"]
+#CMD ["/start.sh"]

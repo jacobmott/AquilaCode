@@ -8,16 +8,12 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/angular-app",
         "index": "angular-app/src/index.html",
         "browser": "angular-app/src/main.ts",
-        "polyfills": [
-          "zone.js"
-        ],
+        "polyfills": ["zone.js"],
         "tsConfig": "angular-app/tsconfig.app.json",
         "assets": [
           {
@@ -30,9 +26,7 @@
             "output": "./src"
           }
         ],
-        "styles": [
-          "angular-app/src/styles.css"
-        ],
+        "styles": ["angular-app/src/styles.css"],
         "scripts": []
       },
       "configurations": {
@@ -69,10 +63,12 @@
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "buildTarget": "angular-app:build:production"
+          "buildTarget": "angular-app:build:production",
+          "host": "0.0.0.0"
         },
         "development": {
-          "buildTarget": "angular-app:build:development"
+          "buildTarget": "angular-app:build:development",
+          "host": "0.0.0.0"
         }
       },
       "defaultConfiguration": "development"
@@ -88,9 +84,7 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectRoot}"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "angular-app/jest.config.ts"
       }

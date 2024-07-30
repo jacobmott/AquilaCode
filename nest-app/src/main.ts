@@ -22,7 +22,7 @@ import { AppModule } from "./app/app.module";
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
-    new FastifyAdapter()
+    new FastifyAdapter(),
   );
 
   const config = new DocumentBuilder()
@@ -43,9 +43,9 @@ async function bootstrap() {
   app.setGlobalPrefix(globalPrefix);
   const port = process.env.PORT || 3000;
   app.enableCors();
-  await app.listen(port);
+  await app.listen(port, "0.0.0.0");
   Logger.log(
-    `🚀 Application is running on: http://localhost:${port}/${globalPrefix}`
+    `🚀 Application is running on: http://localhost:${port}/${globalPrefix}`,
   );
 }
 
