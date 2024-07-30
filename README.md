@@ -1239,6 +1239,7 @@ Or just do a sync
   aws s3 sync AquilaCode/Screenshots s3://<bucket>/AquilaCode/Screenshots --delete
 
 ```
+</details>
 
 ## 07/27/2024 progress
 
