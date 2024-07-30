@@ -1240,3 +1240,12 @@ Or just do a sync
 
 ```
 
+## 07/27/2024 progress
+
+
+![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/2024-07-29_19-28-28-Docker1.png)
+![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/2024-07-29_19-28-28-Docker2.png)
+![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/2024-07-29_19-28-28-Docker3.png)
+![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/2024-07-29_19-28-28-Docker4.png)
+![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/2024-07-29_19-28-28-Docker5.png)
+![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/2024-07-29_19-28-28-Docker6.png)
