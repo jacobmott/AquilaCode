@@ -1,4 +1,3 @@
 export default {
-  mongoURI:
-    "mongodb+srv://jacobmott:<WouldntYouLikeToKnow>@aquilacluster.seqwzqv.mongodb.net/?retryWrites=true&w=majority&appName=AquilaCluster",
+  mongoURI: "mongodb://127.0.0.1:27017/AquilaCode",
 };

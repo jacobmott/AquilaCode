@@ -125,17 +125,30 @@ RUN apk add --no-cache --virtual .build-deps-yarn curl gnupg tar \
   && yarn --version \
   && rm -rf /tmp/*
 
+
+RUN echo 'http://dl-cdn.alpinelinux.org/alpine/v3.9/main' >> /etc/apk/repositories
+RUN echo 'http://dl-cdn.alpinelinux.org/alpine/v3.9/community' >> /etc/apk/repositories
+RUN apk add mongodb mongodb-tools
+RUN apk add openrc
+
 #ENV NODE_VERSION 20.15.1
 RUN node --version
+RUN mkdir -p /data/db/
+RUN chown `id -u` /data/db
+#RUN rc-update add mongodb default
+#RUN rc-service mongodb start
+#RUN rc-service mongodb status
+
 
 ################################################################################
 WORKDIR /AquilaCode
 
-COPY nx.json .
-COPY package-lock.json .
-COPY package.json .
-COPY jest.config.ts .
-COPY jest.preset.js .
+COPY nx.json ./
+COPY package-lock.json ./
+COPY package.json ./
+COPY jest.config.ts ./
+COPY jest.preset.js ./
+COPY mongod.conf ./
 #COPY start.sh .
 
 RUN npm install
@@ -147,8 +160,10 @@ RUN node --version
 # Set NX_DAEMON environment variable to false to prevent nx from running in daemon mode
 ENV NX_DAEMON=false
 
-COPY . .
+COPY . ./
 
+
+#RUN mongo --version
 #RUN nx build nest-app
 
 #RUN nx build angular-app
@@ -167,8 +182,11 @@ COPY . .
 #COPY --from=build /AquilaCode/dist/nest-app /AquilaCode/dist/nest-app
 
 # Expose ports
-EXPOSE 4200
-EXPOSE 3000
+EXPOSE 443
+#EXPOSE 4200
+#EXPOSE 3000
+#EXPOSE 80
+#EXPOSE 27017
 #RUN chmod +x start.sh
 #CMD ["nx serve", "nest-app", "angular-app"]
 #CMD ["sh", "start.sh"]

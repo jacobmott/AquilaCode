@@ -9,6 +9,6 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideHttpClient(),
-    { provide: BASE_PATH, useValue: "http://localhost:8081/aquila" },
+    { provide: BASE_PATH, useValue: "https://aquilacode.io/aquila" },
   ],
 };
