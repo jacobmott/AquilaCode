@@ -1,0 +1,64 @@
+services:
+  # Our NestJS Api
+  api:
+    build:
+      dockerfile: DockerfileNest
+      context: ./
+      # Only build development stage from Dockerfile
+      target: development
+    # Mount our host dir to the docker container
+    # Mount api directory (./api) to (:) docker container (/AquilaCode/src/app)
+    # Reflect File changes from host to container
+    # RUN in debug mode: npm run start:debug --> Also start your vscode debugger
+    # Run in dev mode: npm run start:dev
+    depends_on:
+      - mongodb
+    environment:
+      DATABASE_URL: mongodb://127.0.0.1:27017/AquilaCode
+      NODE_ENV: development
+      JWT_SECRET: hard_to_guess_secret_123
+      PORT: 3000
+    ports:
+      - 3000:3000
+      - 9229:9229
+
+  # Our Angular Frontend
+  frontend:
+    build:
+      dockerfile: DockerfileAngular
+      context: ./
+      target: development
+    ports:
+      - 4200:4200
+    links:
+      - api
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    hostname: mongodb
+    volumes:
+      - mongodb-data:/data/db/
+      - mongodb-log:/var/log/mongodb/
+    env_file:
+      - .env
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: jake
+      MONGO_INITDB_ROOT_PASSWORD: t5*3!2@1kjklKLs
+    ports:
+      - "27017:27017"
+    networks:
+      - mongodb_network
+
+volumes:
+  mongodb-data:
+    driver: local
+    name: mongo-data
+  mongodb-log:
+    driver: local
+    name: mongo-log
+
+networks:
+  mongodb_network:
+    driver: bridge
+    name: mongo-network

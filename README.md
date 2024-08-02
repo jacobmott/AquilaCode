@@ -1250,3 +1250,12 @@ Or just do a sync
 ![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/2024-07-29_19-28-28-Docker4.png)
 ![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/2024-07-29_19-28-28-Docker5.png)
 ![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/2024-07-29_19-28-28-Docker6.png)
+
+
+
+
+## 07/31/2024 progress
+
+Setup mongodb locally using these youtube tutorials
+https://www.youtube.com/watch?v=gDOKSgqM-bQ&t=95s
+

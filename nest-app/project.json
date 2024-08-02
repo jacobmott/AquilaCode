@@ -7,7 +7,7 @@
   "targets": {
     "serve": {
       "executor": "@nx/js:node",
-      "defaultConfiguration": "development",
+      "defaultConfiguration": "production",
       "options": {
         "buildTarget": "nest-app:build",
         "host": "0.0.0.0"
