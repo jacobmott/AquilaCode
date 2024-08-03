@@ -1259,3 +1259,42 @@ Or just do a sync
 Setup mongodb locally using these youtube tutorials
 https://www.youtube.com/watch?v=gDOKSgqM-bQ&t=95s
 
+
+## 08/01/2024 progress
+
+Experimenting with docker builds
+
+Generating my angular only image like:
+```
+Build the angular image specifically, by passing the angular specific docker file
+docker build --no-cache -t aquilacode:angular -f DockerfileAngular .
+#Get the image id/name for run command
+docker image ls
+#Run the angular image in "detached" mode(in the background)
+docker run -p 8080:80 -d aquilacode:angular
+#Check the processes
+docker ps -a
+docker ps
+#Stop the specific image 
+docker stop 374bbd1fb6f0
+```
+
+Generating my nestjs only image like:
+```
+Build the nestjs image specifically, by passing the nestjs specific docker file
+docker build --no-cache -t aquilacode:nestjs -f DockerfileNest .
+docker run -p 8081:3000 -d aquilacode:nestjs
+```
+
+Building the container stack with compose
+```
+docker-compose build --no-cache
+#start over
+docker-compose down
+docker-compose rm -f
+#start up
+docker compose up
+```
+
+
+

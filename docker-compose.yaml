@@ -1,16 +1,7 @@
 services:
   # Our NestJS Api
   api:
-    build:
-      dockerfile: DockerfileNest
-      context: ./
-      # Only build development stage from Dockerfile
-      target: development
-    # Mount our host dir to the docker container
-    # Mount api directory (./api) to (:) docker container (/AquilaCode/src/app)
-    # Reflect File changes from host to container
-    # RUN in debug mode: npm run start:debug --> Also start your vscode debugger
-    # Run in dev mode: npm run start:dev
+    image: aquilacode-api:latest
     depends_on:
       - mongodb
     environment:
@@ -24,12 +15,9 @@ services:
 
   # Our Angular Frontend
   frontend:
-    build:
-      dockerfile: DockerfileAngular
-      context: ./
-      target: development
+    image: aquilacode-frontend:latest
     ports:
-      - 4200:4200
+      - 8080:80
     links:
       - api
 

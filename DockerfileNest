@@ -1,47 +1,57 @@
-# Specify Node Version and Image
-# Name Image development (can be anything)
+
+# Stage 1: Build with node image with NX
+#Get node image
+#copy entire cwd for nx app over
+#npm install
+#npm install nx globally
+#nx build nest-app --prod
+#expose port 3000
+
+# Stage 2: deploy/run with node
+#Get an node image
+#copy the dist folder from the nx build over to the nginx image
+#expose port 80
+#run node
+
+
+# Stage 1: build with node
+#Get node image
 FROM node:22-alpine3.20 AS development
 
-# Specify Working directory inside container
-WORKDIR /AquilaCode/src/app
+#copy entire cwd for nx app over
+COPY . ./AquilaCode/
 
-# Copy package-lock.json & package.json from host to inside container working directory
-COPY package*.json ./
-COPY nx.json ./
-COPY jest.config.ts ./
-COPY jest.preset.js ./
+WORKDIR /AquilaCode/
 
-# Install deps inside container
+#npm install
 RUN npm install
-RUN node --version
-
-COPY . ./
 
 # Install NX build system
+#npm install nx globally
 RUN npm i -g nx
 
-# Set NX_DAEMON environment variable to false to prevent nx from running in daemon mode
-ENV NX_DAEMON=false
-
+#Build the nest app
 RUN nx build nest-app --prod
 
+# Stage 2: deploy/run with node
+#Get an node image
+FROM node:22-alpine3.20 AS production
+
+
+#copy the dist folder from the nx build over to the node image
+COPY --from=development /AquilaCode/dist/nest-app/ /AquilaCode/
+COPY --from=development /AquilaCode/package.json /AquilaCode/
+COPY --from=development /AquilaCode/package-lock.json /AquilaCode/
+
+WORKDIR /AquilaCode
+
+RUN npm install
+
+#expose port 80
+#EXPOSE 80
+#expose port 3000
 EXPOSE 3000
 
-#################
-### PRODUCTION ##
-#################
-## Build another image named production
-#FROM node:22-alpine3.20 AS production
-#
-#ARG NODE_ENV=production
-#ENV NODE_ENV=${NODE_ENV}
-#
-## Set work dir
-#WORKDIR /AquilaCode/src/app
-#
-#COPY --from=development /AquilaCode/src/app/ .
-#
-#EXPOSE 3000
-
-# run app
-CMD [ "nx", "serve", "nest-app"]
+#run nginx
+#ENTRYPOINT ["tail", "-f", "/dev/null"]
+CMD ["node", "main.js"]
