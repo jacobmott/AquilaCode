@@ -5,6 +5,7 @@
 Website is hosted here:
 https://aquilacode.io/
 
+```
 Website tech stack:
 -NX build system
 -Nestjs backend
@@ -21,6 +22,7 @@ to the ec2
 -EC2 checkes out docker images from aws ecr registery
 -uses docker compose file with those images to spin up the entire stack of services(frontened/backened/mongdb database)
 -NGINX server is used to route to the frontend or backend based on path paramater
+```
 
 <img src="https://pngimg.com/uploads/rockets/rockets_PNG101054.png" width="25" />A mono repo for a complete application(UI/Backend), using NX, NestJS(W/ Fastify), Angular, OpenAPI3.0<img src="https://pngimg.com/uploads/rockets/rockets_PNG101054.png" width="25" />
 
