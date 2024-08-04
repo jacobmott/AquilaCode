@@ -6,7 +6,8 @@ Website is hosted here:
 https://aquilacode.io/
 
 ```
-Website tech stack: (NX/Nestjs/Mongodb/Angular/NGINX/AWS ECR/AWS Loadbalancer/AWS EC2/AWS Route53/AWS ACM(certificates for ssl)
+Website tech stack:
+(NX/Nestjs/Mongodb/Angular/NGINX/AWS ECR/AWS Loadbalancer/AWS EC2/AWS Route53/AWS ACM(certificates for ssl)
 -NX build system
 -Nestjs backend
 -API spec generated from Nestjs code
