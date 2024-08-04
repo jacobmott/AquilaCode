@@ -11,7 +11,7 @@ Website tech stack:
 -Nestjs backend
 -API spec generated from Nestjs code
 -API Spec used to generate an sdk thats uploaded to npm repository
--This sdk in `npm installed` by the Frontend
+-This sdk is then `npm installed` by the Frontend
 -Frontend is angular
 -database is mongodb
 -NX build system manages both UI/Frontend and api spec in a monorepo
@@ -19,8 +19,8 @@ Website tech stack:
 -Docker images are uploaded to amazon ecr registery
 -EC2 in behind a load balancer and route53 routes traffic via secure SSL (https) aquilacode.io domain
 to the ec2
--EC2 checkes out docker images from aws ecr registery
--uses docker compose file with those images to spin up the entire stack of services(frontened/backened/mongdb database)
+-EC2 checks out docker images from aws private ecr registery
+-EC2 then uses docker compose file with those images to spin up the entire stack of services(frontened/backened/mongdb database)
 -NGINX server is used to route to the frontend or backend based on path paramater
 ```
 
