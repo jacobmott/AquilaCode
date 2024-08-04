@@ -2,6 +2,26 @@
 
 # AquilaCode
 
+Website is hosted here:
+https://aquilacode.io/
+
+Website tech stack:
+-NX build system
+-Nestjs backend
+-API spec generated from Nestjs code
+-API Spec used to generate an sdk thats uploaded to npm repository
+-This sdk in `npm installed` by the Frontend
+-Frontend is angular
+-database is mongodb
+-NX build system manages both UI/Frontend and api spec in a monorepo
+-Code is built with dockerfiles and docker compose
+-Docker images are uploaded to amazon ecr registery
+-EC2 in behind a load balancer and route53 routes traffic via secure SSL (https) aquilacode.io domain
+to the ec2
+-EC2 checkes out docker images from aws ecr registery
+-uses docker compose file with those images to spin up the entire stack of services(frontened/backened/mongdb database)
+-NGINX server is used to route to the frontend or backend based on path paramater
+
 <img src="https://pngimg.com/uploads/rockets/rockets_PNG101054.png" width="25" />A mono repo for a complete application(UI/Backend), using NX, NestJS(W/ Fastify), Angular, OpenAPI3.0<img src="https://pngimg.com/uploads/rockets/rockets_PNG101054.png" width="25" />
 
 ![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/2024-07-27_05-22-21.png)
@@ -1243,6 +1263,7 @@ Or just do a sync
 
 ## 07/27/2024 progress
 
+<details>
 
 ![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/2024-07-29_19-28-28-Docker1.png)
 ![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/2024-07-29_19-28-28-Docker2.png)
@@ -1252,15 +1273,20 @@ Or just do a sync
 ![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/2024-07-29_19-28-28-Docker6.png)
 
 
-
+</details>
 
 ## 07/31/2024 progress
+
+<details>
 
 Setup mongodb locally using these youtube tutorials
 https://www.youtube.com/watch?v=gDOKSgqM-bQ&t=95s
 
+</details>
 
 ## 08/01/2024 progress
+
+<details>
 
 Experimenting with docker builds
 
@@ -1295,6 +1321,235 @@ docker-compose rm -f
 #start up
 docker compose up
 ```
+</details>
+
+## 08/03/2024 progress
+
+<details>
+
+Building angular single so I can easily just test the angular app locally
+
+```
+$docker build --no-cache -t aqsingle:angular -f DockerfileAngular .
+$docker-compose -f docker-compose-for-testing-angular.yaml up
+#Bring it down when done
+$docker-compose -f docker-compose-for-testing-angular.yaml down
+#Use docker images and docker rmi to find and remove the images when done
+docker images ls
+docker rmi e275a057b06b
+```
+
+Building nest single so I can easily just test the angular app locally
+
+```
+$docker build --no-cache -t aqsingle:angular -f DockerfileAngular .
+$docker-compose -f docker-compose-for-testing-angular.yaml up
+#Bring it down when done
+$docker-compose -f docker-compose-for-testing-angular.yaml down
+#Use docker images and docker rmi to find and remove the images when done
+docker images ls
+docker rmi e275a057b06b
+```
 
 
 
+#Pushing aquila code frontend to aws ECR
+```
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 721233806080.dkr.ecr.us-east-1.amazonaws.com/aquilacode-frontend
+docker tag aquilacode-frontend:latest 721233806080.dkr.ecr.us-east-1.amazonaws.com/aquilacode-frontend
+docker push 721233806080.dkr.ecr.us-east-1.amazonaws.com/aquilacode-frontend
+```
+
+#Pushing aquila code backend to aws ECR
+```
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 721233806080.dkr.ecr.us-east-1.amazonaws.com/aquilacode-backend
+docker tag aquilacode-backend:latest 721233806080.dkr.ecr.us-east-1.amazonaws.com/aquilacode-backend
+docker push 721233806080.dkr.ecr.us-east-1.amazonaws.com/aquilacode-backend
+```
+#Pushing aquila code mongo to aws ECR
+```
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 721233806080.dkr.ecr.us-east-1.amazonaws.com/mongo
+docker tag mongo:latest 721233806080.dkr.ecr.us-east-1.amazonaws.com/mongo
+docker push 721233806080.dkr.ecr.us-east-1.amazonaws.com/mongo
+```
+
+
+#Deploying to aws ecs(full deploy), using docker compose/context
+
+https://www.youtube.com/watch?v=Oj3jpxBJOXU
+https://www.youtube.com/watch?v=hawFHY9DOoA
+https://www.youtube.com/watch?v=x0Kbj4lEOag
+https://docs.compose-x.io/ #Dont use this, it seems really hacky
+https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Copilot.html
+https://docs.aws.amazon.com/AmazonECS/latest/developerguide/copilot-deploy.html
+https://www.youtube.com/watch?v=XgXuF4ap-4Y
+
+
+Just ended up doing this (Pusing to an ec2 directlry and running docker container there)
+Its unfortunate that there is no legit service to use your compose/docker files to push to aws and create a cloudformation for you
+https://www.youtube.com/watch?v=qNIniDftAcU
+
+Had to get docker compose onto the ec2 using this article
+https://medium.com/@fredmanre/how-to-configure-docker-docker-compose-in-aws-ec2-amazon-linux-2023-ami-ab4d10b2bcdc
+
+```
+#Push all images to aws ECR private registery
+#SSH to aws ec2
+#Pull images down to docker on ec2
+#run docker compose file, docker up command on ec2 using pulled down/updated docker images
+#if the docker compose file changes need to update it on the ec2
+```
+
+
+```
+upload the yaml compose file
+[5.2][507][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode]
+$scp -i /c/Users/jacob/Downloads/AquilaCodeEc2.pem docker-compose.yaml ec2-user@xxx:/home/ec2-user
+The authenticity of host dd can't be established.
+This host key is known by the following other names/addresses:
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added xxx () to the list of known hosts.
+docker-compose.yaml      
+```
+
+
+more setup usteps on ec2
+had to do this too
+https://stackoverflow.com/questions/59580136/how-do-i-set-docker-credential-ecr-login-in-my-path-before-anything-else-in-gitl
+
+
+how to restart linux serviecs
+https://www.techrepublic.com/article/how-to-start-stop-and-restart-services-in-linux/
+```
+[ec2-user@ip- .docker]$ vi ~/.docker/config.json
+[ec2-user@ip- .docker]$ history
+    1  yum install -y docker
+    2  sudo yum install -y docker
+    3  su
+    4  sudo su -
+    5  pwd
+    6  ls
+    7  docker-compose -f docker-compose.yaml up
+    8  sudo docker-compose -f docker-compose.yaml up
+    9  aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 721233806080.dkr.ecr.us-east-1.amazonaws.com/mongo
+   10  aws configure
+   11  aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 721233806080.dkr.ecr.us-east-1.amazonaws.com/mongo
+   12  aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 721233806080.dkr.ecr.us-east-1.amazonaws.com/aquilacode-backend
+   13  aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 721233806080.dkr.ecr.us-east-1.amazonaws.com/aquilacode-frontend
+   14  sudo docker-compose -f docker-compose.yaml up
+   15  docker pull 721233806080.dkr.ecr.us-east-1.amazonaws.com/aquilacode-frontend
+   16  sudo docker pull 721233806080.dkr.ecr.us-east-1.amazonaws.com/aquilacode-frontend
+   17  cat ~/.ecr/log/ecr-login.log
+   18  cat .aws/config
+   19  ls
+   20  which docker
+   21  ls -lta
+   22  cd .docker/
+   23  ls
+   24  vi config.json
+   25  cat ../.aws/config
+   26  cat ../.aws/credentials
+   27  sudo yum install amazon-ecr-credential-helper
+   28  vi ~/.docker/config.json
+   29  history
+   sudo service docker restart
+[ec2-user@ .docker]$
+
+```
+
+
+Connecting to ec2
+```
+ssh -i "AEc2.pem" ec2-user@.compute-1.amazonaws.com
+```
+
+More docker setup on the ec2
+had to do this
+https://docs.aws.amazon.com/AmazonECR/latest/userguide/getting-started-cli.html
+docker login aws ecr command
+
+```
+ aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 721233806080.dkr.ecr.us-east-1.amazonaws.com
+```
+
+
+I had to get on ec2 root to get these commands to work
+
+
+SCP new docker-compose to ec2
+```
+[5.2][500][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode]
+$scp -i /c/Users/jacob/Downloads/aq.pem docker-compose.yaml ec2-user@sd:/home/ec2-user
+docker-compose.yaml      
+```
+
+Change mongodb admin password 
+
+```
+[root@ ec2-user]# docker images
+REPOSITORY                                                         TAG       IMAGE ID       CREATED          SIZE
+721233806080.dkr.ecr.us-east-1.amazonaws.com/aquilacode-frontend   latest    089ec6a9127f   27 minutes ago   109MB
+721233806080.dkr.ecr.us-east-1.amazonaws.com/aquilacode-frontend   <none>    917757f7c122   5 hours ago      109MB
+721233806080.dkr.ecr.us-east-1.amazonaws.com/aquilacode-backend    latest    a9eb2bc75ab6   7 hours ago      962MB
+721233806080.dkr.ecr.us-east-1.amazonaws.com/mongo                 latest    a31b196b207d   5 weeks ago      796MB
+[root@ ec2-user]# docker-compose down a31b196b207d
+no such service: a31b196b207d
+[root@ ec2-user]# docker-compose -f docker-compose.yaml up -d
+[+] Running 3/3
+ ✔ Container mongo                Started                                                                                                                                                        0.4s
+ ✔ Container ec2-user-api-1       Started                                                                                                                                                        0.9s
+ ✔ Container ec2-user-frontend-1  Started                                                                                                                                                        1.6s
+[root@ ec2-user]# docker images
+REPOSITORY                                                         TAG       IMAGE ID       CREATED          SIZE
+721233806080.dkr.ecr.us-east-1.amazonaws.com/aquilacode-frontend   latest    089ec6a9127f   33 minutes ago   109MB
+721233806080.dkr.ecr.us-east-1.amazonaws.com/aquilacode-frontend   <none>    917757f7c122   5 hours ago      109MB
+721233806080.dkr.ecr.us-east-1.amazonaws.com/aquilacode-backend    latest    a9eb2bc75ab6   7 hours ago      962MB
+721233806080.dkr.ecr.us-east-1.amazonaws.com/mongo                 latest    a31b196b207d   5 weeks ago      796MB
+[root@ ec2-user]# docker ps
+CONTAINER ID   IMAGE                                                              COMMAND                  CREATED         STATUS          PORTS                               NAMES
+de7494d0aeae   721233806080.dkr.ecr.us-east-1.amazonaws.com/aquilacode-frontend   "/docker-entrypoint.…"   5 minutes ago   Up 23 seconds   0.0.0.0:80->80/tcp, :::80->80/tcp   ec2-user-frontend-1
+9fc0801263ba   721233806080.dkr.ecr.us-east-1.amazonaws.com/aquilacode-backend    "docker-entrypoint.s…"   5 minutes ago   Up 24 seconds                                       ec2-user-api-1
+8c3b1806d694   721233806080.dkr.ecr.us-east-1.amazonaws.com/mongo                 "docker-entrypoint.s…"   5 minutes ago   Up 24 seconds   27017/tcp                           mongo
+[root@ ec2-user]# docker exec -it a31b196b207d bash
+Error response from daemon: No such container: a31b196b207d
+[root@ ec2-user]# docker exec -it 8c3b1806d694 bash
+root@8c3b1806d694:/# mongo admin -u admin -p dfasd
+bash: mongo: command not found
+root@8c3b1806d694:/# mongosh admin -u admin -p admin
+Current Mongosh Log ID: sdafds
+Connecting to:          mongodb://<credentials>@adsfs/admin?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.2.10
+Using MongoDB:          7.0.12
+Using Mongosh:          2.2.10
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+
+To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+You can opt-out by running the disableTelemetry() command.
+
+------
+   The server generated these startup warnings when booting
+   2024-08-04T08:06:36.922+00:00: Soft rlimits for open file descriptors too low
+------
+
+admin> db.changeUserPassword("admin", "123ddfdfdf")
+{ ok: 1 }
+admin>
+(To exit, press Ctrl+C again or Ctrl+D or type .exit)
+admin> exit
+root@:/#
+```
+
+
+containers running
+
+```
+[root@ip- ec2-user]# docker ps
+CONTAINER ID   IMAGE                                                              COMMAND                  CREATED          STATUS          PORTS                               NAMES
+de7494d0aeae   721233806080.dkr.ecr.us-east-1.amazonaws.com/aquilacode-frontend   "/docker-entrypoint.…"   14 minutes ago   Up 21 seconds   0.0.0.0:80->80/tcp, :::80->80/tcp   ec2-user-frontend-1
+9fc0801263ba   721233806080.dkr.ecr.us-east-1.amazonaws.com/aquilacode-backend    "docker-entrypoint.s…"   14 minutes ago   Up 21 seconds                                       ec2-user-api-1
+8c3b1806d694   721233806080.dkr.ecr.us-east-1.amazonaws.com/mongo                 "docker-entrypoint.s…"   14 minutes ago   Up 22 seconds   27017/tcp                           mongo
+[root@ip- ec2-user]#
+```
+
+</details>

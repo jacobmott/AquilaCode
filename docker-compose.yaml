@@ -1,52 +1,55 @@
 services:
   # Our NestJS Api
   api:
-    image: aquilacode-api:latest
-    depends_on:
-      - mongodb
+    image: 721233806080.dkr.ecr.us-east-1.amazonaws.com/aquilacode-backend
     environment:
-      DATABASE_URL: mongodb://127.0.0.1:27017/AquilaCode
-      NODE_ENV: development
-      JWT_SECRET: hard_to_guess_secret_123
-      PORT: 3000
-    ports:
-      - 3000:3000
-      - 9229:9229
+      DATABASE_URL: mongodb://mongo:27017 #mongodb://mongodb:27017/AquilaCode #mongodb://localhost:27017
+      DATABASE_NAME: "admin"
+      DATABASE_USER: "admin"
+      DATABASE_PASS: "<add back when needed>"
+    # ports:
+    #   - 3000:3000
+    networks:
+      - MONGO
+    depends_on:
+      - mongo
 
   # Our Angular Frontend
   frontend:
-    image: aquilacode-frontend:latest
+    image: 721233806080.dkr.ecr.us-east-1.amazonaws.com/aquilacode-frontend
     ports:
-      - 8080:80
-    links:
-      - api
-
-  mongodb:
-    image: mongo:latest
-    container_name: mongodb
-    hostname: mongodb
-    volumes:
-      - mongodb-data:/data/db/
-      - mongodb-log:/var/log/mongodb/
-    env_file:
-      - .env
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: jake
-      MONGO_INITDB_ROOT_PASSWORD: t5*3!2@1kjklKLs
-    ports:
-      - "27017:27017"
+      - 80:80
     networks:
-      - mongodb_network
+      - MONGO
+    depends_on:
+      - api
+    #links:
+    #  - api
 
-volumes:
-  mongodb-data:
-    driver: local
-    name: mongo-data
-  mongodb-log:
-    driver: local
-    name: mongo-log
+  mongo:
+    image: 721233806080.dkr.ecr.us-east-1.amazonaws.com/mongo
+    container_name: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: <add back when needed>
+    #ports:
+    #  - "27017:27017"
+    networks:
+      - MONGO
+    volumes:
+      - type: volume
+        source: MONGO_DATA
+        target: /data/db
+      - type: volume
+        source: MONGO_CONFIG
+        target: /data/configdb
 
 networks:
-  mongodb_network:
-    driver: bridge
-    name: mongo-network
+  MONGO:
+    name: MONGO
+
+volumes:
+  MONGO_DATA:
+    name: MONGO_DATA
+  MONGO_CONFIG:
+    name: MONGO_CONFIG

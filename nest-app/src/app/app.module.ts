@@ -7,7 +7,16 @@ import { MongooseModule } from "@nestjs/mongoose";
 import config from "../config/keys";
 
 @Module({
-  imports: [ShipModule, MongooseModule.forRoot(config.mongoURI)],
+  imports: [
+    ShipModule,
+    MongooseModule.forRoot(config.mongoURI, {
+      dbName: config.mongoDbName,
+      auth: {
+        username: config.mongoDbUser,
+        password: config.mongoDbPass,
+      },
+    }),
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

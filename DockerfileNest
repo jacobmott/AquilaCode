@@ -24,7 +24,7 @@ COPY . ./AquilaCode/
 WORKDIR /AquilaCode/
 
 #npm install
-RUN npm install
+RUN npm install --no-audit
 
 # Install NX build system
 #npm install nx globally
@@ -45,13 +45,14 @@ COPY --from=development /AquilaCode/package-lock.json /AquilaCode/
 
 WORKDIR /AquilaCode
 
-RUN npm install
+RUN npm install --no-audit
 
 #expose port 80
 #EXPOSE 80
 #expose port 3000
-EXPOSE 3000
+#EXPOSE 3000
 
 #run nginx
 #ENTRYPOINT ["tail", "-f", "/dev/null"]
 CMD ["node", "main.js"]
+#CMD ["nginx", "-g", "daemon off;"]

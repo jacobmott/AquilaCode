@@ -24,11 +24,10 @@ COPY . ./AquilaCode/
 WORKDIR /AquilaCode/
 
 #npm install
-RUN npm install
-
+RUN npm ci --no-audit
 # Install NX build system
 #npm install nx globally
-RUN npm i -g nx
+RUN npm i -g --no-audit nx
 
 #Build the angular app
 RUN nx build angular-app --prod
@@ -44,9 +43,9 @@ COPY --from=development /AquilaCode/dist/angular-app/browser /usr/share/nginx/ht
 COPY --from=development /AquilaCode/nginx.conf /etc/nginx/conf.d/default.conf
 
 #expose port 80
-EXPOSE 80
+#EXPOSE 80
 #expose port 4200
-#EXPOSE 4200
+#EXPOSE 443
 #nginx will listen on port 80 by default and forward based on path to angular app
 
 #run nginx

@@ -1,0 +1,6 @@
+services:
+  # Our Angular Frontend
+  frontend:
+    image: aqsingle:angular
+    ports:
+      - 8080:80
