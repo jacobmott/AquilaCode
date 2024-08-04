@@ -7,7 +7,7 @@ https://aquilacode.io/
 
 ```
 Website tech stack:
-(NX/Nestjs/Mongodb/Angular/NGINX/Docker(Files and Compose)/Docker Images/
+(NX/Nestjs/Mongodb/Angular/Tailwind/NGINX/Docker(Files and Compose)/Docker Images/
 AWS Private ECR/AWS Loadbalancer/AWS EC2/AWS Route53/AWS ACM(certificates for ssl)/
 OpenAPI3.0/Private NPM Repository)
 -NX build system
