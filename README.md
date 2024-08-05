@@ -29,7 +29,13 @@ to the ec2
 
 <img src="https://pngimg.com/uploads/rockets/rockets_PNG101054.png" width="25" />A mono repo for a complete application(UI/Backend), using NX, NestJS(W/ Fastify), Angular, OpenAPI3.0<img src="https://pngimg.com/uploads/rockets/rockets_PNG101054.png" width="25" />
 
+#Site on 08/05/2024 - hosted in the cloud now
+![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/2024-08-05_02-08-28-main-site.png)
+
+
+#Site on 07/27/2024 - locally hosted
 ![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/2024-07-27_05-22-21.png)
+
 
 # Video generation (AI gen)
 
@@ -1595,10 +1601,8 @@ docker build --no-cache -t aquilacode-backend:latest -f DockerfileNest .
 docker compose up -d
 ```
 
-TODO - add this link from s3 2024-08-04_14-17-44docker-build.png
-TODO - add this link from s3 2024-08-04_14-20-03-working-locally.png
-
-
+![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/2024-08-04_14-17-44docker-build.png)
+![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/2024-08-04_14-20-03-working-locally.png)
 
 ### Can also just run it locally without docker like this
 
