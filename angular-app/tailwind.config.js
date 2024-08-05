@@ -30,7 +30,7 @@ module.exports = {
           900: "#1D1C34",
         },
         aquilapink: {
-          50: "#FFF3FF",
+          50: "#f0c8fe",
           100: "#FFC0FF",
           400: "#FF8DFF",
           600: "#F75AFF",

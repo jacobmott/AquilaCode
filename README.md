@@ -1558,3 +1558,108 @@ de7494d0aeae   721233806080.dkr.ecr.us-east-1.amazonaws.com/aquilacode-frontend 
 ```
 
 </details>
+
+
+
+## Simplified local workflow
+
+<details>
+
+
+### Build frontened (angular) docker image
+
+Make sure to update the environment/environment.development.ts and environment.ts files
+set basepath to 
+
+```
+  basepath: "http://localhost/backend/aquila",
+```
+
+
+```
+docker build --no-cache -t aquilacode-frontend:latest -f DockerfileAngular .
+```
+
+### Build backend(nestjs) docker image
+
+```
+docker build --no-cache -t aquilacode-backend:latest -f DockerfileNest .
+```
+
+### Keep mongo docker image pointed to private registery image(no need to really change this) 
+
+
+### Build the final stack with docker compose up
+
+```
+docker compose up -d
+```
+
+TODO - add this link from s3 2024-08-04_14-17-44docker-build.png
+TODO - add this link from s3 2024-08-04_14-20-03-working-locally.png
+
+
+
+### Can also just run it locally without docker like this
+
+### Build frontened (angular) 
+
+```
+nx build angular-app
+nx serve angular-app
+```
+
+Make sure to update the environment/environment.development.ts and environment.ts files
+set basepath to 
+
+```
+  basepath: "http://localhost:3000/aquila",
+```
+
+
+### Build backend(nestjs) docker image
+
+```
+nx build nest-app
+nx serve nest-app
+```
+
+Copy over the database info from docker compose directly into the config/keys.ts nest-app file
+```
+  #     DATABASE_URL: mongodb://localhost:27017
+  #     DATABASE_NAME: "admin"
+  #     DATABASE_USER: "admin"
+  #     DATABASE_PASS: "admin"
+
+  # mongoURI: "mongodb://localhost:27017",
+  # mongoDbName: "admin",
+  # mongoDbUser: "admin",
+  # mongoDbPass: "admin",  
+```
+
+### Mongodb
+
+
+```
+docker compose up -d
+$docker compose stop
+[+] Stopping 1/0
+ ✔ Container mongo  Stopped                                                                                                                                                                      0.0s
+[5.2][505][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode]
+$docker compose up -d
+time="2024-08-04T14:50:52-05:00" level=warning msg="Found orphan containers ([aquilacode-frontend-1 aquilacode-api-1]) for this project. If you removed or renamed this service in your compose file, you can run this command with the --remove-orphans flag to clean it up."
+[+] Running 1/1
+ ✔ Container mongo  Started  
+```
+Comment out backend and frontend in the docker compose file and then startup mongodb
+Make sure to forward/export the port in docker compose for mongodb when you run it this way
+
+```
+    ports:
+      - "27017:27017"
+```
+
+
+
+
+</details>
