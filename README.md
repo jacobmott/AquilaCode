@@ -32,7 +32,7 @@ to the ec2
 #Site on 08/07/2024 - hosted in the cloud now
 
 ![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/2024-08-07_02-39-02-main-site-progress-2.gif)
-
+![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/2024-08-07_02-48-05-mainsite-11.png)
 
 #Site on 08/05/2024 - hosted in the cloud now
 ![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/2024-08-05_02-08-28-main-site.png)
