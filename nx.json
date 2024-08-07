@@ -75,11 +75,11 @@
     "@nx/angular:application": {
       "e2eTestRunner": "playwright",
       "linter": "eslint",
-      "style": "tailwindcss",
+      "style": "css",
       "unitTestRunner": "jest"
     },
     "@nx/angular:component": {
-      "style": "tailwindcss"
+      "style": "css"
     }
   }
 }
