@@ -30,7 +30,7 @@ to the ec2
 <img src="https://pngimg.com/uploads/rockets/rockets_PNG101054.png" width="25" />A mono repo for a complete application(UI/Backend), using NX, NestJS(W/ Fastify), Angular, OpenAPI3.0<img src="https://pngimg.com/uploads/rockets/rockets_PNG101054.png" width="25" />
 
 #Site on 08/07/2024 - hosted in the cloud now
-![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/2024-08-07_02-39-02-main-site-progress-1.gif)
+![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/2024-08-07_02-39-02-main-site-progress-2.gif)
 
 
 #Site on 08/05/2024 - hosted in the cloud now
