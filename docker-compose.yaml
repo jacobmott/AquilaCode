@@ -1,30 +1,30 @@
 services:
   # Our NestJS Api
-  api:
-    image: 721233806080.dkr.ecr.us-east-1.amazonaws.com/aquilacode-backend
-    environment:
-      DATABASE_URL: mongodb://mongo:27017 #mongodb://mongodb:27017/AquilaCode #mongodb://localhost:27017
-      DATABASE_NAME: "admin"
-      DATABASE_USER: "admin"
-      DATABASE_PASS: "<add back when needed>"
-    # ports:
-    #   - 3000:3000
-    networks:
-      - MONGO
-    depends_on:
-      - mongo
+  # api:
+  #   image: 721233806080.dkr.ecr.us-east-1.amazonaws.com/aquilacode-backend
+  #   environment:
+  #     DATABASE_URL: mongodb://mongo:27017 #mongodb://mongodb:27017/AquilaCode #mongodb://localhost:27017
+  #     DATABASE_NAME: "admin"
+  #     DATABASE_USER: "admin"
+  #     DATABASE_PASS: "<add back when needed>"
+  #   # ports:
+  #   #   - 3000:3000
+  #   networks:
+  #     - MONGO
+  #   depends_on:
+  #     - mongo
 
-  # Our Angular Frontend
-  frontend:
-    image: 721233806080.dkr.ecr.us-east-1.amazonaws.com/aquilacode-frontend
-    ports:
-      - 80:80
-    networks:
-      - MONGO
-    depends_on:
-      - api
-    #links:
-    #  - api
+  # # Our Angular Frontend
+  # frontend:
+  #   image: 721233806080.dkr.ecr.us-east-1.amazonaws.com/aquilacode-frontend
+  #   ports:
+  #     - 80:80
+  #   networks:
+  #     - MONGO
+  #   depends_on:
+  #     - api
+  #   #links:
+  #   #  - api
 
   mongo:
     image: 721233806080.dkr.ecr.us-east-1.amazonaws.com/mongo
