@@ -25,7 +25,7 @@ export class TopNavSvgComponent implements AfterViewInit {
   xBoundsLeft = -32;
   xBoundsRight = 1164;
 
-  onMouseMove(event: MouseEvent) {
+  onPointerMove(event: MouseEvent) {
     let point = new DOMPoint(0, 0);
     const { clientX, clientY } = event || { clientX: 0, clientY: 0 };
     point.x = clientX;

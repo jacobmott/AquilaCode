@@ -3,13 +3,13 @@
 >
   <!-- Home -->
   <div class="grid h-full w-full grid-rows-12">
-    <div class="row-span-1 grid h-1 w-full grid-cols-10">
-      <div class="relative col-span-2 grid">
-        <div
-          class="z-60 hover:bg-aquilapink-600 absolute left-1 top-1 col-span-2 col-start-1 col-end-4 row-start-1 h-6 w-6 rounded-full sm:h-6 sm:w-6 md:h-8 md:w-8 lg:h-10 lg:w-10 xl:h-12 xl:w-12"
-        >
+    <div class="row-span-1 grid h-full w-full grid-cols-10">
+      <div class="col-span-2 col-start-2 grid place-items-center">
+        <div [ngClass]="func()">
           <svg
-            class="h-full w-full"
+            class="z-61 relative"
+            (pointerover)="onPointerOver($event)"
+            (pointerout)="onPointerOut($event)"
             version="1.1"
             viewBox="0 0 209.61 200.32"
             xmlns="http://www.w3.org/2000/svg"
@@ -452,7 +452,7 @@
         </div>
 
         <div
-          class="z-45 col-span-2 col-start-1 col-end-4 row-start-1 h-8 w-8 rounded-full bg-transparent sm:h-8 sm:w-8 md:h-10 md:w-10 lg:h-12 lg:w-12 xl:h-14 xl:w-14"
+          class="z-45 col-span-2 col-start-1 col-end-4 row-start-1 h-6 w-6 rounded-full bg-transparent sm:h-6 sm:w-6 md:h-8 md:w-8 lg:h-12 lg:w-12 xl:h-14 xl:w-14"
         >
           <svg
             class="z-45"
@@ -487,12 +487,12 @@
           <!-- </div> -->
         </div>
       </div>
-      <div class="col-span-6 grid place-items-center">
-        <span
-          class="font-['SF Pro Display'] whitespace-normal text-xs font-extrabold leading-snug text-white sm:text-xs md:text-sm lg:text-xl xl:text-2xl"
+      <div class="col-span-6 col-start-5 grid place-items-center">
+        <div
+          class="font-['SF Pro Display'] text-sssm sm:text-sssm whitespace-normal font-extrabold leading-snug text-white md:text-base lg:text-lg xl:text-xl"
         >
           Home
-        </span>
+        </div>
       </div>
     </div>
 

@@ -37,6 +37,10 @@ module.exports = {
           900: "#C427FB",
         },
       },
+      fontSize: {
+        sssm: ["8px", "14px"],
+        ssm: ["10px", "16px"],
+      },
     },
   },
   plugins: [],

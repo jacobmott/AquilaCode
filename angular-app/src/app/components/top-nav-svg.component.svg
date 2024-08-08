@@ -8,7 +8,7 @@
       viewBox="0 0 1264 56"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      (mousemove)="onMouseMove($event)"
+      (pointermove)="onPointerMove($event)"
       class="h-full w-full"
     >
       <g
