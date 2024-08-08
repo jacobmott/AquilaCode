@@ -1,4 +1,10 @@
-import { Component, ViewEncapsulation } from "@angular/core";
+import {
+  Component,
+  ViewEncapsulation,
+  ViewChild,
+  ElementRef,
+  AfterViewInit,
+} from "@angular/core";
 import { CommonModule } from "@angular/common";
 
 @Component({
@@ -9,27 +15,39 @@ import { CommonModule } from "@angular/common";
   styleUrl: "./top-nav-svg.component.css",
   encapsulation: ViewEncapsulation.Emulated,
 })
-export class TopNavSvgComponent {
-  fillColor = "rgb(255, 0, 0)";
+export class TopNavSvgComponent implements AfterViewInit {
+  @ViewChild("mySvg") svgElement!: ElementRef;
+  svgRef: SVGSVGElement;
 
-  selectedXPosition = 0;
-  initial = true;
+  distanceToCenterOfBlurOnSvg = 53;
+  currentXPosition = 0;
+
+  xBoundsLeft = -32;
+  xBoundsRight = 1164;
 
   onMouseMove(event: MouseEvent) {
-    const r = Math.floor(Math.random() * 256);
-    const g = Math.floor(Math.random() * 256);
-    const b = Math.floor(Math.random() * 256);
-    this.fillColor = `rgb(${r}, ${g}, ${b})`;
-    // console.dir(event);
-    this.selectedXPosition = event.offsetX - 56;
-    // console.dir(this.selectedXPosition);
+    let point = new DOMPoint(0, 0);
+    const { clientX, clientY } = event || { clientX: 0, clientY: 0 };
+    point.x = clientX;
+    point.y = clientY;
+    point = point.matrixTransform(this.svgRef.getScreenCTM()?.inverse());
+    // console.dir(point.x);
+
+    const position = point.x - this.distanceToCenterOfBlurOnSvg;
+    if (position < this.xBoundsLeft || position > this.xBoundsRight) {
+      return;
+    }
+    this.currentXPosition = position;
   }
 
   getTransform() {
-    if (this.initial) {
-      this.initial = false;
-      return `translate(0)`;
+    return `translate(${this.currentXPosition})`;
+  }
+
+  ngAfterViewInit() {
+    const svg = this.svgElement.nativeElement;
+    if (svg !== null) {
+      this.svgRef = <SVGSVGElement>svg;
     }
-    return `translate(${this.selectedXPosition})`;
   }
 }

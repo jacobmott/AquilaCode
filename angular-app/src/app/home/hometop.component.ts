@@ -19,7 +19,7 @@ export class HometopComponent implements OnInit {
       if (this.scrollToTop >= 175) {
         this.scrollToTop = 0;
       }
-      console.log(this.scrollToTop);
+      // console.log(this.scrollToTop);
     }, 200);
   }
 }
