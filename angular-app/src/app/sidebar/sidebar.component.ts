@@ -1,10 +1,18 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { SidebarButtonShipsComponent } from "../components/sidebar-button-ships.component";
+import { SidebarAquilaCodeComponent } from "../components/sidebar-aquila-code.component";
+import { SidebarButtonHomeComponent } from "../components/sidebar-button-home.component";
 
 @Component({
   selector: "app-aquila-sidebar",
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    SidebarButtonShipsComponent,
+    SidebarAquilaCodeComponent,
+    SidebarButtonHomeComponent,
+  ],
   templateUrl: "./sidebar.component.html",
   styleUrl: "./sidebar.component.css",
   encapsulation: ViewEncapsulation.Emulated,

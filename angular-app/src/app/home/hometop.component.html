@@ -1,11 +1,12 @@
-<div class="h-full w-full bg-transparent">
+<div
+  class="grid h-full max-h-full w-full grid-rows-4 overflow-hidden bg-transparent"
+>
   <div
-    class="font-['SF Pro Display']whitespace-normal grid h-full w-full place-items-center overflow-hidden bg-transparent text-xs font-extrabold leading-snug text-white sm:text-xs md:text-sm lg:text-base xl:text-lg"
+    class="font-['SF Pro Display'] relative row-span-4 grid h-full w-full grid-rows-4 place-items-center overflow-hidden bg-transparent"
   >
-    <div class="h-1">AquilaCode</div>
     <div
       [scrollTop]="scrollToTop"
-      class="no-scrollbar h-1/2 w-1/2 overflow-y-scroll text-xs text-white sm:text-xs md:text-sm lg:text-base xl:text-lg"
+      class="no-scrollbar absolute row-span-4 h-full max-h-full w-1/2 overflow-y-scroll text-xs font-extrabold leading-snug text-white sm:text-xs md:text-sm lg:text-base xl:text-lg"
     >
       If you could traverse the vast expanse of our universe, where would your
       heart take you? Would it be to the shimmering nebulas where stars are born
@@ -15,5 +16,10 @@
       ethereal beauty of a thousand worlds yet to be discovered. Where does your
       soul yearn to wander in this infinite tapestry of wonder?
     </div>
+    <div class="z-60 absolute bottom-0 w-full">
+      <app-top-nav-svg> </app-top-nav-svg>
+    </div>
+
+    <!-- </div> -->
   </div>
 </div>

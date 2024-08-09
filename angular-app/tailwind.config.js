@@ -38,8 +38,8 @@ module.exports = {
         },
       },
       fontSize: {
-        sssm: ["8px", "14px"],
-        ssm: ["10px", "16px"],
+        sssm: ["0.5rem", "0.875rem"], // 8px, 14px
+        ssm: ["0.625rem", "1rem"], // 10px, 16px
       },
     },
   },

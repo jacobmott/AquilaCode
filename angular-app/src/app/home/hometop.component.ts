@@ -1,10 +1,11 @@
 import { Component, ViewEncapsulation, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { TopNavSvgComponent } from "../components/top-nav-svg.component";
 
 @Component({
   selector: "app-aquila-hometop",
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TopNavSvgComponent],
   templateUrl: "./hometop.component.html",
   styleUrl: "./hometop.component.css",
   encapsulation: ViewEncapsulation.Emulated,
