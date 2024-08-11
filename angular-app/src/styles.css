@@ -1,4 +1,4 @@
-@tailwind base;
+@tailwind base; /* This injects the base styles https://tailwindcss.com/docs/preflight https://github.com/sindresorhus/modern-normalize */
 @tailwind components;
 @tailwind utilities;
 
@@ -11,8 +11,15 @@ body {
 
 html,
 body {
-  width: 100vw;
+  /* https://www.youtube.com/watch?v=veEqYQlfNx8 The problems with viewport units */
+  /* width: 100vw; */
   height: 100vh;
+}
+
+@layer base {
+  * {
+    @apply box-border;
+  }
 }
 
 @layer utilities {

@@ -1,0 +1,31 @@
+<div>
+  <h1>Profile</h1>
+  <p>
+    You will use id token to get the profile information of the logged-in user.
+  </p>
+  <br />
+  <strong>This route should be protected</strong>
+</div>
+
+<div *ngIf="user$ | async as user">
+  <div class="row align-items-center profile-header">
+    <div class="col-md-2 mb-3">
+      <img
+        [src]="user.picture"
+        alt="User's profile picture"
+        class="img-fluid profile-picture rounded-full"
+      />
+    </div>
+    <div class="col-md text-md-left text-center">
+      <h2>{{ user.name }}</h2>
+      <p class="lead text-muted">{{ user.email }}</p>
+    </div>
+  </div>
+
+  <div
+    class="row"
+    *ngIf="profileJson"
+  >
+    <pre class="col-12 text-light bg-dark p-4">{{ profileJson }}</pre>
+  </div>
+</div>

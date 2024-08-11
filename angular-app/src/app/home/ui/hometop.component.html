@@ -19,6 +19,14 @@
     <div class="z-60 absolute bottom-0 w-full">
       <app-top-nav-svg> </app-top-nav-svg>
     </div>
+    <div class="z-60 w-18 absolute right-2 top-2 h-12">
+      <ng-container *ngIf="isAuthenticated$ | async; else unAuthenticated">
+        <app-logout-button></app-logout-button>
+      </ng-container>
+      <ng-template #unAuthenticated>
+        <app-login-button></app-login-button>
+      </ng-template>
+    </div>
 
     <!-- </div> -->
   </div>

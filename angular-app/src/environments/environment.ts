@@ -1,3 +1,5 @@
+import { domain, clientId } from "../../auth_config.json";
+
 export const environment = {
   production: true,
   //BACKEND_URL: "http://192.168.1.154:8081",
@@ -11,4 +13,9 @@ export const environment = {
   // basepath: "http://localhost:3000/aquila",
   //Use this for procudtion
   basepath: "https://aquilacode.io/backend/aquila",
+  auth: {
+    domain,
+    clientId,
+    redirectUri: window.location.origin,
+  },
 };

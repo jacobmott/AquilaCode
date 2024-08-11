@@ -4,6 +4,7 @@
     fill="none"
     (pointerenter)="onPointerEnter($event)"
     (pointerleave)="onPointerLeave($event)"
+    (pointerdown)="onPointerDown($event)"
     xmlns="http://www.w3.org/2000/svg"
   >
     <g

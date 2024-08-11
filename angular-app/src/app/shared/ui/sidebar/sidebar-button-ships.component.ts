@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-sidebar-button-ships",
@@ -10,6 +11,8 @@ import { CommonModule } from "@angular/common";
   encapsulation: ViewEncapsulation.Emulated,
 })
 export class SidebarButtonShipsComponent {
+  constructor(private router: Router) {}
+
   sSBSFGradientColor = "none";
   sSBSFLightReflection = "none";
   sSBSFTextColor = "#ebebf580";
@@ -23,5 +26,8 @@ export class SidebarButtonShipsComponent {
     this.sSBSFGradientColor = "none";
     this.sSBSFLightReflection = "none";
     this.sSBSFTextColor = "#ebebf580";
+  }
+  onPointerDown(event: MouseEvent) {
+    this.router.navigate(["ships"]);
   }
 }

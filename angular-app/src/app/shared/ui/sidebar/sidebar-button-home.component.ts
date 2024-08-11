@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-sidebar-button-home",
@@ -10,9 +11,12 @@ import { CommonModule } from "@angular/common";
   encapsulation: ViewEncapsulation.Emulated,
 })
 export class SidebarButtonHomeComponent {
+  constructor(private router: Router) {}
+
   sSBSFGradientColor = "none";
   sSBSFLightReflection = "none";
   sSBSFTextColor = "#ebebf580";
+
   onPointerEnter(event: MouseEvent) {
     this.sSBSFGradientColor = "url(#paint0_radial_11_402)";
     this.sSBSFLightReflection = "url(#paint2_linear_11_402)";
@@ -22,5 +26,9 @@ export class SidebarButtonHomeComponent {
     this.sSBSFGradientColor = "none";
     this.sSBSFLightReflection = "none";
     this.sSBSFTextColor = "#ebebf580";
+  }
+
+  onPointerDown(event: MouseEvent) {
+    this.router.navigate(["home"]);
   }
 }

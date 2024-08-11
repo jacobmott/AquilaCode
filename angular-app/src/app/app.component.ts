@@ -1,22 +1,22 @@
 import { Component } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { NxWelcomeComponent } from "./nx-welcome.component";
 //import { AquilacodeApiService } from "./aquilacode-api.service";
 import { OnInit } from "@angular/core";
 import { ApiModule } from "aquilacode-api";
 import { DefaultService } from "aquilacode-api";
 import { HttpClient } from "@angular/common/http";
-import { SidebarComponent } from "./sidebar/sidebar.component";
-import { MaincontentComponent } from "./maincontent/maincontent.component";
+import { SidebarComponent } from "./shared/ui/sidebar/sidebar.component";
+import { TopNavSvgComponent } from "./shared/ui/top-nav-svg.component";
+import { HometopComponent } from "./home/ui/hometop.component";
 
 @Component({
   standalone: true,
   imports: [
-    NxWelcomeComponent,
     RouterModule,
     ApiModule,
     SidebarComponent,
-    MaincontentComponent,
+    TopNavSvgComponent,
+    HometopComponent,
   ],
   selector: "app-root",
   templateUrl: "./app.component.html",
