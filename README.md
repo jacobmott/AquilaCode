@@ -29,6 +29,11 @@ to the ec2
 
 <img src="https://pngimg.com/uploads/rockets/rockets_PNG101054.png" width="25" />A mono repo for a complete application(UI/Backend), using NX, NestJS(W/ Fastify), Angular, OpenAPI3.0<img src="https://pngimg.com/uploads/rockets/rockets_PNG101054.png" width="25" />
 
+#Site on 08/11/2024 - hosted in the cloud now, with Okta/Auth0 login/logout functionality (google/facebook... etc)
+![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/2024-08-11_15-33-51-okta-auth0-login-21.png)
+![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/2024-08-11_15-33-51-okta-auth0-logout-1.png)
+![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/2024-08-11_15-33-51-okta-auth0-login-1.png)
+
 #Site on 08/09/2024 - hosted in the cloud now
 
 https://youtu.be/QYgVhXHVuDY
