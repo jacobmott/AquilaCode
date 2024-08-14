@@ -19,12 +19,15 @@ import {
 
 import { AppModule } from "./app/app.module";
 
+import { SpelunkerModule } from "nestjs-spelunker";
+
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
     new FastifyAdapter(),
+    { logger: ["error", "warn", "log"] },
   );
-
+  console.log(SpelunkerModule.explore(app));
   const config = new DocumentBuilder()
     .setTitle("AquilaCode API")
     .setDescription("AquilaCode API, for controlling the universe")

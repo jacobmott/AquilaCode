@@ -5,6 +5,23 @@
   "projectType": "application",
   "tags": [],
   "targets": {
+    // "build": {
+    //   "executor": "@nx/webpack:webpack",
+    //   "options": {
+    //     "webpackConfig": "nest-app/webpack.config.js",
+    //     "watch": true,
+    //     "sourceMap": true
+    //   }
+    // },
+
+    // "build": {
+    //   "executor": "@nx/webpack:webpack",
+    //   "options": {
+    //     "webpackConfig": "nest-app/webpack.config.js",
+    //     "generatePackageJson": true
+    //   }
+    // },
+
     "serve": {
       "executor": "@nx/js:node",
       "defaultConfiguration": "production",
