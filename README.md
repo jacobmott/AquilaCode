@@ -11,7 +11,8 @@ Website tech stack:
 AWS Private ECR/AWS Loadbalancer/AWS EC2/AWS Route53/AWS ACM(certificates for ssl)/
 OpenAPI3.0/Private NPM Repository)
 -NX build system
--Nestjs backend
+-Auth0/Okta(Jwt tokens)/Backend Authorization(Users tracked via Auth0/Okta)
+-Nestjs backend(Using passport for Auth0)
 -API spec generated from Nestjs code
 -API Spec used to generate an sdk thats uploaded to npm repository
 -This sdk is then `npm installed` by the Frontend
