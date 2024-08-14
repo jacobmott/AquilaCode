@@ -28,6 +28,6 @@ export class SidebarButtonShipsComponent {
     this.sSBSFTextColor = "#ebebf580";
   }
   onPointerDown(event: MouseEvent) {
-    this.router.navigate(["ships"]);
+    this.router.navigate(["ships"], { skipLocationChange: true });
   }
 }

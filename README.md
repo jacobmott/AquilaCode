@@ -1274,19 +1274,22 @@ Pull down from bucket
   
 ```
   aws s3 cp --recursive s3://<bucket>/AquilaCode/Videos AquilaCode/Videos
-  aws s3 cp --recursive s3://<bucket>/AquilaCode/Screenshots AquilaCode/Screenshots    
+  aws s3 cp --recursive s3://<bucket>/AquilaCode/Screenshots AquilaCode/Screenshots 
+  aws s3 cp --recursive s3://<bucket>/AquilaCode/Secrets AquilaCode/Secrets 
 ```
 
 Push to bucket
 ```
   aws s3 cp --recursive AquilaCode/Videos s3://<bucket>/AquilaCode/Videos
   aws s3 cp --recursive AquilaCode/Screenshots s3://<bucket>/AquilaCode/Screenshots
+  aws s3 cp --recursive AquilaCode/Secrets s3://<bucket>/AquilaCode/Secrets
 ```
 
 Or just do a sync
 ```
   aws s3 sync AquilaCode/Videos s3://<bucket>/AquilaCode/Videos --delete
   aws s3 sync AquilaCode/Screenshots s3://<bucket>/AquilaCode/Screenshots --delete
+  aws s3 sync AquilaCode/Secrets s3://<bucket>/AquilaCode/Secrets --delete  
 
 ```
 </details>

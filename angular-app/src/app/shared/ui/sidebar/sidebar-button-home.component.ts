@@ -29,6 +29,6 @@ export class SidebarButtonHomeComponent {
   }
 
   onPointerDown(event: MouseEvent) {
-    this.router.navigate(["home"]);
+    this.router.navigate(["home"], { skipLocationChange: true });
   }
 }
