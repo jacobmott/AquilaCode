@@ -10,9 +10,9 @@ import { CommonModule } from "@angular/common";
   encapsulation: ViewEncapsulation.Emulated,
 })
 export class HomeComponent {
-  onTimeUpdate(event: Event): void {
-    const videoElement = event.target as HTMLVideoElement;
-    const currentTime: number = videoElement.currentTime;
-    console.log(currentTime);
-  }
+  // onTimeUpdate(event: Event): void {
+  //   const videoElement = event.target as HTMLVideoElement;
+  //   const currentTime: number = videoElement.currentTime;
+  //   console.log(currentTime);
+  // }
 }

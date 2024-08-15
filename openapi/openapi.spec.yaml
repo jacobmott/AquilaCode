@@ -1,76 +1,116 @@
----
-openapi: 3.0.0
+openapi: "3.0.0"
 paths:
-  "/ship":
+  /profile:
     get:
-      operationId: findAll
+      operationId: "getProfile"
       parameters: []
       responses:
-        "200":
+        200:
+          description: ""
+  /users:
+    get:
+      operationId: "usersFindAll"
+      parameters: []
+      responses:
+        200:
           description: ""
     post:
-      operationId: createShip
+      operationId: "usersCreate"
       parameters: []
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              "$ref": "#/components/schemas/CreateShipDto"
+              $ref: "#/components/schemas/CreateUserDto"
       responses:
-        "201":
+        201:
           description: ""
-  "/ship/{id}":
+  /users/{id}:
     get:
-      operationId: findOne
+      operationId: "usersFindOne"
       parameters:
-        - name: id
+        - name: "id"
           required: true
-          in: path
+          in: "path"
           schema:
-            type: string
+            type: "string"
       responses:
-        "200":
+        200:
           description: ""
-    delete:
-      operationId: deleteOne
-      parameters:
-        - name: id
-          required: true
-          in: path
-          schema:
-            type: string
+  /ship:
+    get:
+      operationId: "shipsFindAll"
+      parameters: []
       responses:
-        "200":
+        200:
           description: ""
-    put:
-      operationId: updateOne
-      parameters:
-        - name: id
-          required: true
-          in: path
-          schema:
-            type: string
+    post:
+      operationId: "shipsCreate"
+      parameters: []
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              "$ref": "#/components/schemas/CreateShipDto"
+              $ref: "#/components/schemas/CreateShipDto"
       responses:
-        "200":
+        201:
+          description: ""
+  /ship/{id}:
+    get:
+      operationId: "shipsFindOne"
+      parameters:
+        - name: "id"
+          required: true
+          in: "path"
+          schema:
+            type: "string"
+      responses:
+        200:
+          description: ""
+    delete:
+      operationId: "shipsDeleteOne"
+      parameters:
+        - name: "id"
+          required: true
+          in: "path"
+          schema:
+            type: "string"
+      responses:
+        200:
+          description: ""
+    put:
+      operationId: "shipsUpdateOne"
+      parameters:
+        - name: "id"
+          required: true
+          in: "path"
+          schema:
+            type: "string"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateShipDto"
+      responses:
+        200:
           description: ""
 info:
-  title: AquilaCode API
-  description: AquilaCode API, for controlling the universe
+  title: "AquilaCode API"
+  description: "AquilaCode API, for controlling the universe"
   version: "1.0"
   contact: {}
 tags:
-  - name: AquilaCode
+  - name: "AquilaCode"
     description: ""
 servers: []
 components:
   schemas:
+    CreateUserDto:
+      type: "object"
+      properties: {}
     CreateShipDto:
-      type: object
+      type: "object"
       properties: {}

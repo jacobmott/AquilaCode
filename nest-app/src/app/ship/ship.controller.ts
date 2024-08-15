@@ -19,31 +19,31 @@ export class ShipController {
 
   @UseGuards(JwtAuthGuard)
   @Get("/")
-  findAll(): Promise<Ship[]> {
+  shipsFindAll(): Promise<Ship[]> {
     return this.shipService.findAll();
   }
 
   @UseGuards(JwtAuthGuard)
   @Get(":id")
-  findOne(@Param("id") id: string): Promise<Ship> {
+  shipsFindOne(@Param("id") id: string): Promise<Ship> {
     return this.shipService.findOne(id);
   }
 
   @UseGuards(JwtAuthGuard)
   @Post("/")
-  createShip(@Body() createShipDto: CreateShipDto): Promise<Ship> {
+  shipsCreate(@Body() createShipDto: CreateShipDto): Promise<Ship> {
     return this.shipService.create(createShipDto);
   }
 
   @UseGuards(JwtAuthGuard)
   @Delete(":id")
-  deleteOne(@Param("id") id: string): Promise<Ship> {
+  shipsDeleteOne(@Param("id") id: string): Promise<Ship> {
     return this.shipService.delete(id);
   }
 
   @UseGuards(JwtAuthGuard)
   @Put(":id")
-  updateOne(
+  shipsUpdateOne(
     @Param("id") id: string,
     @Body() updateShipDto: CreateShipDto,
   ): Promise<Ship> {

@@ -1690,3 +1690,21 @@ Make sure to forward/export the port in docker compose for mongodb when you run 
 
 
 </details>
+
+
+Attaching to container on ec2 
+https://phoenixnap.com/kb/how-to-ssh-into-docker-container
+<details>
+
+```
+[root@dsfdsfd ec2-user]# docker exec -it mongo /bin/bash
+root@sdfsdaf6:/#
+
+Then just do Exit to exit
+
+[root@dsfdsfd ec2-user]# docker exec -it ec2-user-api-1 /bin/sh
+/AquilaCode #
+
+```
+
+</details>

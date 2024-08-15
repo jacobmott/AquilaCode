@@ -32,7 +32,7 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.aquilacode.findAll().subscribe((ships) => {
+    this.aquilacode.shipsFindAll().subscribe((ships) => {
       this.ships = ships;
       this.ships2 = JSON.stringify(this.ships);
       console.dir(this.ships);

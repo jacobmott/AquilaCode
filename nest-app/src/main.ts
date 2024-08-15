@@ -5,6 +5,8 @@
 
 import { Logger } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
+import * as YAML from "json-to-pretty-yaml";
+import * as fs from "fs";
 
 import {
   SwaggerModule,
@@ -41,6 +43,17 @@ async function bootstrap() {
 
   const document = SwaggerModule.createDocument(app, config, options);
   SwaggerModule.setup("aquila/api", app, document);
+  const data = YAML.stringify(document);
+  fs.writeFile("openapi/openapi.spec.yaml", data, (err) => {
+    if (err) console.log(err);
+    else {
+      console.log("openapi.spec.yaml file has been updated successfully\n");
+    }
+  });
+  //This writes out the json openAPI spec, you can also download it and view it (its hosted automatically)
+  // @http://localhost:3000/aquila/api#/default
+  // AND @
+  //fs.writeFileSync("./swagger-spec.json", JSON.stringify(document));
 
   const globalPrefix = "aquila";
   app.setGlobalPrefix(globalPrefix);

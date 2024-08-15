@@ -19,6 +19,7 @@ export const environment = {
   //Use this for procudtion
   basepath: "https://aquilacode.io/backend/aquila",
   url: "https://aquilacode.io",
+  // url: "http://localhost:4200",
   auth: {
     domain,
     clientId,
