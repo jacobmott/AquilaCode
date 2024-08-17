@@ -6,6 +6,20 @@ Screenshots
 Videos
 Secrets
 
+# Adding all our secrets and config files to gitignore since we never should change them
+# They are generated now via the config scripts in configs directory and saved in other places
+#Cant ignore these since we want the shells/placeholder files commited
+#documenting this here and we are usng skip-worktree to ignore these but keep a default placeholder 
+#version commited
+#https://stackoverflow.com/questions/13630849/git-difference-between-assume-unchanged-and-skip-worktree/13631525#13631525
+#git update-index --skip-worktree <file_name>
+#angular-app/auth_config.json
+#angular-app/src/environments/environment.development.ts
+#angular-app/src/environments/environment.ts
+#nest-app/.env
+#nest-app/src/config/keys.ts
+#nginx.conf
+
 
 # compiled output
 dist
