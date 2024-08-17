@@ -368,3 +368,9 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+
+
+# We ignore all .env files except for specific ones
+!nest-app/.env
+
