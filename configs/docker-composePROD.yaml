@@ -1,0 +1,63 @@
+services:
+  # Our NestJS Api
+  api:
+    image: 721233806080.dkr.ecr.us-east-1.amazonaws.com/aquilacode-backend
+    stdin_open: true
+    tty: true
+    environment:
+      DATABASE_URL: mongodb://mongo:27017 #mongodb://mongodb:27017/AquilaCode #mongodb://localhost:27017
+      DATABASE_NAME: "admin"
+      DATABASE_USER: "admin"
+      DATABASE_PASS: "Add pass here from secrets"
+    # ports:
+    #   - 3000:3000
+    networks:
+      - MONGO
+    depends_on:
+      - mongo
+
+  # Our Angular Frontend
+  frontend:
+    image: 721233806080.dkr.ecr.us-east-1.amazonaws.com/aquilacode-frontend
+    stdin_open: true
+    tty: true
+    ports:
+      - 80:80
+    networks:
+      - MONGO
+    ##This is needed in prod to make sure the api starts up before the UI/frontend
+    depends_on:
+      - api
+    ##This is needed in prod and local, it makes sure the UI can access the same network the api is in
+    links:
+      - api
+
+  mongo:
+    image: 721233806080.dkr.ecr.us-east-1.amazonaws.com/mongo
+    #   stdin_open: true
+    #   tty: true
+    container_name: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    ports:
+      - "27017:27017"
+    networks:
+      - MONGO
+    volumes:
+      - type: volume
+        source: MONGO_DATA
+        target: /data/db
+      - type: volume
+        source: MONGO_CONFIG
+        target: /data/configdb
+
+networks:
+  MONGO:
+    name: MONGO
+
+volumes:
+  MONGO_DATA:
+    name: MONGO_DATA
+  MONGO_CONFIG:
+    name: MONGO_CONFIG

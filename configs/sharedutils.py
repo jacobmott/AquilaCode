@@ -21,7 +21,8 @@ def configureThisIsATest():
 #a.k.a. dev
 def configureLocalEnvironment():
    copy_over("./environment.developmentLOCAL.ts", "../angular-app/src/environments/environment.development.ts")   
-   copy_over("./environmentLOCAL.ts", "../angular-app/src/environments/environment.ts")     
+   copy_over("./environmentLOCAL.ts", "../angular-app/src/environments/environment.ts")
+   copy_over("./docker-composeLOCAL.yaml", "../docker-compose.yaml")
    copy_over("./nginxLOCAL.conf", "../nginx.conf")
    copy_over("../Secrets/envLOCALnest-app", "../nest-app/.env")
    copy_over("../Secrets/auth_configLOCALangular-app.json", "../angular-app/auth_config.json")
@@ -30,7 +31,8 @@ def configureLocalEnvironment():
 
 def configureProdEnvironment():
    copy_over("./environment.developmentPROD.ts", "../angular-app/src/environments/environment.development.ts")   
-   copy_over("./environmentPROD.ts", "../angular-app/src/environments/environment.ts")      
+   copy_over("./environmentPROD.ts", "../angular-app/src/environments/environment.ts")
+   copy_over("./docker-composePROD.yaml", "../docker-compose.yaml")
    copy_over("./nginxPROD.conf", "../nginx.conf")
    copy_over("../Secrets/envPRODnest-app", "../nest-app/.env")
    copy_over("../Secrets/auth_configPRODangular-app.json", "../angular-app/auth_config.json")
