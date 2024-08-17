@@ -32,7 +32,14 @@ total 494K
 
 ```
 [5.2][597][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode/configs]
-$ls -lt | grep nginx
-7:-rw-r--r-- 1 jacob 197609 3.0K Aug 17 15:05 nginxLOCAL.conf
-8:-rw-r--r-- 1 jacob 197609 3.0K Aug 17 15:05 nginxPROD.conf
+$ls -lt | egrep 'LOCAL|PROD'
+-rw-r--r-- 1 jacob 197609 1.5K Aug 17 17:27 docker-composeLOCAL.yaml
+-rw-r--r-- 1 jacob 197609 1.5K Aug 17 17:26 docker-composePROD.yaml
+-rw-r--r-- 1 jacob 197609 3.0K Aug 17 17:11 nginxLOCAL.conf
+-rw-r--r-- 1 jacob 197609 3.0K Aug 17 15:05 nginxPROD.conf
+-rw-r--r-- 1 jacob 197609  743 Aug 17 17:10 environmentPROD.ts
+-rw-r--r-- 1 jacob 197609  744 Aug 17 17:10 environmentLOCAL.ts
+-rw-r--r-- 1 jacob 197609  736 Aug 17 15:01 environment.developmentLOCAL.ts
+-rw-r--r-- 1 jacob 197609  743 Aug 17 15:01 environment.developmentPROD.ts
+
 ```
