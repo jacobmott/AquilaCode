@@ -732,6 +732,57 @@ $
 
 ## Building and Serving the application
 
+
+## Configure script to configure things for a specific environment (local(a.k.a dev) or prod currently)
+![configurescripts](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/2024-08-17_15-14-54-configurescript-1.png)
+```
+[5.2][538][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode/configs]
+$pwd
+/d/OtherProjects/AquilaCode/configs
+[5.2][539][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode/configs]
+$ls
+total 35K
+drwxr-xr-x 1 jacob 197609    0 Aug 17 14:35 __pycache__
+-rw-r--r-- 1 jacob 197609  736 Aug 17 15:01 environment.developmentLOCAL.ts
+-rw-r--r-- 1 jacob 197609  743 Aug 17 15:01 environment.developmentPROD.ts
+-rw-r--r-- 1 jacob 197609  736 Aug 17 15:01 environmentLOCAL.ts
+-rw-r--r-- 1 jacob 197609  743 Aug 17 15:01 environmentPROD.ts
+-rw-r--r-- 1 jacob 197609   77 Aug 17 15:13 localconfig.py
+-rw-r--r-- 1 jacob 197609 3.0K Aug 17 15:05 nginxLOCAL.conf
+-rw-r--r-- 1 jacob 197609 3.0K Aug 17 15:05 nginxPROD.conf
+-rw-r--r-- 1 jacob 197609   76 Aug 17 15:13 prodconfig.py
+-rw-r--r-- 1 jacob 197609 2.1K Aug 17 15:11 sharedutils.py
+-rw-r--r-- 1 jacob 197609    0 Aug 17 14:35 test.ignorethisfile
+-rw-r--r-- 1 jacob 197609   63 Aug 17 14:08 testThisIsATest.ignorethisfile
+-rw-r--r-- 1 jacob 197609   83 Aug 17 14:36 thisisatestconfig.py
+[5.2][540][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode/configs]
+$python localconfig.py
+Configuring environment: local
+./environment.developmentLOCAL.ts copied over ../angular-app/src/environments/environment.development.ts: (Success)
+./environmentLOCAL.ts copied over ../angular-app/src/environments/environment.ts: (Success)
+./nginxLOCAL.conf copied over ../nginx.conf: (Success)
+../Secrets/envLOCALnest-app copied over ../nest-app/.env: (Success)
+../Secrets/auth_configLOCALangular-app.json copied over ../angular-app/auth_config.json: (Success)
+../Secrets/keysLOCALnest-app.ts copied over ../nest-app/src/config/keys.ts: (Success)
+[5.2][541][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode/configs]
+$git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   ../angular-app/auth_config.json
+        modified:   ../angular-app/src/environments/environment.development.ts
+        modified:   ../angular-app/src/environments/environment.ts
+        modified:   ../nest-app/src/config/keys.ts
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[5.2][542][jacob@jakesbeastmech][/d/OtherProjects/AquilaCode/configs]
+
+```
+
+
 ### Building and serving the nest app
 
 <details>
