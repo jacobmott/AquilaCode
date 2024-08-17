@@ -1,16 +1,14 @@
 import { Route } from "@angular/router";
-import { HomeComponent } from "./home/ui/home.component";
 
 export const routes: Route[] = [
-  { path: "", redirectTo: "home", pathMatch: "full" },
   {
-    // outlet: 'primary',
-    path: "home",
-    component: HomeComponent,
+    path: "",
+    loadChildren: () =>
+      import("./home/feature/home-routes").then((routes) => routes.homeRoutes),
   },
   // Add your another routes using this syntax.
   {
-    path: "ships",
+    path: "ship",
     loadChildren: () =>
       import("./ships/feature/ships-routes").then(
         (routes) => routes.shipsRoutes,
