@@ -69,6 +69,6 @@ RUN npm i -g mongosh
 #ENTRYPOINT ["tail", "-f", "/dev/null"]
 #Switching to forever so if the node process crashes forever will keep it up 
 #and the container wont go down, which will allow us to get on the container and debug the crash/issue
-CMD ["forever", "-l", "mainout.log", "main.js"]
+CMD ["forever", "-l", "mainout.log", "-o", "out.log", "-e", "err.log", "main.js"]
 # CMD ["node", "main.js"]
 #CMD ["nginx", "-g", "daemon off;"]
