@@ -5,26 +5,12 @@
   "projectType": "application",
   "tags": [],
   "targets": {
-    // "build": {
-    //   "executor": "@nx/webpack:webpack",
-    //   "options": {
-    //     "webpackConfig": "nest-app/webpack.config.js",
-    //     "watch": true,
-    //     "sourceMap": true
-    //   }
-    // },
-
-    // "build": {
-    //   "executor": "@nx/webpack:webpack",
-    //   "options": {
-    //     "webpackConfig": "nest-app/webpack.config.js",
-    //     "generatePackageJson": true
-    //   }
-    // },
-
+    "build": {
+      "options": {}
+    },
     "serve": {
       "executor": "@nx/js:node",
-      "defaultConfiguration": "production",
+      "defaultConfiguration": "development",
       "options": {
         "buildTarget": "nest-app:build",
         "host": "0.0.0.0"

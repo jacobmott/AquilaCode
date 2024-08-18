@@ -1,11 +1,14 @@
 import { Injectable } from "@nestjs/common";
-import { Ship } from "./interfaces/ship.interface";
 import { Model } from "mongoose";
 import { InjectModel } from "@nestjs/mongoose";
+import { CreateShipDto } from "./dto/create-ship.dto";
+import { Ship } from "./schemas/ship.schema";
 
 @Injectable()
-export class ShipService {
-  constructor(@InjectModel("Ship") private readonly shipModel: Model<Ship>) {}
+export class ShipsService {
+  constructor(
+    @InjectModel(Ship.name) private readonly shipModel: Model<Ship>,
+  ) {}
 
   async findAll(): Promise<Ship[]> {
     return await this.shipModel.find();
@@ -15,8 +18,8 @@ export class ShipService {
     return await this.shipModel.findOne({ _id: id });
   }
 
-  async create(ship: Ship): Promise<Ship> {
-    const createdShip = new this.shipModel(ship);
+  async create(createShipDto: CreateShipDto): Promise<Ship> {
+    const createdShip = new this.shipModel(createShipDto);
     return await createdShip.save();
   }
 

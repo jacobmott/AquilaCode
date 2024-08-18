@@ -6,7 +6,7 @@ import { AppService } from "./app.service";
 import { MongooseModule } from "@nestjs/mongoose";
 import { AuthModule } from "./auth/auth.module";
 import config from "../config/keys";
-import { ShipModule } from "./ship/ship.module";
+import { ShipsModule } from "./ship/ships.module";
 
 @Module({
   imports: [
@@ -18,7 +18,7 @@ import { ShipModule } from "./ship/ship.module";
       },
     }),
     AuthModule,
-    ShipModule,
+    ShipsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

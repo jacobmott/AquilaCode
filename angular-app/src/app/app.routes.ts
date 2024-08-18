@@ -8,7 +8,7 @@ export const routes: Route[] = [
   },
   // Add your another routes using this syntax.
   {
-    path: "ship",
+    path: "ships",
     loadChildren: () =>
       import("./ships/feature/ships-routes").then(
         (routes) => routes.shipsRoutes,

@@ -29,6 +29,6 @@ export class SidebarButtonShipsComponent {
   }
   onPointerDown(event: MouseEvent) {
     console.log("Trying to navigate to  ship");
-    this.router.navigate(["ship"], { skipLocationChange: true });
+    this.router.navigate(["ships"], { skipLocationChange: true });
   }
 }

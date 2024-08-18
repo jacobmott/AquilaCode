@@ -1,7 +1,17 @@
-import * as mongoose from "mongoose";
+import { Schema, Prop, SchemaFactory } from "@nestjs/mongoose";
+// import mongoose from "mongoose";
 
-export const UserSchema = new mongoose.Schema({
-  name: String,
-  connectionType: String,
-  connectionId: String,
-});
+// This class/type represents the data that is sent to the database
+@Schema({ timestamps: true })
+export class User {
+  @Prop({ unique: false, required: true })
+  name?: string;
+
+  @Prop({ required: true })
+  connectionType: string;
+
+  @Prop({ required: true })
+  connectionId: string;
+}
+
+export const UserSchema = SchemaFactory.createForClass(User);

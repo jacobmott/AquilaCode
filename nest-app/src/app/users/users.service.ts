@@ -1,8 +1,8 @@
 import { Injectable } from "@nestjs/common";
-import { User } from "./interfaces/user.interface";
 import { Model } from "mongoose";
 import { InjectModel } from "@nestjs/mongoose";
 import { CreateUserDto } from "./dto/create-user.dto";
+import { User } from "./schemas/user.schema";
 
 // This should be a real class/interface representing a user entity
 // export type User = any;
@@ -10,7 +10,9 @@ import { CreateUserDto } from "./dto/create-user.dto";
 
 @Injectable()
 export class UsersService {
-  constructor(@InjectModel("User") private readonly userModel: Model<User>) {}
+  constructor(
+    @InjectModel(User.name) private readonly userModel: Model<User>,
+  ) {}
 
   // private readonly users = [
   //   {
@@ -29,9 +31,9 @@ export class UsersService {
   //   return this.users.find((user) => user.username === username);
   // }
 
-  async calcUserData(createuserDto: CreateUserDto): Promise<User> {
+  async calcUserData(createUserDto: CreateUserDto): Promise<User> {
     const connectionType = this.getConnectionType();
-    const connectionId = this.getConnectionId(createuserDto.connectionInfo);
+    const connectionId = this.getConnectionId(createUserDto.connectionInfo);
     const existingUser = await this.findByConnection(
       connectionId,
       connectionType,
@@ -96,15 +98,20 @@ export class UsersService {
   //   return await this.userModel.findOne({ _id: id });
   // }
 
+  // async findOne(id: string): Promise<User> {
+  //   return await this.userModel.findOne({
+  //     connectionId: id,
+  //     connectionType: "google",
+  //   });
+  // }
+
   async findOne(id: string): Promise<User> {
-    return await this.userModel.findOne({
-      connectionId: id,
-      connectionType: "google",
-    });
+    return await this.userModel.findOne({ _id: id });
   }
 
-  async create(user: User): Promise<User> {
-    const createdUser = new this.userModel(user, { upsert: true });
+  async create(createUserDto: CreateUserDto): Promise<User> {
+    const user: User = await this.calcUserData(createUserDto);
+    const createdUser = new this.userModel(user);
     return await createdUser.save();
   }
 

@@ -2,16 +2,16 @@ import {
   Controller,
   Get,
   Post,
-  Put,
-  Delete,
   Body,
   Param,
   UseGuards,
+  UsePipes,
+  ValidationPipe,
 } from "@nestjs/common";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UsersService } from "./users.service";
-import { User } from "./interfaces/user.interface";
 import { JwtAuthGuard } from "../auth/jwt-auth.guard";
+import { User } from "./schemas/user.schema";
 
 @Controller("users")
 export class UsersController {
@@ -19,6 +19,7 @@ export class UsersController {
 
   @UseGuards(JwtAuthGuard)
   @Get("/")
+  @UsePipes(new ValidationPipe())
   usersFindAll(): Promise<User[]> {
     return this.usersService.findAll();
   }
@@ -31,9 +32,9 @@ export class UsersController {
 
   @UseGuards(JwtAuthGuard)
   @Post("/")
+  @UsePipes(new ValidationPipe())
   async usersCreate(@Body() createUserDto: CreateUserDto): Promise<User> {
-    const user: User = await this.usersService.calcUserData(createUserDto);
-    return this.usersService.create(user);
+    return this.usersService.create(createUserDto);
   }
 
   // @UseGuards(JwtAuthGuard)
