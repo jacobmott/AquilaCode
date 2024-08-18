@@ -2,10 +2,14 @@ services:
   # Our NestJS Api
   api:
     image: 721233806080.dkr.ecr.us-east-1.amazonaws.com/aquilacode-backend
+    #We dont need this now since we npm installed "forever" node module and we use that
+    #to startup the API/node process and keep it running "forever" so the container doesn't exit when
+    #the node process dies
+    # command: tail -F anything
     stdin_open: true
     tty: true
     environment:
-      DATABASE_URL: mongodb://mongo:27017 #mongodb://mongodb:27017/AquilaCode #mongodb://localhost:27017
+      DATABASE_URL: mongodb://admin:admin@mongo:27017/db?authSource=admin #mongo:27017 #mongodb://mongodb:27017/AquilaCode #mongodb://localhost:27017
       DATABASE_NAME: "admin"
       DATABASE_USER: "admin"
       DATABASE_PASS: "Add pass here from secrets"
@@ -14,6 +18,9 @@ services:
     networks:
       - MONGO
     depends_on:
+      - mongo
+    ##This is needed in prod and local, it makes sure the UI can access the same network the api is in
+    links:
       - mongo
 
   # Our Angular Frontend

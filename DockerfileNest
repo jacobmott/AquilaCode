@@ -37,6 +37,14 @@ RUN nx build nest-app --prod
 #Get an node image
 FROM node:22-alpine3.20 AS production
 
+#Update apk database indexes from all configured packages. Run:
+RUN apk update
+#Apply all pending security updates on Alpine Linux, type:
+RUN apk upgrade
+#Search for curl packages under Alpine:
+# RUN apk search curl
+# RUN apk add curl
+RUN apk add bash
 
 #copy the dist folder from the nx build over to the node image
 COPY --from=development /AquilaCode/dist/nest-app/ /AquilaCode/
@@ -46,7 +54,12 @@ COPY --from=development /AquilaCode/package-lock.json /AquilaCode/
 WORKDIR /AquilaCode
 
 RUN npm install --no-audit
-
+# RUN curl -sL https://downloads.mongodb.com/compass/mongosh-2.3.0-linux-x64.tgz| tar xz
+#We use forever to startup the API/node process and keep it running 
+#"forever" so the container doesn't exit when the node process dies
+#We also install mongosh so we can debug any database connection issues
+RUN npm i -g forever
+RUN npm i -g mongosh
 #expose port 80
 #EXPOSE 80
 #expose port 3000
@@ -54,5 +67,8 @@ RUN npm install --no-audit
 
 #run nginx
 #ENTRYPOINT ["tail", "-f", "/dev/null"]
-CMD ["node", "main.js"]
+#Switching to forever so if the node process crashes forever will keep it up 
+#and the container wont go down, which will allow us to get on the container and debug the crash/issue
+CMD ["forever", "-l", "mainout.log", "main.js"]
+# CMD ["node", "main.js"]
 #CMD ["nginx", "-g", "daemon off;"]
