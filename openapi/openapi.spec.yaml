@@ -38,7 +38,7 @@ paths:
       responses:
         200:
           description: ""
-  /ship:
+  /ships:
     get:
       operationId: "shipsFindAll"
       parameters: []
@@ -57,7 +57,7 @@ paths:
       responses:
         201:
           description: ""
-  /ship/{id}:
+  /ships/{id}:
     get:
       operationId: "shipsFindOne"
       parameters:
@@ -77,23 +77,6 @@ paths:
           in: "path"
           schema:
             type: "string"
-      responses:
-        200:
-          description: ""
-    put:
-      operationId: "shipsUpdateOne"
-      parameters:
-        - name: "id"
-          required: true
-          in: "path"
-          schema:
-            type: "string"
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/CreateShipDto"
       responses:
         200:
           description: ""
