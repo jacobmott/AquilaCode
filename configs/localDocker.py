@@ -1,3 +1,3 @@
-from sharedutils import configureEnvironment
+from sharedUtils import configureEnvironment
 
 configureEnvironment('localDocker')
