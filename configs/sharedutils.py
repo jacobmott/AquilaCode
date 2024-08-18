@@ -2,19 +2,19 @@ import shutil
 import os
 from rich import print
 # Specify the source and destination paths
-source_path = "./nginxLOCAL.conf"
-destination_path = "../nginx.conf"
+
 def configureEnvironment(environment):
   print("Configuring environment: " + environment);
   if environment == 'prod':
     configureProdEnvironment()
-  elif environment == 'local':  #a.k.a. dev
+  elif environment == 'local':  #a.k.a. dev locally hosting everything on parent OS
     configureLocalEnvironment()
-  elif environment == 'thisisatest':  #a.k.a. dev
+  elif environment == 'localDocker':  #a.k.a. dev locally but using docker
+    configureLocalDockerEnvironment()    
+  elif environment == 'thisisatest':  #just to test that things work
     configureThisIsATest()
 
 
-#a.k.a. dev
 def configureThisIsATest():
    copy_over("./testThisIsATest.ignorethisfile", "./test.ignorethisfile")
 
@@ -37,6 +37,26 @@ def configureProdEnvironment():
    copy_over("../Secrets/envPRODnest-app", "../nest-app/.env")
    copy_over("../Secrets/auth_configPRODangular-app.json", "../angular-app/auth_config.json")
    copy_over("../Secrets/keysPRODnest-app.ts", "../nest-app/src/config/keys.ts")   
+
+
+def configureLocalDockerEnvironment():
+   copy_over("./environment.developmentLOCALDOCKER.ts", "../angular-app/src/environments/environment.development.ts")   
+   copy_over("./environmentLOCALDOCKER.ts", "../angular-app/src/environments/environment.ts")
+   copy_over("./docker-composeLOCALDOCKER.yaml", "../docker-compose.yaml")
+   copy_over("./nginxLOCALDOCKER.conf", "../nginx.conf")
+   copy_over("../Secrets/envLOCALDOCKERnest-app", "../nest-app/.env")
+   copy_over("../Secrets/auth_configLOCALDOCKERangular-app.json", "../angular-app/auth_config.json")
+   copy_over("../Secrets/keysLOCALDOCKERnest-app.ts", "../nest-app/src/config/keys.ts")      
+
+
+# def copyLazy():
+#    copy_over("./environment.developmentLOCAL.ts", "./environment.developmentLOCALDOCKER.ts")   
+#    copy_over("./environmentLOCAL.ts", "./environmentLOCALDOCKER.ts")
+#    copy_over("./docker-composeLOCAL.yaml", "./docker-composeLOCALDOCKER.yaml")
+#    copy_over("./nginxLOCAL.conf", "./nginxLOCALDOCKER.conf")
+#    copy_over("../Secrets/envLOCALnest-app", "../Secrets/envLOCALDOCKERnest-app")
+#    copy_over("../Secrets/auth_configLOCALangular-app.json", "../Secrets/auth_configLOCALDOCKERangular-app.json")
+#    copy_over("../Secrets/keysLOCALnest-app.ts", "../Secrets/keysLOCALDOCKERnest-app.ts")  
 
 
 def copy_over(source_path, destination_path):
