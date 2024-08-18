@@ -8,6 +8,7 @@ services:
     # command: tail -F anything
     stdin_open: true
     tty: true
+    #We pull most these enviornment variables from keys.ts in nest-app
     environment:
       DATABASE_URL: mongodb://admin:admin@mongo:27017/db?authSource=admin #mongo:27017 #mongodb://mongodb:27017/AquilaCode #mongodb://localhost:27017
       DATABASE_NAME: "admin"
