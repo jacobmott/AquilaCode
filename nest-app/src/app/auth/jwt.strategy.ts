@@ -4,6 +4,7 @@ import { Injectable } from "@nestjs/common";
 // import { jwtConstants } from "./constants";
 import { Logger } from "@nestjs/common";
 import { passportJwtSecret } from "jwks-rsa";
+import config from "../../config/keys";
 
 // https://auth0.com/blog/developing-a-secure-api-with-nestjs-adding-authorization/
 
@@ -17,15 +18,15 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
         cache: true,
         rateLimit: true,
         jwksRequestsPerMinute: 6,
-        jwksUri: `${process.env.AUTH0_ISSUER_URL}.well-known/jwks.json`,
+        jwksUri: `${config.AUTH0_ISSUER_URL}.well-known/jwks.json`,
       }),
 
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      audience: process.env.AUTH0_AUDIENCE,
-      issuer: `${process.env.AUTH0_ISSUER_URL}`,
+      audience: `${config.AUTH0_AUDIENCE}`,
+      issuer: `${config.AUTH0_ISSUER_URL}`,
       algorithms: ["RS256"],
     });
-    // this.logger.error("something went wrong! ");
+    // this.logger.error("JWT constructor! ");
   }
 
   // async validate(payload: any) {
@@ -35,7 +36,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   // }
 
   validate(payload: unknown): unknown {
-    // this.logger.error("something went wrong! ", payload);
+    // this.logger.error("JWT validate! ", payload);
     return payload;
   }
 }
