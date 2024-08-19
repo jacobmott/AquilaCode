@@ -8,6 +8,7 @@ import { provideAuth0 } from "@auth0/auth0-angular";
 // Import the injector module and the HTTP client module from Angular
 // Import the HTTP interceptor from the Auth0 Angular SDK
 import { authHttpInterceptorFn } from "@auth0/auth0-angular";
+import { TopNavLightSliderService } from "./shared/top-nav-light-slider/data-access/top-nav-light-slider.service";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,5 +17,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withInterceptors([authHttpInterceptorFn])),
     { provide: BASE_PATH, useValue: environment.basepath },
     provideAuth0(environment.auth),
+    TopNavLightSliderService,
   ],
 };

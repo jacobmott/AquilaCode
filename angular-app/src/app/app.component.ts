@@ -1,12 +1,12 @@
 import { Component } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
-import { SidebarComponent } from "./shared/ui/sidebar/sidebar.component";
-import { HometopComponent } from "./home/ui/hometop.component";
+import { SidebarComponent } from "./shared/sidebar/sidebar.component";
+import { LoginLogoutComponent } from "./shared/login-logout/login-logout.component";
 
 @Component({
   standalone: true,
-  imports: [RouterModule, SidebarComponent, HometopComponent],
+  imports: [RouterModule, SidebarComponent, LoginLogoutComponent],
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrl: "./app.component.css",

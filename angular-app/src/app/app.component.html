@@ -1,4 +1,4 @@
-<div class="bg-aquila-900 grid h-svh w-full grid-cols-12">
+<div class="bg-aquila-900 relative grid h-svh w-full grid-cols-12">
   <div class="col-span-2 h-svh w-full">
     <app-aquila-sidebar></app-aquila-sidebar>
   </div>
@@ -12,7 +12,7 @@
     > -->
       <div class="row-span-2 row-start-1 h-full w-full">
         <div class="z-48 h-full w-full">
-          <app-aquila-hometop></app-aquila-hometop>
+          <router-outlet name="top"></router-outlet>
         </div>
         <!-- <div class="z-49 col-start-1 row-span-1 row-start-4">
         <app-top-nav-svg class="h-full w-full"> </app-top-nav-svg>
@@ -25,4 +25,5 @@
       </div>
     </div>
   </div>
+  <app-aquila-login-logout></app-aquila-login-logout>
 </div>

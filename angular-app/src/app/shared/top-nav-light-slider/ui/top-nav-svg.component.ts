@@ -6,6 +6,8 @@ import {
   AfterViewInit,
 } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { TopNavLightSliderService } from "../data-access/top-nav-light-slider.service";
+// import { shareReplay } from "rxjs";
 
 @Component({
   selector: "app-top-nav-svg",
@@ -25,6 +27,18 @@ export class TopNavSvgComponent implements AfterViewInit {
   xBoundsLeft = -32;
   xBoundsRight = 1164;
 
+  constructor(private topNavLightSliderService: TopNavLightSliderService) {
+    this.currentXPosition =
+      this.topNavLightSliderService.getSharedCurrentXPosition();
+    // console.log(this.currentXPosition);
+    // this.topNavLightSliderService
+    //   .getSharedCurrentXPositionBS()
+    //   .pipe(shareReplay(1))
+    //   .subscribe((position) => {
+    //     this.currentXPosition = position;
+    //   });
+  }
+
   onPointerMove(event: MouseEvent) {
     let point = new DOMPoint(0, 0);
     const { clientX, clientY } = event || { clientX: 0, clientY: 0 };
@@ -38,6 +52,12 @@ export class TopNavSvgComponent implements AfterViewInit {
       return;
     }
     this.currentXPosition = position;
+    // this.topNavLightSliderService.setSharedCurrentXPositionBS(
+    //   this.currentXPosition,
+    // );
+    this.topNavLightSliderService.setSharedCurrentXPosition(
+      this.currentXPosition,
+    );
   }
 
   getTransform() {

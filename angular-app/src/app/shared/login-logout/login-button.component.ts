@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation, inject } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { AuthService } from "@auth0/auth0-angular";
-import { environment } from "../../../../environments/environment";
+import { environment } from "../../../environments/environment";
 
 @Component({
   selector: "app-login-button",

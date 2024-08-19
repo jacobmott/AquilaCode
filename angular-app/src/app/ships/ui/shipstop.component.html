@@ -1,32 +1,8 @@
-<div
-  class="grid h-full max-h-full w-full grid-rows-4 overflow-hidden bg-transparent"
->
-  <div
-    class="font-['SF Pro Display'] relative row-span-4 grid h-full w-full grid-rows-4 place-items-center overflow-hidden bg-transparent"
-  >
-    <div class="z-60 absolute bottom-0 w-full">
-      <app-top-nav-svg> </app-top-nav-svg>
-    </div>
-    <div class="z-60 w-18 absolute right-2 top-2 h-12">
-      <ng-container *ngIf="isAuthenticated$ | async; else unAuthenticated">
-        <app-logout-button></app-logout-button>
-      </ng-container>
-      <ng-template #unAuthenticated>
-        <app-login-button></app-login-button>
-      </ng-template>
-    </div>
-    <div class="z-60 absolute left-2 top-2 h-40 w-24">
-      <ng-container *ngIf="user$ | async as user">
-        <img
-          [src]="user.picture"
-          alt="Profile"
-        />
-        <h2 class="">{{ user.name }}</h2>
-        <span class="">{{ user.email }}</span>
-        <span class="">{{ user }}</span>
-      </ng-container>
-    </div>
-
-    <!-- </div> -->
+<div class="relative h-full max-h-full w-full overflow-hidden bg-transparent">
+  <!-- <div class="z-59 absolute bottom-0 left-6 h-[19px] w-[373px]">
+    <app-aquila-ship-types></app-aquila-ship-types>
+  </div> -->
+  <div class="z-60 absolute bottom-0 w-full">
+    <app-aquila-ship-types></app-aquila-ship-types>
   </div>
 </div>

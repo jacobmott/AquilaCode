@@ -184,6 +184,16 @@ It will show tasks that you can run with Nx.
 
 # $${\color{green}Specific \space AquilaCode \space stuff}$$
 
+
+## Links/References to good sites
+
+<details>
+
+https://github.com/stuyy/nestjs-with-mongodb-mongoose/tree/master
+
+</details>
+
+
 ## Quick reference, mosted used commands
 
 ### deploying to prod/docker, hosting locally/docker, hosting locally(no docker)
