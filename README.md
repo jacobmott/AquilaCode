@@ -184,6 +184,81 @@ It will show tasks that you can run with Nx.
 
 # $${\color{green}Specific \space AquilaCode \space stuff}$$
 
+## Quick reference, mosted used commands
+
+### deploying to prod/docker, hosting locally/docker, hosting locally(no docker)
+
+```
+#SSHing/SCPing to Ec2 
+ssh -i "SECRET.pem" ec2-user@ec2-54-147-25-124.compute-1.amazonaws.com
+scp -i SECRET.pm /d/OtherProjects/AquilaCode/docker-compose.yaml ec2-user@dsfadsfasd.sdfad.amazonaws.com:/home/ec2-user/docker-compose.yaml
+
+#Ec2 commands
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin GETID.dkr.ecr.us-east-1.amazonaws.com
+sudo docker pull GETID.dkr.ecr.us-east-1.amazonaws.com/aquilacode-backend:latest
+sudo docker pull GETID.dkr.ecr.us-east-1.amazonaws.com/aquilacode-frontend:latest
+docker-compose -f docker-compose.yaml down
+Sometimes you can just stop, like, 
+docker-compose stop
+docker-compose -f docker-compose.yaml up -d
+
+#Locally building/serving
+nx build nest-app --verbose --skip-nx-cache
+nx serve nest-app --verbose --skip-nx-cache
+nx build angular-app --verbose --skip-nx-cache
+nx serve angular-app --verbose --skip-nx-cache
+
+#Docker(local/prod) building/hosting
+#Login first
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin GETID.dkr.ecr.us-east-1.amazonaws.com
+
+docker build --no-cache -t aquilacode-backend:latest -f DockerfileNest .
+docker tag aquilacode-backend:latest GETID.dkr.ecr.us-east-1.amazonaws.com/aquilacode-backend
+docker push GETID.dkr.ecr.us-east-1.amazonaws.com/aquilacode-backend
+
+docker build --no-cache -t aquilacode-frontend:latest -f DockerfileAngular .
+docker tag aquilacode-frontend:latest GETID.dkr.ecr.us-east-1.amazonaws.com/aquilacode-frontend
+docker push GETID.dkr.ecr.us-east-1.amazonaws.com/aquilacode-frontend
+
+docker images
+
+#Hosting docker locally
+cd configs
+python localDockerConfig.py
+docker build FE ...
+docker build BE ...
+docker tag FE ...
+docker tag BE ...
+docker-compose -f docker-compose.yaml down
+docker-compose -f docker-compose.yaml up -d
+
+#Hosting locally
+cd configs
+python localConfig.py
+docker-compose -f docker-compose.yaml up -d #This will only host mongodb container
+nx serve nest-app --verbose --skip-nx-cache
+nx serve angular-app --verbose --skip-nx-cache
+
+#Hosting docker containers/images in prod(ec2)
+cd configs
+python prodConfig.py
+docker build FE ...
+docker build BE ...
+docker tag FE ...
+docker tag BE ...
+docker push FE ...
+docker push BE ...
+
+Get on EC2
+SSH to aws ecr
+docker pull FE ...
+docker pull BE ...
+docker-compose -f docker-compose.yaml down
+docker-compose -f docker-compose.yaml up -d 
+
+
+
+
 ## Commands ran to setup the nx project and initial repo/structure
 
 ### Setting up nx monorepo for angular and nestjs
