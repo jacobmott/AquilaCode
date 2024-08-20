@@ -4,21 +4,23 @@ export const routes: Route[] = [
   {
     path: "",
     loadChildren: () =>
-      import("./home/feature/home-routes").then((routes) => routes.homeRoutes),
+      import("./home/feature/home-shell/home-shell-routes").then(
+        (routes) => routes.routes,
+      ),
   },
   // Add your another routes using this syntax.
   {
     path: "ships",
     loadChildren: () =>
-      import("./ships/feature/ships-routes").then(
-        (routes) => routes.shipsRoutes,
+      import("./ships/feature/ship-shell/ship-shell-routes").then(
+        (routes) => routes.routes,
       ),
   },
   {
     path: "profile",
     loadChildren: () =>
-      import("./profile/feature/profile-routes").then(
-        (routes) => routes.profileRoutes,
+      import("./profile/feature/profile-shell/profile-shell-routes").then(
+        (routes) => routes.routes,
       ),
   },
 ];

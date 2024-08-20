@@ -1,8 +1,8 @@
 import { Component } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
-import { SidebarComponent } from "./shared/sidebar/sidebar.component";
-import { LoginLogoutComponent } from "./shared/login-logout/login-logout.component";
+import { SidebarComponent } from "./shared/feature/sidebar/sidebar.component";
+import { LoginLogoutComponent } from "./shared/feature/login-logout/login-logout.component";
 
 @Component({
   standalone: true,
