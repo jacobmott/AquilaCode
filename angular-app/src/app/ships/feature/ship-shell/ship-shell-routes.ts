@@ -1,7 +1,8 @@
 import { Routes } from "@angular/router";
 import { ShipListComponent } from "../ship-list/ship-list.component";
-import { AuthGuard } from "@auth0/auth0-angular";
+// import { AuthGuard } from "@auth0/auth0-angular";
 import { ShipTopComponent } from "../ship-top/ship-top.component";
+import { AuthGuard } from "../../../shared/util/auth.guard";
 
 export const routes: Routes = [
   {

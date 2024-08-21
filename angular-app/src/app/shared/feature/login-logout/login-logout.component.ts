@@ -20,11 +20,25 @@ import { DefaultService } from "aquilacode-api";
   encapsulation: ViewEncapsulation.Emulated,
 })
 export class LoginLogoutComponent implements OnInit {
-  constructor(private aquilacode: DefaultService) {}
-  private auth = inject(AuthService);
-  isAuthenticated$ = this.auth.isAuthenticated$;
+  isAuthenticated = false;
+  constructor(
+    private aquilacode: DefaultService,
+    private auth: AuthService,
+  ) {
+    this.auth.isAuthenticated$.subscribe({
+      next: (isAuthenticated) => {
+        this.isAuthenticated = isAuthenticated;
+      },
+      error: (msg) => {
+        // console.log("error");
+      },
+    });
+  }
+
+  // private auth = inject(AuthService);
+  // isAuthenticatedObs$ = this.auth.isAuthenticated$;
   profileJson = "";
-  user$ = this.auth.user$;
+  // user$ = this.auth.user$;
 
   ngOnInit(): void {
     this.auth.user$.subscribe((profile) => {
@@ -41,5 +55,9 @@ export class LoginLogoutComponent implements OnInit {
           console.log(data);
         });
     });
+  }
+
+  getIsAuthenticated() {
+    return this.isAuthenticated;
   }
 }

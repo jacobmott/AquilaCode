@@ -1,3 +1,3 @@
-<div class="flex h-full w-full items-center justify-center bg-transparent">
-  <div class="">Your ships await sir!</div>
+<div class="row-span-2 grid grid-cols-3 gap-6 overflow-hidden bg-transparent">
+  <app-aquila-ship-card *ngFor="let ship of ships"></app-aquila-ship-card>
 </div>
