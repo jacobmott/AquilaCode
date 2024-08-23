@@ -10,6 +10,10 @@ Website tech stack:
 (NX/Nestjs/Mongodb/Angular/Tailwind/NGINX/Docker(Files and Compose)/Docker Images/
 AWS Private ECR/AWS Loadbalancer/AWS EC2/AWS Route53/AWS ACM(certificates for ssl)/
 OpenAPI3.0/Private NPM Repository)
+-SVGs for alot of the buttons and animations 
+(Custom made via generating AI art with Midjourney and converting to svg, using figma/illustrator/inkscape to optimize the svgs
+and mark id them for use in angular/bindings/animations)
+-GSAP soon to come
 -NX build system
 -Auth0/Okta(Jwt tokens)/Backend Authorization(Users tracked via Auth0/Okta)
 -Nestjs backend(Using passport for Auth0)
@@ -30,12 +34,24 @@ to the ec2
 
 <img src="https://pngimg.com/uploads/rockets/rockets_PNG101054.png" width="25" />A mono repo for a complete application(UI/Backend), using NX, NestJS(W/ Fastify), Angular, OpenAPI3.0<img src="https://pngimg.com/uploads/rockets/rockets_PNG101054.png" width="25" />
 
-#Site on 08/11/2024 - hosted in the cloud now, with Okta/Auth0 login/logout functionality (google/facebook... etc)
+
+
+# Site on 08/22/2024
+Hosted in the cloud, Okta/Auth0 login/logout functionality (google/facebook... etc), lots of svg animations, apis all hooked up and working and reading from authguard protected endpoints, reading/writing to mongoDB(via dtos/mongoose), using npm sdk from openapi spec/openapi sdk generation, hosted via aws s3 ecr by pulling docker images to ec2 for frontend/backend/mongodb(nginx server)
+
+https://youtu.be/6C9sNa7cKgI
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/6C9sNa7cKgI/default.jpg)](https://youtu.be/6C9sNa7cKgI)
+
+![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/SiteProgress-1-2024-08-22_23-31-25.png)
+![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/SiteProgress-2+-2024-08-22_23-31-25.png)
+
+# Site on 08/11/2024 - hosted in the cloud now, with Okta/Auth0 login/logout functionality (google/facebook... etc)
 ![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/2024-08-11_15-33-51-okta-auth0-login-21.png)
 ![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/2024-08-11_15-33-51-okta-auth0-logout-1.png)
 ![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/2024-08-11_15-33-51-okta-auth0-login-1.png)
 
-#Site on 08/09/2024 - hosted in the cloud now
+# Site on 08/09/2024 - hosted in the cloud now
 
 https://youtu.be/QYgVhXHVuDY
 
@@ -44,16 +60,16 @@ https://youtu.be/QYgVhXHVuDY
 ![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/2024-08-09_02-39-02-main-site-progress-3.gif)
 ![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/2024-08-09_02-48-05-mainsite-12.png)
 
-#Site on 08/07/2024 - hosted in the cloud now
+# Site on 08/07/2024 - hosted in the cloud now
 
 ![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/2024-08-07_02-39-02-main-site-progress-2.gif)
 ![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/2024-08-07_02-48-05-mainsite-11.png)
 
-#Site on 08/05/2024 - hosted in the cloud now
+# Site on 08/05/2024 - hosted in the cloud now
 ![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/2024-08-05_02-08-28-main-site.png)
 
 
-#Site on 07/27/2024 - locally hosted
+# Site on 07/27/2024 - locally hosted
 ![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/2024-07-27_05-22-21.png)
 
 
@@ -192,6 +208,15 @@ It will show tasks that you can run with Nx.
 https://github.com/stuyy/nestjs-with-mongodb-mongoose/tree/master
 
 </details>
+
+## How I generated the SVGs and animations for the site
+* SVGs for alot of the buttons and animations
+  + Custom made via generating AI art and converting to svg, using figma/illustrator/inkscape to optimize the svgs
+and mark id them for use in angular/bindings/animations
+  + Used Midjourney to generate high def style related images
+  + Used svg apps (figma/illistrator/inkscape) to convert and manipulate svgs and mash them together
+  + Created angular compoenents to wrap the svgs and bind to them for animation/manipulation(Will replace with gsap more than likely)
+ 
 
 
 ## Quick reference, mosted used commands
