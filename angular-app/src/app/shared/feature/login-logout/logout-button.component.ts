@@ -9,6 +9,7 @@ import {
 import { CommonModule, DOCUMENT } from "@angular/common";
 import { AuthService } from "@auth0/auth0-angular";
 import { environment } from "../../../../environments/environment";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-aquila-logout-button",
@@ -20,17 +21,27 @@ import { environment } from "../../../../environments/environment";
 })
 export class LogoutButtonComponent implements AfterViewInit {
   private auth = inject(AuthService);
-  private doc = inject(DOCUMENT);
-  sSBSFTextColor = "#8E37E6";
-  @ViewChild("mySvg") svgElement!: ElementRef;
+  sSBSFTextColor = "#5900B3";
+  @ViewChild("mySvg", { read: ElementRef }) public svgElement!: ElementRef;
   svgRef: SVGSVGElement;
 
-  handleLogout(): void {
-    this.auth.logout({
-      logoutParams: {
-        returnTo: environment.url,
-      },
-    });
+  startingClasses =
+    "z-47 h-full w-full absolute transition-all duration-500 ease-in ";
+  classes = this.startingClasses;
+  animateClasses =
+    "z-47 h-96 w-96 absolute transition-all duration-500 ease-in -translate-x-full";
+
+  handleLogout(): Subscription {
+    return this.auth
+      .logout({
+        logoutParams: {
+          returnTo: environment.url,
+        },
+      })
+      .pipe()
+      .subscribe((what) => {
+        this.classes = this.startingClasses;
+      });
   }
 
   ngAfterViewInit() {
@@ -41,16 +52,18 @@ export class LogoutButtonComponent implements AfterViewInit {
   }
 
   onPointerEnter(event: MouseEvent) {
-    // this.sSBSFGradientColor = "url(#paint0_radial_11_402)";
-    // this.sSBSFLightReflection = "url(#paint2_linear_11_402)";
-    this.sSBSFTextColor = "#FF00EC";
+    this.sSBSFTextColor = "#7F00FF";
+    this.classes = this.animateClasses;
   }
   onPointerLeave(event: MouseEvent) {
-    // this.sSBSFGradientColor = "none";
-    // this.sSBSFLightReflection = "none";
     this.sSBSFTextColor = "#8E37E6";
+    this.classes = this.startingClasses;
   }
   onPointerDown(event: MouseEvent) {
     this.handleLogout();
+  }
+
+  getClasses(): string {
+    return this.classes;
   }
 }

@@ -1,10 +1,8 @@
-<div class="z-60 h-50 w-50 absolute right-2 top-2">
-  <div class="absolute right-2 top-2">
-    <ng-container *ngIf="isAuthenticated; else unAuthenticated">
-      <app-aquila-logout-button></app-aquila-logout-button>
-    </ng-container>
-    <ng-template #unAuthenticated>
-      <app-aquila-login-button></app-aquila-login-button>
-    </ng-template>
-  </div>
+<div class="relative h-full w-full">
+  <ng-container *ngIf="isAuthenticated; else unAuthenticated">
+    <app-aquila-logout-button></app-aquila-logout-button>
+  </ng-container>
+  <ng-template #unAuthenticated>
+    <app-aquila-login-button></app-aquila-login-button>
+  </ng-template>
 </div>

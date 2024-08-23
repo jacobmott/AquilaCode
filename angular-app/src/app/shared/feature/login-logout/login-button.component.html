@@ -1,47 +1,14 @@
-<!-- <div
-  class="bg-aquilapink-600 font-['SF Pro Display'] sm:text-ssm grid h-14 w-14 place-items-center rounded-full text-xs font-extrabold leading-snug text-white md:text-xs lg:text-sm xl:text-base"
-  (click)="handleLogin()"
->
-  Log In
-</div> -->
-
-<!-- Using utilities: -->
-<!-- <button
-  (click)="handleLogin()"
-  class="bg-aquila-900 hover:bg-aquila-400 rounded px-4 py-2 font-bold text-white"
->
-  Log In
-</button> -->
-<div class="h-[100px] w-[100px]">
-  <!-- <svg
-    (pointerenter)="onPointerEnter($event)"
-    (pointerleave)="onPointerLeave($event)"
-    (pointerdown)="onPointerDown($event)"
-    #mySvg
-    id="b"
-    fill="none"
-    version="1.1"
-    viewBox="0 0 1007 1008"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <g
-      id="c"
-      clip-path="url(#a)"
-    >
-      <g
-        id="d"
-        opacity=".28"
-      >
-        <path
-          id="e"
-          d="m503.07 1006.1c277.84 0 503.07-225.23 503.07-503.07s-225.23-503.07-503.07-503.07-503.07 225.23-503.07 503.07 225.23 503.07 503.07 503.07z"
-          [attr.fill]="sSBSFTextColor" -->
+<!-- The div and the svg work together to control the animation
+ The svg controls the divs classes and those classes trigger animating the div
+ and the div brings along the svg for the ride -->
+<div [ngClass]="getClasses()">
   <svg
     #mySvg
+    class="z-49 absolute h-full w-full"
     id="a"
     fill="none"
     version="1.1"
-    viewBox="0 0 1461 1461"
+    viewBox="0 0 1500 1500"
     (pointerenter)="onPointerEnter($event)"
     (pointerleave)="onPointerLeave($event)"
     (pointerdown)="onPointerDown($event)"
@@ -55,6 +22,39 @@
           id="e"
           d="M730.5 1461C1133.95 1461 1461 1133.95 1461 730.5C1461 327.053 1133.95 0 730.5 0C327.053 0 0 327.053 0 730.5C0 1133.95 327.053 1461 730.5 1461Z"
           [attr.fill]="sSBSFTextColor"
+        />
+      </g>
+      <circle
+        id="Ellipse 5"
+        cx="756"
+        cy="730"
+        r="700"
+        stroke="url(#paint0_linear_12_3123)"
+        stroke-width="46"
+      ></circle>
+      <defs>
+        <linearGradient
+          id="paint0_linear_12_3123"
+          x1="261.387"
+          y1="206.375"
+          x2="1324.96"
+          y2="1159.93"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stop-color="#C427FB"></stop>
+          <stop
+            offset="1"
+            stop-color="#22D7FF"
+          ></stop>
+        </linearGradient>
+      </defs>
+      <g id="Frame1">
+        <rect
+          id="Rectangle1"
+          x="350"
+          y="0"
+          width="600"
+          height="1461"
         />
       </g>
       <g id="d">
@@ -1940,6 +1940,7 @@
         />
         <path
           id="nt"
+          vvvv
           d="m719.93 589.09c-0.317-0.47-0.633-0.94-0.992-1.698-0.043-0.289 0.052-0.376 0.103-0.417 0.369 0.423 0.687 0.888 0.99 1.687-0.016 0.334-0.101 0.428-0.101 0.428z"
           fill="#252A2E"
         />

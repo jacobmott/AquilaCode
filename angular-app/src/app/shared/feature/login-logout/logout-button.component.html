@@ -1,26 +1,17 @@
-<!-- <button
-  class="h-5 w-5 bg-orange-800 text-amber-400"
-  (click)="handleLogout()"
->
-  Log Out
-</button> -->
-
-<!-- <button
-  (click)="handleLogout()"
-  class="bg-aquilapink-900 hover:bg-aquilapink-100 rounded px-4 py-2 font-bold text-white"
->
-  Log Out
-</button> -->
-<div class="h-[100px] w-[100px]">
+<!-- The div and the svg work together to control the animation
+ The svg controls the divs classes and those classes trigger animating the div
+ and the div brings along the svg for the ride -->
+<div [ngClass]="getClasses()">
   <svg
     #mySvg
+    class="z-47 absolute h-full w-full"
     (pointerenter)="onPointerEnter($event)"
     (pointerleave)="onPointerLeave($event)"
     (pointerdown)="onPointerDown($event)"
     id="a"
     fill="none"
     version="1.1"
-    viewBox="0 0 1461 1461"
+    viewBox="0 0 1500 1500"
   >
     <g id="b">
       <g
@@ -31,6 +22,41 @@
           id="e"
           d="M730.5 1461C1133.95 1461 1461 1133.95 1461 730.5C1461 327.053 1133.95 0 730.5 0C327.053 0 0 327.053 0 730.5C0 1133.95 327.053 1461 730.5 1461Z"
           [attr.fill]="sSBSFTextColor"
+        />
+      </g>
+      <!-- <circle cx="730" cy="730" r="730" class="svg-circle"></circle> -->
+
+      <circle
+        id="Ellipse 5"
+        cx="756"
+        cy="730"
+        r="700"
+        stroke="url(#paint0_linear_12_3123)"
+        stroke-width="46"
+      ></circle>
+      <defs>
+        <linearGradient
+          id="paint0_linear_12_3123"
+          x1="261.387"
+          y1="206.375"
+          x2="1324.96"
+          y2="1159.93"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stop-color="#C427FB"></stop>
+          <stop
+            offset="1"
+            stop-color="#22D7FF"
+          ></stop>
+        </linearGradient>
+      </defs>
+      <g id="Frame1">
+        <rect
+          id="Rectangle1"
+          x="350"
+          y="0"
+          width="600"
+          height="1461"
         />
       </g>
       <g id="d">

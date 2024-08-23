@@ -1,0 +1,109 @@
+:host {
+  --dark-color: #8e37e6;
+  --light-color: #ffffff;
+  --circle-color: #e74c3c;
+}
+
+.svg-circle {
+  fill: var(--circle-color);
+  stroke: #2c3e50;
+  stroke-width: 4;
+  fill: none;
+}
+
+svg g#b g#c path#e {
+  transform: translateX(1%);
+}
+
+svg #c path {
+  transform: scale(0.8);
+  transform: translateY(2%);
+}
+
+svg #Rectangle1 {
+  transition: all 2s ease;
+  fill: var(--dark-color);
+}
+svg:hover #Rectangle1 {
+  transform: translateX(-5%);
+  width: 800px;
+}
+svg:not(:hover) #Rectangle1 {
+  transform: translateX(0%);
+  width: 600px;
+}
+
+/* The animation code */
+@keyframes example {
+  0% {
+    width: 100%;
+    height: 100%;
+  }
+  100% {
+    width: 24rem;
+    height: 24rem;
+    transform: translateX(-100%);
+  }
+}
+
+/* The animation code */
+@keyframes example2 {
+  0% {
+    width: 24rem;
+    height: 24rem;
+  }
+  100% {
+    width: 100%;
+    height: 100%;
+    transform: translateX(100%);
+  }
+}
+.divAnim:hover {
+  animation: example 500ms ease-in forwards;
+}
+/* divAnim:not(:hover){
+
+} */
+/* The element to apply the animation to */
+.divAnim {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.filForward {
+  animation-fill-mode: forwards;
+}
+
+.stop {
+  animation-play-state: paused;
+}
+
+.hey {
+  pointer-events: none;
+}
+
+.waht {
+  background-color: red;
+}
+.waht2 {
+  background-color: green;
+}
+
+.pointer-events-on {
+  pointer-events: auto;
+}
+
+.pointer-events-off {
+  pointer-events: none;
+}
+
+.divNoAnim {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  animation-name: example2;
+  animation-duration: 2s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}

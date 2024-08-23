@@ -9,6 +9,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      transitionProperty: {
+        width: "width",
+        height: "height",
+      },
       screens: {
         tall: { raw: "(min-height: 800px)" },
         // => @media (min-height: 800px) { ... }

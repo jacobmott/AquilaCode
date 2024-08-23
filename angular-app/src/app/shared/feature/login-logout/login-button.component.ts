@@ -15,15 +15,23 @@ import { environment } from "../../../../environments/environment";
   selector: "app-aquila-login-button",
   standalone: true,
   imports: [CommonModule],
-  templateUrl: "./login-button.component.svg",
+  templateUrl: "./login-button.component.html",
   styleUrl: "./login-button.component.css",
   encapsulation: ViewEncapsulation.Emulated,
 })
-export class LoginButtonComponent implements AfterViewInit, OnInit {
+
+// pointer-events: none;
+export class LoginButtonComponent implements AfterViewInit {
   private auth = inject(AuthService);
   sSBSFTextColor = "#8E37E6";
   @ViewChild("mySvg", { read: ElementRef }) public svgElement!: ElementRef;
   svgRef: SVGSVGElement;
+
+  startingClasses =
+    "z-49 h-full w-full absolute transition-all duration-500 ease-in";
+  classes = this.startingClasses;
+  animateClasses =
+    "z-49 h-96 w-96 absolute transition-all duration-500 ease-in -translate-x-full";
 
   handleLogin(): void {
     this.auth.loginWithPopup({
@@ -37,28 +45,22 @@ export class LoginButtonComponent implements AfterViewInit, OnInit {
     if (svg !== null) {
       this.svgRef = <SVGSVGElement>svg;
     }
-    console.log("ngAfterViewInit");
-  }
-
-  ngOnInit() {
-    // const svg = this.svgElement.nativeElement;
-    // if (svg !== null) {
-    //   this.svgRef = <SVGSVGElement>svg;
-    // }
-    console.log("ngAfterViewInit");
   }
 
   onPointerEnter(event: MouseEvent) {
-    // this.sSBSFGradientColor = "url(#paint0_radial_11_402)";
-    // this.sSBSFLightReflection = "url(#paint2_linear_11_402)";
-    this.sSBSFTextColor = "#FF00EC";
+    this.sSBSFTextColor = "#7F00FF";
+    this.classes = this.animateClasses;
   }
   onPointerLeave(event: MouseEvent) {
-    // this.sSBSFGradientColor = "none";
-    // this.sSBSFLightReflection = "none";
     this.sSBSFTextColor = "#8E37E6";
+    this.classes = this.startingClasses;
   }
   onPointerDown(event: MouseEvent) {
+    this.classes = this.startingClasses;
     this.handleLogin();
+  }
+
+  getClasses(): string {
+    return this.classes;
   }
 }

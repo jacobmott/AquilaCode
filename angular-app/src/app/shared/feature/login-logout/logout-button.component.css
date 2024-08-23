@@ -1,0 +1,34 @@
+:host {
+  --dark-color: #8e37e6;
+  --light-color: #ffffff;
+  --circle-color: #e74c3c;
+}
+
+.svg-circle {
+  fill: var(--circle-color);
+  stroke: #2c3e50;
+  stroke-width: 4;
+  fill: none;
+}
+
+svg g#b g#c path#e {
+  transform: translateX(1%);
+}
+
+svg #c path {
+  transform: scale(0.8);
+  transform: translateY(2%);
+}
+
+svg #Rectangle1 {
+  transition: all 2s ease;
+  fill: var(--dark-color);
+}
+svg:hover #Rectangle1 {
+  transform: translateX(-5%);
+  width: 800px;
+}
+svg:not(:hover) #Rectangle1 {
+  transform: translateX(0%);
+  width: 600px;
+}
