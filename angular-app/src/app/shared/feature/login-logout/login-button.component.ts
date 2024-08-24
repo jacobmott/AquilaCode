@@ -5,7 +5,6 @@ import {
   ViewChild,
   ElementRef,
   AfterViewInit,
-  OnInit,
 } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { AuthService } from "@auth0/auth0-angular";
@@ -28,10 +27,10 @@ export class LoginButtonComponent implements AfterViewInit {
   svgRef: SVGSVGElement;
 
   startingClasses =
-    "z-49 h-full w-full absolute transition-all duration-500 ease-in";
+    "absolute h-full w-full transition-all duration-300 ease-in";
   classes = this.startingClasses;
   animateClasses =
-    "z-49 h-96 w-96 absolute transition-all duration-500 ease-in -translate-x-full";
+    "absolute h-96 w-96 -translate-x-full transition-all duration-300 ease-in";
 
   handleLogin(): void {
     this.auth.loginWithPopup({
