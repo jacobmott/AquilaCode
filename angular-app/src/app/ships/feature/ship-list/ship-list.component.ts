@@ -4,11 +4,19 @@ import { OnInit } from "@angular/core";
 import { ApiModule } from "aquilacode-api";
 import { DefaultService } from "aquilacode-api";
 import { ShipCardComponent } from "../../ui/ship-card/ship-card.component";
+import { TopNavLightSliderComponent } from "../../../shared/feature/top-nav-light-slider/top-nav-light-slider.component";
+import { ShipTypesComponent } from "../../ui/ship-types/ship-types.component";
 
 @Component({
   selector: "app-aquila-ship-list",
   standalone: true,
-  imports: [CommonModule, ApiModule, ShipCardComponent],
+  imports: [
+    CommonModule,
+    ApiModule,
+    ShipCardComponent,
+    TopNavLightSliderComponent,
+    ShipTypesComponent,
+  ],
   templateUrl: "./ship-list.component.html",
   styleUrl: "./ship-list.component.css",
   encapsulation: ViewEncapsulation.Emulated,
@@ -16,7 +24,7 @@ import { ShipCardComponent } from "../../ui/ship-card/ship-card.component";
 export class ShipListComponent implements OnInit {
   ships: any[];
   ships2 = "";
-
+  scrollToTop = 0;
   constructor(private aquilacode: DefaultService) {
     this.ships = [];
   }

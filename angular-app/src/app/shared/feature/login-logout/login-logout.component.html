@@ -1,5 +1,5 @@
 <div class="h-full w-full">
-  <ng-container *ngIf="isAuthenticated; else unAuthenticated">
+  <ng-container *ngIf="getIsAuthenticated(); else unAuthenticated">
     <app-aquila-logout-button></app-aquila-logout-button>
   </ng-container>
   <ng-template #unAuthenticated>

@@ -1,5 +1,17 @@
 import { ApplicationConfig, provideZoneChangeDetection } from "@angular/core";
-import { provideRouter } from "@angular/router";
+
+import {
+  RouteReuseStrategy,
+  provideRouter,
+  RouterModule,
+  Routes,
+} from "@angular/router";
+import {
+  BaseRouteReuseStrategy,
+  DefaultRouteReuseStrategy,
+} from "./route-strategy/base-route-reuse-strategy.service";
+import { CustomRouteReuseStrategy } from "./route-strategy/custom-route-reuse-strategy.service";
+
 import { routes } from "./app.routes";
 import { provideHttpClient, withInterceptors } from "@angular/common/http";
 import { BASE_PATH } from "aquilacode-api";
@@ -18,5 +30,9 @@ export const appConfig: ApplicationConfig = {
     { provide: BASE_PATH, useValue: environment.basepath },
     provideAuth0(environment.auth),
     TopNavLightSliderService,
+    {
+      provide: RouteReuseStrategy,
+      useClass: CustomRouteReuseStrategy,
+    },
   ],
 };

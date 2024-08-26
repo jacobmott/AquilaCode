@@ -2,21 +2,12 @@
   <div class="col-span-2 h-svh w-full">
     <app-aquila-sidebar></app-aquila-sidebar>
   </div>
-  <div class="col-span-10 h-svh w-full">
-    <div
-      class="from-aquila-50 via-aquila-400 to-aquila-900 grid h-screen grid-cols-1 grid-rows-12 bg-gradient-to-b"
-    >
-      <div class="row-span-2 row-start-1 h-full w-full">
-        <div class="h-full w-full">
-          <router-outlet name="top"></router-outlet>
-        </div>
-      </div>
 
-      <!-- Main container here -->
-      <div class="row-span-10 mx-12 mb-4 mt-12 h-5/6 w-5/6 overflow-hidden">
-        <router-outlet></router-outlet>
-      </div>
-    </div>
+  <div class="col-span-10 h-svh w-full">
+    <!-- Main container here -->
+    <!-- <div class="row-span-12 mx-12 mb-4 mt-12 h-5/6 w-5/6 overflow-hidden"> -->
+    <router-outlet></router-outlet>
+    <!-- </div> -->
   </div>
 
   <div

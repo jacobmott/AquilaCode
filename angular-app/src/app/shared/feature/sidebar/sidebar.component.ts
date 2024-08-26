@@ -3,6 +3,7 @@ import { CommonModule } from "@angular/common";
 import { SidebarButtonShipsComponent } from "./sidebar-button-ships.component";
 import { SidebarAquilaCodeComponent } from "./sidebar-aquila-code.component";
 import { SidebarButtonHomeComponent } from "./sidebar-button-home.component";
+import { SidebarButtonPlayComponent } from "./sidebar-button-play.component";
 
 @Component({
   selector: "app-aquila-sidebar",
@@ -12,6 +13,7 @@ import { SidebarButtonHomeComponent } from "./sidebar-button-home.component";
     SidebarButtonShipsComponent,
     SidebarAquilaCodeComponent,
     SidebarButtonHomeComponent,
+    SidebarButtonPlayComponent,
   ],
   templateUrl: "./sidebar.component.html",
   styleUrl: "./sidebar.component.css",

@@ -6,7 +6,7 @@ import {
   ElementRef,
   AfterViewInit,
 } from "@angular/core";
-import { CommonModule, DOCUMENT } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { AuthService } from "@auth0/auth0-angular";
 import { environment } from "../../../../environments/environment";
 import { Subscription } from "rxjs";

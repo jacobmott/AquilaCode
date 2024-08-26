@@ -9,7 +9,7 @@ import {
 import { CommonModule } from "@angular/common";
 import { AuthService } from "@auth0/auth0-angular";
 import { environment } from "../../../../environments/environment";
-
+import { Router } from "@angular/router";
 @Component({
   selector: "app-aquila-login-button",
   standalone: true,
@@ -21,6 +21,7 @@ import { environment } from "../../../../environments/environment";
 
 // pointer-events: none;
 export class LoginButtonComponent implements AfterViewInit {
+  constructor(private router: Router) {}
   private auth = inject(AuthService);
   sSBSFTextColor = "#8E37E6";
   @ViewChild("mySvg", { read: ElementRef }) public svgElement!: ElementRef;

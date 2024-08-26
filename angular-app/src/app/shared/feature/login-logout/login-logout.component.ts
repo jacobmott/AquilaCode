@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation, OnInit, inject } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { LoginButtonComponent } from "./login-button.component";
 import { LogoutButtonComponent } from "./logout-button.component";
-import { AuthService } from "@auth0/auth0-angular";
+import { AuthenticationService } from "../../data-access/authentication.service";
 import { ApiModule } from "aquilacode-api";
 import { DefaultService } from "aquilacode-api";
 
@@ -23,29 +23,31 @@ export class LoginLogoutComponent implements OnInit {
   isAuthenticated = false;
   constructor(
     private aquilacode: DefaultService,
-    private auth: AuthService,
+    private authenticationService: AuthenticationService,
   ) {
-    this.auth.isAuthenticated$.subscribe({
-      next: (isAuthenticated) => {
+    this.isAuthenticated = this.authenticationService.isAuthenticated_b();
+    // this.authenticationService.isAuthenticated().subscribe({
+    //   next: (isAuthenticated) => {
+    //     console.log(
+    //       "LoginLogoutComponent: isAuthenticated: " + isAuthenticated,
+    //     );
+    //     this.isAuthenticated = isAuthenticated;
+    //   },
+    //   error: (msg) => {
+    //     console.log("LoginLogoutComponent: Error: " + msg);
+    //   },
+    // });
+    this.authenticationService
+      .isAuthenticated()
+      .subscribe((isAuthenticated) => {
+        console.log(
+          "LoginLogoutComponent: isAuthenticated: " + isAuthenticated,
+        );
         this.isAuthenticated = isAuthenticated;
-      },
-      error: (msg) => {
-        // console.log("error");
-      },
-    });
-  }
+      });
 
-  // private auth = inject(AuthService);
-  // isAuthenticatedObs$ = this.auth.isAuthenticated$;
-  profileJson = "";
-  // user$ = this.auth.user$;
-
-  ngOnInit(): void {
-    this.auth.user$.subscribe((profile) => {
-      this.profileJson = JSON.stringify(profile, null, 2);
-      console.dir(profile);
-      console.log(this.profileJson);
-      if (profile === null || profile === undefined) {
+    this.authenticationService.getProfile().subscribe((profile) => {
+      if (profile === null) {
         return;
       }
       const idInfo = profile.sub;
@@ -55,6 +57,10 @@ export class LoginLogoutComponent implements OnInit {
           console.log(data);
         });
     });
+  }
+
+  ngOnInit(): void {
+    const chill = "";
   }
 
   getIsAuthenticated() {

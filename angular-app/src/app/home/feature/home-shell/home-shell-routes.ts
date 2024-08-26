@@ -6,5 +6,5 @@ import { HomeTopComponent } from "../home-top/home-top.component";
 export const routes: Route[] = [
   // { path: "", component: HomeComponent, canActivate: [AuthGuard] },
   { path: "", component: HomeComponent },
-  { path: "", component: HomeTopComponent, outlet: "top" },
+  // { path: "", component: HomeTopComponent, outlet: "top" },
 ];
