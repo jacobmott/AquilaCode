@@ -600,3 +600,65 @@
     <app-aquila-login-logout class="h-full w-full"></app-aquila-login-logout>
   </div>
 </div>
+
+<div
+  class="fixed right-2 top-2 z-10 mr-6 h-20 w-0 overflow-visible sm:mr-4 sm:h-32 sm:w-32 md:mr-4 md:h-36 md:w-36 lg:mr-2 lg:h-36 lg:w-36 xl:mr-2 xl:h-36 xl:w-36 2xl:mr-2 2xl:h-36 2xl:w-36"
+>
+  <app-aquila-login-logout class="h-full w-full"></app-aquila-login-logout>
+</div>
+
+[ngClass]="{ 'col-span-12 h-svh w-full': isLoggedInAndPlaying(), 'col-span-10
+h-svh w-full': !isLoggedInAndPlaying() }"
+
+<div
+  [ngClass]="{
+'h-svh w-full': isLoggedInAndPlaying(),
+'col-span-2 h-svh w-full': !isLoggedInAndPlaying()
+}"
+>
+  <app-aquila-sidebar></app-aquila-sidebar>
+</div>
+
+<svg
+  class="z-11 fixed left-0 top-0 h-svh overflow-hidden transition-all duration-300 ease-in"
+  viewBox="0 0 50 2027"
+  fill="none"
+>
+  <path
+    id="Rectangle 7"
+    d="M0 0H50V2027H0V0Z"
+    fill="url(#paint0_linear_19_47)"
+  ></path>
+  <defs>
+    <linearGradient
+      id="paint0_linear_19_47"
+      x1="1.28205"
+      y1="28.8199"
+      x2="274.474"
+      y2="61.777"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop stop-color="#2E335A"></stop>
+      <stop
+        offset="1"
+        stop-color="#1C1B33"
+      ></stop>
+    </linearGradient>
+  </defs>
+</svg>
+
+<svg
+  class="z-11 fixed left-1 top-32 h-12 w-4 overflow-hidden transition-all duration-300 ease-in"
+  viewBox="0 0 54 103"
+  fill="none"
+>
+  <path
+    id="Arrow"
+    d="M0.488281 99.221V4.50801C0.488281 1.17401 4.50928 -0.50699 6.88228 1.83501L50.8053 45.181C54.5313 48.858 54.5313 54.871 50.8053 58.548L6.88228 101.894C4.50928 104.236 0.488281 102.555 0.488281 99.221Z"
+    [attr.fill]="arrowFillColor"
+  />
+</svg>
+
+<div class="z-11 fixed right-2 top-2 mr-6 h-32 w-32 overflow-visible">
+  <app-aquila-login-logout class="h-full w-full"></app-aquila-login-logout>
+</div>

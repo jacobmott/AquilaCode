@@ -1,8 +1,26 @@
-<div class="h-full w-full">
-  <ng-container *ngIf="getIsAuthenticated(); else unAuthenticated">
-    <app-aquila-logout-button></app-aquila-logout-button>
-  </ng-container>
-  <ng-template #unAuthenticated>
-    <app-aquila-login-button></app-aquila-login-button>
-  </ng-template>
+<div
+  class="z-11 -right-1/6 fixed top-2 mr-6 h-32 w-32 overflow-visible transition-all duration-300 ease-in hover:right-0"
+>
+  <div class="">
+    <svg
+      class="fixed right-0 top-32 z-10 h-12 w-4 rotate-180 overflow-hidden"
+      viewBox="0 0 54 103"
+      fill="none"
+    >
+      <path
+        id="Arrow"
+        d="M0.488281 99.221V4.50801C0.488281 1.17401 4.50928 -0.50699 6.88228 1.83501L50.8053 45.181C54.5313 48.858 54.5313 54.871 50.8053 58.548L6.88228 101.894C4.50928 104.236 0.488281 102.555 0.488281 99.221Z"
+        [attr.fill]="arrowFillColor"
+      />
+    </svg>
+
+    <div class="h-full w-full">
+      <ng-container *ngIf="getIsAuthenticated(); else unAuthenticated">
+        <app-aquila-logout-button></app-aquila-logout-button>
+      </ng-container>
+      <ng-template #unAuthenticated>
+        <app-aquila-login-button></app-aquila-login-button>
+      </ng-template>
+    </div>
+  </div>
 </div>

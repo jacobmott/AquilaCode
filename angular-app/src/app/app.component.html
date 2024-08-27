@@ -1,18 +1,12 @@
-<div class="bg-aquila-900 relative grid h-svh w-full grid-cols-12">
-  <div class="col-span-2 h-svh w-full">
-    <app-aquila-sidebar></app-aquila-sidebar>
-  </div>
+<div class="w-svh h-svh">
+  <app-aquila-sidebar></app-aquila-sidebar>
 
-  <div class="col-span-10 h-svh w-full">
+  <div class="fixed left-0 top-0 z-10 h-svh w-svw overflow-hidden">
     <!-- Main container here -->
     <!-- <div class="row-span-12 mx-12 mb-4 mt-12 h-5/6 w-5/6 overflow-hidden"> -->
     <router-outlet></router-outlet>
     <!-- </div> -->
   </div>
 
-  <div
-    class="fixed right-2 top-2 z-10 mr-6 h-20 w-20 overflow-visible sm:mr-4 sm:h-32 sm:w-32 md:mr-4 md:h-36 md:w-36 lg:mr-2 lg:h-36 lg:w-36 xl:mr-2 xl:h-36 xl:w-36 2xl:mr-2 2xl:h-36 2xl:w-36"
-  >
-    <app-aquila-login-logout class="h-full w-full"></app-aquila-login-logout>
-  </div>
+  <app-aquila-login-logout class="h-full w-full"></app-aquila-login-logout>
 </div>

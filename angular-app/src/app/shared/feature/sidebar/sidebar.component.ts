@@ -26,6 +26,8 @@ export class SidebarComponent {
     return this.aClass;
   }
 
+  arrowFillColor = "#8E37E6";
+
   onPointerOver(event: MouseEvent) {
     //console.log("onPointerMove");
     this.aClass =

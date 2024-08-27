@@ -21,6 +21,8 @@ import { DefaultService } from "aquilacode-api";
 })
 export class LoginLogoutComponent implements OnInit {
   isAuthenticated = false;
+  arrowFillColor = "#8E37E6";
+
   constructor(
     private aquilacode: DefaultService,
     private authenticationService: AuthenticationService,
