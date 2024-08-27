@@ -35,6 +35,17 @@ to the ec2
 <img src="https://pngimg.com/uploads/rockets/rockets_PNG101054.png" width="25" />A mono repo for a complete application(UI/Backend), using NX, NestJS(W/ Fastify), Angular, OpenAPI3.0<img src="https://pngimg.com/uploads/rockets/rockets_PNG101054.png" width="25" />
 
 
+# Site on 08/27/2024
+
+https://youtu.be/0Y7uMTh1FJo
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/0Y7uMTh1FJo/default.jpg)](https://youtu.be/0Y7uMTh1FJo)
+
+![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/SiteProgress-4-2024-08-27_00-33-01.png)
+![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/SiteProgress-1-2024-08-27_00-31-43.png)
+![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/SiteProgress-3-2024-08-27_00-33-01.png)
+![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/SiteProgress-2-2024-08-27_00-32-36.png)
+![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/SiteProgress-5-2024-08-27_00-34-19.png)
 
 # Site on 08/22/2024
 Hosted in the cloud, Okta/Auth0 login/logout functionality (google/facebook... etc), lots of svg animations, apis all hooked up and working and reading from authguard protected endpoints, reading/writing to mongoDB(via dtos/mongoose), using npm sdk from openapi spec/openapi sdk generation, hosted via aws s3 ecr by pulling docker images to ec2 for frontend/backend/mongodb(nginx server)
@@ -1440,6 +1451,7 @@ Pull down from bucket
   
 ```
   aws s3 cp --recursive s3://<bucket>/AquilaCode/Videos AquilaCode/Videos
+  aws s3 cp --recursive s3://<bucket>/AquilaCode/Assets AquilaCode/Assets
   aws s3 cp --recursive s3://<bucket>/AquilaCode/Screenshots AquilaCode/Screenshots 
   aws s3 cp --recursive s3://<bucket>/AquilaCode/Secrets AquilaCode/Secrets 
 ```
@@ -1447,6 +1459,7 @@ Pull down from bucket
 Push to bucket
 ```
   aws s3 cp --recursive AquilaCode/Videos s3://<bucket>/AquilaCode/Videos
+  aws s3 cp --recursive AquilaCode/Assets s3://<bucket>/AquilaCode/Assets
   aws s3 cp --recursive AquilaCode/Screenshots s3://<bucket>/AquilaCode/Screenshots
   aws s3 cp --recursive AquilaCode/Secrets s3://<bucket>/AquilaCode/Secrets
 ```
@@ -1454,6 +1467,7 @@ Push to bucket
 Or just do a sync
 ```
   aws s3 sync AquilaCode/Videos s3://<bucket>/AquilaCode/Videos --delete
+  aws s3 sync AquilaCode/Assets s3://<bucket>/AquilaCode/Assets --delete
   aws s3 sync AquilaCode/Screenshots s3://<bucket>/AquilaCode/Screenshots --delete
   aws s3 sync AquilaCode/Secrets s3://<bucket>/AquilaCode/Secrets --delete  
 
