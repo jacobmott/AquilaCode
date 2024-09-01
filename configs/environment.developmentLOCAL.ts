@@ -14,6 +14,7 @@ export const environment = {
   basepath: "http://localhost:3000/aquila",
   url: "http://localhost:4200",
   socketUrl: "http://localhost:3000",
+  socketUrlPath: "/socket.io",
   auth: {
     domain,
     clientId,

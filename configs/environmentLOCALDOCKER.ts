@@ -14,7 +14,8 @@ export const environment = {
   // basepath: "http://localhost:3000/aquila",
   basepath: "http://localhost/backend/aquila",
   url: "http://localhost",
-  socketUrl: "http://localhost/backend/",
+  socketUrl: "http://localhost",
+  socketUrlPath: "/chat/socket.io",
   auth: {
     domain,
     clientId,
