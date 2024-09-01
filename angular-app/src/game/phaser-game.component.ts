@@ -16,7 +16,7 @@ export class PhaserGame implements OnInit {
 
   ngOnInit() {
     this.game = StartGame("game-container");
-
+    console.log("ngOnInit called in phaser-game.component.ts");
     EventBus.on("current-scene-ready", (scene: Phaser.Scene) => {
       this.scene = scene;
 
@@ -28,7 +28,9 @@ export class PhaserGame implements OnInit {
 
   // Component unmounted
   ngOnDestroy() {
+    console.log("Destory called in phaser-game.component.ts");
     if (this.game) {
+      console.log("Destory called 2 in phaser-game.component.ts");
       this.game.destroy(true);
     }
   }
