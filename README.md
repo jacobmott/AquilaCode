@@ -1454,6 +1454,7 @@ Pull down from bucket
   aws s3 cp --recursive s3://<bucket>/AquilaCode/Assets AquilaCode/Assets
   aws s3 cp --recursive s3://<bucket>/AquilaCode/Screenshots AquilaCode/Screenshots 
   aws s3 cp --recursive s3://<bucket>/AquilaCode/Secrets AquilaCode/Secrets 
+  aws s3 cp --recursive s3://<bucket>/AquilaCode/Tiled AquilaCode/Tiled 
 ```
 
 Push to bucket
@@ -1462,6 +1463,7 @@ Push to bucket
   aws s3 cp --recursive AquilaCode/Assets s3://<bucket>/AquilaCode/Assets
   aws s3 cp --recursive AquilaCode/Screenshots s3://<bucket>/AquilaCode/Screenshots
   aws s3 cp --recursive AquilaCode/Secrets s3://<bucket>/AquilaCode/Secrets
+  aws s3 cp --recursive AquilaCode/Tiled s3://<bucket>/AquilaCode/Tiled
 ```
 
 Or just do a sync
@@ -1470,6 +1472,7 @@ Or just do a sync
   aws s3 sync AquilaCode/Assets s3://<bucket>/AquilaCode/Assets --delete
   aws s3 sync AquilaCode/Screenshots s3://<bucket>/AquilaCode/Screenshots --delete
   aws s3 sync AquilaCode/Secrets s3://<bucket>/AquilaCode/Secrets --delete  
+  aws s3 sync AquilaCode/Tiled s3://<bucket>/AquilaCode/Tiled --delete  
 
 ```
 </details>

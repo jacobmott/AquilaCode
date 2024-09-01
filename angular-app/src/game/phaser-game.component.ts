@@ -4,8 +4,8 @@ import StartGame from "./main";
 import { EventBus } from "./EventBus";
 
 @Component({
-  selector: "phaser-game",
-  template: '<div id="game-container"></div>',
+  selector: "app-aquila-phaser-game",
+  templateUrl: "./phaser-game.component.html",
   standalone: true,
 })
 export class PhaserGame implements OnInit {
