@@ -1,4 +1,8 @@
-import { ApplicationConfig, provideZoneChangeDetection } from "@angular/core";
+import {
+  ApplicationConfig,
+  importProvidersFrom,
+  provideZoneChangeDetection,
+} from "@angular/core";
 
 import {
   RouteReuseStrategy,
@@ -21,6 +25,7 @@ import { provideAuth0 } from "@auth0/auth0-angular";
 // Import the HTTP interceptor from the Auth0 Angular SDK
 import { authHttpInterceptorFn } from "@auth0/auth0-angular";
 import { TopNavLightSliderService } from "./shared/data-access/top-nav-light-slider.service";
+import { SocketModule } from "./socket.module";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -34,5 +39,6 @@ export const appConfig: ApplicationConfig = {
       provide: RouteReuseStrategy,
       useClass: CustomRouteReuseStrategy,
     },
+    importProvidersFrom(SocketModule),
   ],
 };

@@ -1,0 +1,29 @@
+<div
+  class="z-11 bg-aquila-400 fixed bottom-10 right-1 h-2/6 w-3/6 overflow-x-scroll overflow-y-scroll rounded-md border-8 text-xs leading-snug text-white sm:text-xs md:text-xs lg:text-sm xl:text-base"
+>
+  <form
+    [formGroup]="myForm"
+    (submit)="onSubmit()"
+  >
+    <input
+      type="text"
+      id="message"
+      formControlName="message"
+      class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+      placeholder="...Type your message"
+      required
+    />
+    <button
+      type="submit"
+      class="bg-aquilapink-600 hover:bg-aquilapink-50 active:bg-aquilapink-600 inline-block cursor-pointer rounded-md px-4 py-2 text-center font-semibold"
+    >
+      Submit
+    </button>
+  </form>
+  <div
+    *ngFor="let message of messages"
+    class="bg-aquilapink-50 w-30 my-1 text-wrap"
+  >
+    {{ message }}
+  </div>
+</div>

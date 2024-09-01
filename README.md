@@ -35,6 +35,17 @@ to the ec2
 <img src="https://pngimg.com/uploads/rockets/rockets_PNG101054.png" width="25" />A mono repo for a complete application(UI/Backend), using NX, NestJS(W/ Fastify), Angular, OpenAPI3.0<img src="https://pngimg.com/uploads/rockets/rockets_PNG101054.png" width="25" />
 
 
+# Site on 08/31/2024
+
+Added sync script to auto sync everything to s3
+./AquilaCode/Secrets/sync.sh
+
+
+Sockets working, have a chat app that is a proof of concept that uses websockets for users to chat with each other/
+other connected clients
+![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/sockets-working-2024-08-31_23-42-28.png)
+
+
 # Site on 08/27/2024
 
 https://youtu.be/0Y7uMTh1FJo

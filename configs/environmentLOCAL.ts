@@ -13,6 +13,7 @@ export const environment = {
   // WARNING you cant actually use the docker service name at this level, so we cant us api, we need to use localhost
   basepath: "http://localhost:3000/aquila",
   url: "http://localhost:4200",
+  socketUrl: "http://localhost:3000",
   auth: {
     domain,
     clientId,

@@ -14,6 +14,7 @@ export const environment = {
   // basepath: "http://localhost:3000/aquila",
   basepath: "http://localhost/backend/aquila",
   url: "http://localhost",
+  socketUrl: "http://localhost/backend/",
   auth: {
     domain,
     clientId,

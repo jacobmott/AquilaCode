@@ -12,11 +12,20 @@ import { RouterOutlet } from "@angular/router";
 import { PhaserGame } from "../../../game/phaser-game.component";
 import { MainMenu } from "../../../game/scenes/MainMenu";
 import { EventBus } from "../../../game/EventBus";
+import { HomeComponent } from "../../home/feature/home.component";
+import { SocketTestComponent } from "../../shared/feature/socket-test/socket-test.component";
 
 @Component({
   selector: "app-aquila-play",
   standalone: true,
-  imports: [CommonModule, PhaserGame, RouterOutlet, CommonModule],
+  imports: [
+    CommonModule,
+    PhaserGame,
+    RouterOutlet,
+    CommonModule,
+    HomeComponent,
+    SocketTestComponent,
+  ],
   templateUrl: "./play.component.html",
   styleUrl: "./play.component.css",
   encapsulation: ViewEncapsulation.Emulated,
