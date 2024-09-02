@@ -9,8 +9,8 @@ import config from "../../config/keys";
 // https://auth0.com/blog/developing-a-secure-api-with-nestjs-adding-authorization/
 
 @Injectable()
-export class JwtStrategy extends PassportStrategy(Strategy, "jwt") {
-  private readonly logger = new Logger(JwtStrategy.name);
+export class JwtWSStrategy extends PassportStrategy(Strategy, "wsjwt") {
+  private readonly logger = new Logger(JwtWSStrategy.name);
 
   constructor() {
     super({
@@ -23,12 +23,13 @@ export class JwtStrategy extends PassportStrategy(Strategy, "jwt") {
         jwksUri: `${config.AUTH0_ISSUER_URL}.well-known/jwks.json`,
       }),
 
-      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      jwtFromRequest: ExtractJwt.fromUrlQueryParameter("token"),
+      // jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       audience: `${config.AUTH0_AUDIENCE}`,
       issuer: `${config.AUTH0_ISSUER_URL}`,
       algorithms: ["RS256"],
     });
-    this.logger.error("JWT constructor! ");
+    this.logger.error("JwtWS constructor! ");
   }
 
   // async validate(payload: any) {
@@ -37,8 +38,8 @@ export class JwtStrategy extends PassportStrategy(Strategy, "jwt") {
   //   // return { userId: payload.sub, username: payload.username };
   // }
 
-  validate(payload: unknown): unknown {
-    this.logger.error("JWT validate! ", payload);
+  async validate(payload: unknown) {
+    this.logger.error("JwtWS validate! ", payload);
     return payload;
   }
 }

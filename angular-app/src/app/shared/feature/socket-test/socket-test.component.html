@@ -1,29 +1,59 @@
-<div
-  class="z-11 bg-aquila-400 fixed bottom-10 right-1 h-2/6 w-3/6 overflow-x-scroll overflow-y-scroll rounded-md border-8 text-xs leading-snug text-white sm:text-xs md:text-xs lg:text-sm xl:text-base"
->
+<div [ngClass]="getClasses()">
+  <svg
+    class="z-11 fixed -bottom-4 right-1 h-12 w-4 -rotate-90 transform overflow-hidden"
+    viewBox="0 0 54 103"
+    fill="none"
+    (pointerdown)="onPointerDown($event)"
+  >
+    <path
+      id="Arrow"
+      d="M0.488281 99.221V4.50801C0.488281 1.17401 4.50928 -0.50699 6.88228 1.83501L50.8053 45.181C54.5313 48.858 54.5313 54.871 50.8053 58.548L6.88228 101.894C4.50928 104.236 0.488281 102.555 0.488281 99.221Z"
+      [attr.fill]="arrowFillColor"
+    />
+  </svg>
+
+  <div
+    #scrollMe
+    (scroll)="onScroll($event)"
+    class="scrollbar h-5/6 w-full overflow-y-scroll text-wrap text-xs leading-snug text-white sm:text-xs md:text-xs lg:text-sm xl:text-base"
+  >
+    <div
+      *ngFor="let message of messages"
+      class="w-full"
+    >
+      <span
+        *ngIf="message.isSelf"
+        class="text-yellow-400"
+        >{{ message.identifier }}</span
+      >
+      <span
+        *ngIf="!message.isSelf"
+        class="text-orange-400"
+        >{{ message.identifier }}</span
+      >
+      &nbsp;
+      <span class="text-wrap text-emerald-50">{{ message.msg }}</span>
+    </div>
+  </div>
   <form
     [formGroup]="myForm"
     (submit)="onSubmit()"
   >
-    <input
-      type="text"
-      id="message"
-      formControlName="message"
-      class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-      placeholder="...Type your message"
-      required
-    />
-    <button
-      type="submit"
-      class="bg-aquilapink-600 hover:bg-aquilapink-50 active:bg-aquilapink-600 inline-block cursor-pointer rounded-md px-4 py-2 text-center font-semibold"
-    >
-      Submit
-    </button>
+    <div class="flex flex-row">
+      <input
+        type="text"
+        id="message"
+        formControlName="message"
+        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+        placeholder="...Type your message ...Enter to send"
+        required
+      />
+      <button
+        type="submit"
+        class="bg-aquilapink-600 hover:bg-aquilapink-50 active:bg-aquilapink-600 inline-block cursor-pointer rounded-md px-4 py-2 text-center font-semibold"
+      >
+        Send
+      </button>
+    </div>
   </form>
-  <div
-    *ngFor="let message of messages"
-    class="bg-aquilapink-50 w-30 my-1 text-wrap"
-  >
-    {{ message }}
-  </div>
 </div>

@@ -7,6 +7,7 @@ import { Observable, of, Observer, BehaviorSubject } from "rxjs";
 })
 export class AuthenticationService {
   isAuthenticated_ = false;
+  jwtAccessToken = "";
 
   profileJson: string = "";
   profileJson$: Observable<string> = of("");
@@ -55,6 +56,11 @@ export class AuthenticationService {
         return;
       }
     });
+
+    this.auth.getAccessTokenSilently().subscribe((data) => {
+      this.jwtAccessToken = data;
+      // console.log("GetAccessTokenSilently: " + data);
+    });
   }
 
   isAuthenticated(): Observable<boolean> {
@@ -71,5 +77,10 @@ export class AuthenticationService {
 
   getProfile(): Observable<any> {
     return this.profile$;
+  }
+
+  getToken(): string {
+    console.log("getToken called: " + this.jwtAccessToken);
+    return this.jwtAccessToken;
   }
 }

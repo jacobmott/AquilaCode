@@ -1,7 +1,13 @@
-import { Component, ViewEncapsulation } from "@angular/core";
+import {
+  Component,
+  ViewEncapsulation,
+  ViewChild,
+  ElementRef,
+  OnInit,
+  AfterViewChecked,
+} from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { SocketService } from "../../data-access/socket.service";
-import { OnInit } from "@angular/core";
 import {
   FormGroup,
   FormControl,
@@ -17,9 +23,18 @@ import {
   styleUrl: "./socket-test.component.css",
   encapsulation: ViewEncapsulation.Emulated,
 })
-export class SocketTestComponent implements OnInit {
+export class SocketTestComponent implements OnInit, AfterViewChecked {
   myForm: FormGroup;
-  messages: string[] = ["..."];
+  messages: { isSelf: boolean; identifier: string; msg: string }[] = [];
+  arrowFillColor = "#8E37E6";
+  mainClass =
+    "z-11 bg-aquila-400 -bottom-2/6 fixed right-1 h-2/6 w-3/6  rounded-md border-8 transition-all duration-300 ease-in hover:bottom-1";
+  mainClassToggle =
+    "z-11 bg-aquila-400 -bottom-2/6 fixed right-1 h-2/6 w-3/6  rounded-md border-8 transition-all duration-300 ease-in hover:bottom-1";
+  toggle = false;
+  wantScrollBottomBehavior = true;
+
+  @ViewChild("scrollMe") private myScrollContainer: ElementRef;
 
   constructor(private socketService: SocketService) {
     this.myForm = new FormGroup({
@@ -29,37 +44,96 @@ export class SocketTestComponent implements OnInit {
 
   sendMessage(msg: string) {
     this.socketService.sendMessage(msg);
-    this.messages.push("you: " + " -> " + msg);
+    this.messages.push({ isSelf: true, identifier: "You", msg: msg });
+    this.wantScrollBottomBehavior = true;
+  }
+
+  ngAfterViewChecked(): void {
+    this.scrollToBottom();
+  }
+
+  onScroll(event: any): void {
+    this.checkWantScrollBottomBehavior();
+  }
+
+  isAtBottom(): boolean {
+    const value1 = Math.trunc(
+      this.myScrollContainer.nativeElement.scrollHeight -
+        this.myScrollContainer.nativeElement.scrollTop,
+    );
+    const value2 = Math.trunc(
+      this.myScrollContainer.nativeElement.clientHeight,
+    );
+    console.log("h-t = " + value1);
+    console.log("ch = " + value2);
+    return value1 === value2;
+  }
+
+  checkWantScrollBottomBehavior() {
+    if (this.isAtBottom()) {
+      // Do something when the scrollbar is  at the bottom
+      this.wantScrollBottomBehavior = true;
+    } else {
+      this.wantScrollBottomBehavior = false;
+    }
+  }
+
+  scrollToBottom(): void {
+    if (!this.wantScrollBottomBehavior) {
+      return;
+    }
+    this.myScrollContainer.nativeElement.scrollTop =
+      this.myScrollContainer.nativeElement.scrollHeight;
   }
 
   ngOnInit() {
     this.socketService.getBroadcastMessage().subscribe((data) => {
-      console.log(
-        "BroadcastedMessage",
-        "clientId:",
-        data.clientId,
-        "message:",
-        data.message,
-      );
-      this.messages.push("clientId: " + data.clientId + " -> " + data.message);
+      this.checkWantScrollBottomBehavior();
+      this.messages.push({
+        isSelf: false,
+        identifier: data.clientId,
+        msg: data.message,
+      });
     });
     this.socketService.getConnectedMessage().subscribe((clientId) => {
-      console.log("ConnectedMessage", "client connected: clientId: ", clientId);
-      this.messages.push("connected: clientId: " + clientId);
+      this.checkWantScrollBottomBehavior();
+      this.messages.push({
+        isSelf: false,
+        identifier: clientId,
+        msg: " (connected)",
+      });
     });
     this.socketService.getDisconnectedMessage().subscribe((clientId) => {
-      console.log(
-        "DisconnectedMessage",
-        "client disconnected: clientId: ",
-        clientId,
-      );
-      this.messages.push("disconnected: clientId: " + clientId);
+      this.checkWantScrollBottomBehavior();
+      this.messages.push({
+        isSelf: false,
+        identifier: clientId,
+        msg: " (disconnected)",
+      });
     });
   }
 
   onSubmit() {
+    if (this.myForm.invalid) {
+      return;
+    }
     this.sendMessage(this.myForm.value.message);
+    this.checkWantScrollBottomBehavior();
     this.myForm.reset();
-    console.log(this.myForm.value.message); // Access the username value
+  }
+
+  onPointerDown(event: MouseEvent) {
+    if (this.toggle) {
+      this.toggle = false;
+      this.mainClass = this.mainClassToggle;
+    } else {
+      this.mainClass =
+        "z-11 bg-aquila-400 bottom-1 fixed right-1 h-2/6 w-3/6 rounded-md border-8";
+      this.toggle = true;
+    }
+  }
+
+  getClasses() {
+    return this.mainClass;
   }
 }

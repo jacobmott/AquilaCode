@@ -5,10 +5,23 @@ import {
   WebSocketServer,
   SubscribeMessage,
 } from "@nestjs/websockets";
+import { UseGuards } from "@nestjs/common";
 import { Socket } from "socket.io";
 import { SocketService } from "./socket.service";
+import { JwtAuthGuardWS } from "../auth/jwt-auth-ws.guard";
+import config from "../../config/keys";
 
-@WebSocketGateway({ cors: { origin: "*" } })
+// @WebSocketGateway({ cors: { origin: "*" } })
+@WebSocketGateway({
+  // cors: {
+  //   origin: "http://localhost:4200",
+  //   methods: ["GET", "POST", "PUT", "DELETE"],
+  //   allowedHeaders: ["Cookie"],
+  //   credentials: true,
+  // },
+  cors: true,
+})
+@UseGuards(JwtAuthGuardWS)
 export class SocketGateway implements OnGatewayConnection, OnGatewayDisconnect {
   @WebSocketServer()
   private server: Socket;
