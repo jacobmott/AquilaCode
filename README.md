@@ -34,7 +34,12 @@ to the ec2
 
 <img src="https://pngimg.com/uploads/rockets/rockets_PNG101054.png" width="25" />A mono repo for a complete application(UI/Backend), using NX, NestJS(W/ Fastify), Angular, OpenAPI3.0<img src="https://pngimg.com/uploads/rockets/rockets_PNG101054.png" width="25" />
 
-# Site on 08/27/2024
+# Site on 09/02/2024
+
+Added:
+JWT auth guard for all websocket calls, to authenticate jwt token is valid token from auth0 before allowing any websocket traffic
+Custom socket in angular with authservice auth0 calls to add the jwt token to the websocket calls during socket traffic
+Lots of work to make the shared(multiplayer) chat feature/UI work perfectly.. Chat works as you'd expect any chat to work now
 
 https://youtu.be/mvcHOamSepk
 
