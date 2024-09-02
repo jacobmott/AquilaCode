@@ -34,6 +34,15 @@ to the ec2
 
 <img src="https://pngimg.com/uploads/rockets/rockets_PNG101054.png" width="25" />A mono repo for a complete application(UI/Backend), using NX, NestJS(W/ Fastify), Angular, OpenAPI3.0<img src="https://pngimg.com/uploads/rockets/rockets_PNG101054.png" width="25" />
 
+# Site on 08/27/2024
+
+https://youtu.be/mvcHOamSepk
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/mvcHOamSepk/default.jpg)](https://youtu.be/mvcHOamSepk)
+
+![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/sockets-working-chat-working-1-2024-09-02_00-34-14.png)
+![Alt Text](https://jacobmottgithub.s3.amazonaws.com/AquilaCode/Screenshots/sockets-working-chat-working-2-2024-09-02_00-34-14.png)
+
 
 # Site on 08/31/2024
 
