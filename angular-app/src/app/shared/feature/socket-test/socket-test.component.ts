@@ -57,23 +57,27 @@ export class SocketTestComponent implements OnInit, AfterViewChecked {
   }
 
   isAtBottom(): boolean {
-    const value1 = Math.trunc(
-      this.myScrollContainer.nativeElement.scrollHeight -
-        this.myScrollContainer.nativeElement.scrollTop,
-    );
-    const value2 = Math.trunc(
-      this.myScrollContainer.nativeElement.clientHeight,
-    );
-    console.log("h-t = " + value1);
-    console.log("ch = " + value2);
-    return value1 === value2;
+    const sh = Math.trunc(this.myScrollContainer.nativeElement.scrollHeight);
+    const st = Math.trunc(this.myScrollContainer.nativeElement.scrollTop);
+    const ch = Math.trunc(this.myScrollContainer.nativeElement.clientHeight);
+    const value1 = Math.trunc(sh - st);
+    const value2 = Math.trunc(ch);
+    // console.log("sh: " + sh);
+    // console.log("st: " + st);
+    // console.log("ch: " + ch);
+    // console.log("sh-st = " + value1);
+    // console.log("ch = " + value2);
+    //just need to be within +-1
+    return value1 === value2 || value1 === value2 + 1 || value1 === value2 - 1;
   }
 
   checkWantScrollBottomBehavior() {
     if (this.isAtBottom()) {
       // Do something when the scrollbar is  at the bottom
+      // console.log("At the bottom");
       this.wantScrollBottomBehavior = true;
     } else {
+      // console.log("Not at the bottom");
       this.wantScrollBottomBehavior = false;
     }
   }

@@ -37,7 +37,7 @@ export class AuthenticationService {
         console.log("AuthenticationService: Error: " + msg);
       },
       complete: () => {
-        console.log("AuthenticationService: Complete");
+        // console.log("AuthenticationService: Complete");
       },
     });
     // setInterval(() => {
@@ -48,8 +48,8 @@ export class AuthenticationService {
     this.auth.user$.subscribe((profile) => {
       this.profile = profile;
       this.profileJson = JSON.stringify(profile, null, 2);
-      console.dir(profile);
-      console.log(this.profileJson);
+      // console.dir(profile);
+      // console.log(this.profileJson);
       this.profileJson$ = of(this.profileJson);
       this.profile$ = of(this.profile);
       if (profile === null || profile === undefined) {
@@ -80,7 +80,7 @@ export class AuthenticationService {
   }
 
   getToken(): string {
-    console.log("getToken called: " + this.jwtAccessToken);
+    // console.log("getToken called: " + this.jwtAccessToken);
     return this.jwtAccessToken;
   }
 }
