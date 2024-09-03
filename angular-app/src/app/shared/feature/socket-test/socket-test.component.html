@@ -1,4 +1,10 @@
-<div [ngClass]="getClasses()">
+<div
+  [ngClass]="getClasses()"
+  (focus)="onFocus()"
+  (blur)="onBlur()"
+  (mouseleave)="onBlur()"
+  (mouseenter)="onFocus()"
+>
   <svg
     class="z-11 fixed -bottom-4 right-1 h-12 w-4 -rotate-90 transform overflow-hidden"
     viewBox="0 0 54 103"
@@ -32,7 +38,9 @@
         >{{ message.identifier }}</span
       >
       &nbsp;
-      <span class="text-wrap text-emerald-50">{{ message.msg }}</span>
+      <span class="whitespace-pre-wrap text-wrap break-words text-emerald-50">{{
+        message.msg
+      }}</span>
     </div>
   </div>
   <form
@@ -44,10 +52,11 @@
         type="text"
         id="message"
         formControlName="message"
-        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+        class="block w-full whitespace-pre rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
         placeholder="...Type your message ...Enter to send"
-        required
         autocomplete="off"
+        (focus)="onFocus()"
+        (blur)="onBlur()"
       />
       <button
         type="submit"

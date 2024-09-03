@@ -66,4 +66,8 @@ export class MainMenu extends Scene {
       });
     }
   }
+
+  lostFocus() {}
+
+  gainFocus() {}
 }

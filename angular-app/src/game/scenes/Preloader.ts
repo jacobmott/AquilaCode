@@ -31,13 +31,42 @@ export class Preloader extends Scene {
     this.load.image("stars3", "stars3.png");
 
     this.load.tilemapTiledJSON("map1", "map1.json");
+
+    this.load.tilemapTiledJSON("iso", "iso.json");
+    this.load.image("iso-64x64-building", "iso-64x64-building.png");
+    this.load.image("iso-64x64-outside", "iso-64x64-outside.png");
+
+    // this.game.events.addListener(
+    //   Phaser.Core.Events.FOCUS,
+    //   this.gainFocus,
+    //   this,
+    // );
+    // this.game.events.addListener(Phaser.Core.Events.BLUR, this.lostFocus, this);
+    // this.events.on('addImage', this.handler, this);
+    // this.input.keyboard.manager.enabled = false;
   }
+  // this.game.events.addListener(
+  //   Phaser.Core.Events.FOCUS,
+  //   this.gainFocus,
+  //   this,
+  // );
+  // this.game.events.addListener(Phaser.Core.Events.BLUR, this.lostFocus, this);
+  // this.events.on('addImage', this.handler, this);
+  // lostFocus() {
+  //   console.log("lost focus");
+  //   this.input.keyboard.manager.enabled = false;
+  // }
+
+  // gainFocus() {
+  //   console.log("gained focus");
+  //   this.input.keyboard.manager.enabled = true;
+  // }
 
   create() {
     //  When all the assets have loaded, it's often worth creating global objects here that the rest of the game can use.
     //  For example, you can define global animations here, so we can use them in other scenes.
 
     //  Move to the MainMenu. You could also swap this for a Scene Transition, such as a camera fade.
-    this.scene.start("Game");
+    this.scene.start("Game2");
   }
 }

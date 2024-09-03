@@ -13,7 +13,10 @@ import {
   FormControl,
   Validators,
   ReactiveFormsModule,
+  AbstractControl,
+  ValidatorFn,
 } from "@angular/forms";
+import { SharedService } from "../../data-access/shared.service";
 
 @Component({
   selector: "app-aquila-socket-test",
@@ -35,10 +38,19 @@ export class SocketTestComponent implements OnInit, AfterViewChecked {
   wantScrollBottomBehavior = true;
 
   @ViewChild("scrollMe") private myScrollContainer: ElementRef;
+  whitespaceValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const isWhitespace = (control.value || "").trim().length === 0;
+      return isWhitespace ? { whitespace: true } : null;
+    };
+  }
 
-  constructor(private socketService: SocketService) {
+  constructor(
+    private socketService: SocketService,
+    private sharedService: SharedService,
+  ) {
     this.myForm = new FormGroup({
-      message: new FormControl("", Validators.required),
+      message: new FormControl(),
     });
   }
 
@@ -117,10 +129,18 @@ export class SocketTestComponent implements OnInit, AfterViewChecked {
     });
   }
 
+  onFocus() {
+    this.sharedService.setChatFocusedBS(true);
+  }
+
+  onBlur() {
+    this.sharedService.setChatFocusedBS(false);
+  }
+
   onSubmit() {
-    if (this.myForm.invalid) {
-      return;
-    }
+    // if (this.myForm.invalid) {
+    //   return;
+    // }
     this.sendMessage(this.myForm.value.message);
     this.checkWantScrollBottomBehavior();
     this.myForm.reset();

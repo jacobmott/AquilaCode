@@ -14,6 +14,8 @@ import { MainMenu } from "../../../game/scenes/MainMenu";
 import { EventBus } from "../../../game/EventBus";
 import { HomeComponent } from "../../home/feature/home.component";
 import { SocketTestComponent } from "../../shared/feature/socket-test/socket-test.component";
+import { SharedService } from "../../shared/data-access/shared.service";
+import { Game2Scene } from "../../../game/scenes/Game2";
 
 @Component({
   selector: "app-aquila-play",
@@ -37,6 +39,8 @@ export class PlayComponent implements AfterViewInit, OnDestroy, OnInit {
   //   console.log(currentTime);
   // }
 
+  constructor(private sharedService: SharedService) {}
+
   public spritePosition = { x: 0, y: 0 };
   public canMoveSprite = false;
 
@@ -47,6 +51,16 @@ export class PlayComponent implements AfterViewInit, OnDestroy, OnInit {
     console.log("ngAfterViewInit PlayComponent...");
     EventBus.on("current-scene-ready", (scene: Phaser.Scene) => {
       this.canMoveSprite = scene.scene.key !== "MainMenu";
+    });
+    this.sharedService.getChatFocusedBS().subscribe((focused) => {
+      if (this.phaserRef.scene) {
+        const scene = this.phaserRef.scene as Game2Scene;
+        if (focused) {
+          scene.gainFocus();
+        } else {
+          scene.lostFocus();
+        }
+      }
     });
   }
 
