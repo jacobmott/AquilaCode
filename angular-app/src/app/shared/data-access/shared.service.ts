@@ -16,11 +16,9 @@ export class SharedService {
     this.dataPoint = { dataPoint1: "no data" };
     this.scrolledData = [{ identifier: "Init", data: "Init" }];
     EventBus.on("add-scrolled-data", (scene: Phaser.Scene, data) => {
-      console.log("SharedService add-scrolled-data");
       this.addToScrolledData(data);
     });
     EventBus.on("update-data-point", (scene: Phaser.Scene, data) => {
-      console.log("SharedService update-data-point");
       this.setDataPoint(data);
     });
   }
