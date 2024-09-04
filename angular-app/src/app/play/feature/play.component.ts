@@ -16,6 +16,7 @@ import { HomeComponent } from "../../home/feature/home.component";
 import { SocketTestComponent } from "../../shared/feature/socket-test/socket-test.component";
 import { SharedService } from "../../shared/data-access/shared.service";
 import { Game2Scene } from "../../../game/scenes/Game2";
+import { PhaserDebuggerComponent } from "../../shared/feature/phaser-debugger/phaser-debugger.component";
 
 @Component({
   selector: "app-aquila-play",
@@ -27,6 +28,7 @@ import { Game2Scene } from "../../../game/scenes/Game2";
     CommonModule,
     HomeComponent,
     SocketTestComponent,
+    PhaserDebuggerComponent,
   ],
   templateUrl: "./play.component.html",
   styleUrl: "./play.component.css",
@@ -43,6 +45,20 @@ export class PlayComponent implements AfterViewInit, OnDestroy, OnInit {
 
   public spritePosition = { x: 0, y: 0 };
   public canMoveSprite = false;
+
+  gameControls = {
+    camera: {
+      zoomin: "mousewheel up",
+      zoomout: "mousewheel down",
+      pan: "hold down left mouse button and drag",
+    },
+    playerControls: {
+      left: "a",
+      right: "d",
+      up: "w",
+      down: "s",
+    },
+  };
 
   // This is a reference from the PhaserGame component
   @ViewChild(PhaserGame) phaserRef!: PhaserGame;

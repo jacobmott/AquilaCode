@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Observable, BehaviorSubject } from "rxjs";
+import { EventBus } from "../../../game/EventBus";
 
 @Injectable({
   providedIn: "root",
@@ -7,9 +8,29 @@ import { Observable, BehaviorSubject } from "rxjs";
 export class SharedService {
   chatFocused: boolean = false;
   sharedisChatFocusedBS: BehaviorSubject<boolean>;
+  scrolledData: { identifier: string; data: string }[] = [];
+  dataPoint: any;
 
   constructor() {
     this.sharedisChatFocusedBS = new BehaviorSubject<boolean>(false);
+    this.dataPoint = { dataPoint1: "no data" };
+    this.scrolledData = [{ identifier: "Init", data: "Init" }];
+    EventBus.on("add-scrolled-data", (scene: Phaser.Scene, data) => {
+      console.log("SharedService add-scrolled-data");
+      this.addToScrolledData(data);
+    });
+    EventBus.on("update-data-point", (scene: Phaser.Scene, data) => {
+      console.log("SharedService update-data-point");
+      this.setDataPoint(data);
+    });
+  }
+
+  public setDataPoint(dataPoint: string) {
+    this.dataPoint.dataPoint1 = dataPoint;
+  }
+
+  public addToScrolledData(data: { identifier: string; data: string }) {
+    this.scrolledData.push(data);
   }
 
   public getChatFocusedBS(): Observable<boolean> {

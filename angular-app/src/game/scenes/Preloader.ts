@@ -35,6 +35,10 @@ export class Preloader extends Scene {
     this.load.tilemapTiledJSON("iso", "iso.json");
     this.load.image("iso-64x64-building", "iso-64x64-building.png");
     this.load.image("iso-64x64-outside", "iso-64x64-outside.png");
+    this.load.image("64x64grid", "64x64grid.png");
+    this.load.image("64x64grid2", "64x64grid2.png");
+    this.load.image("64x64bottom-iso-grid", "64x64bottom-iso-grid.png");
+    this.load.image("singleskele", "singleskele.png");
 
     // this.game.events.addListener(
     //   Phaser.Core.Events.FOCUS,
