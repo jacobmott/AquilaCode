@@ -23,7 +23,7 @@ export class Game2Scene extends Scene {
   isoDirectionPositiveY: Phaser.Geom.Point;
   isoDirectionNegativeY: Phaser.Geom.Point;
 
-  speed: number = 2;
+  speed: number = 8;
   ready: boolean = false;
 
   constructor() {
@@ -39,7 +39,7 @@ export class Game2Scene extends Scene {
     iso.addTilesetImage("64x64grid2", "64x64grid2");
     iso.addTilesetImage("64x64bottom-iso-grid", "64x64bottom-iso-grid");
     iso.addTilesetImage("singleskele", "singleskele");
-
+    iso.addTilesetImage("ship3.png", "ship3", 1024, 1024);
     iso.orientation = "isometric";
 
     this.iso = iso;
@@ -97,7 +97,16 @@ export class Game2Scene extends Scene {
       0,
     );
 
+    // const player_layer = this.iso.createLayer("player", ["singleskele"], 0, 0);
     const player_layer = this.iso.createLayer("player", ["singleskele"], 0, 0);
+    const ships_layer: Phaser.Tilemaps.TilemapLayer = this.iso.createLayer(
+      "ships",
+      ["ship3.png"],
+      0,
+      -960, //We have to do this for some reason since this is an image and its 1024 instead of 64 width.. 1024 -64 = 960
+    );
+    //https://github.com/phaserjs/phaser/issues/5494
+    ships_layer.setSkipCull(true);
 
     this.iso.createLayer(
       "2-stonebase",
@@ -151,7 +160,7 @@ export class Game2Scene extends Scene {
       this,
       930,
       1066,
-      "singleskele",
+      "ship3",
       0,
     ).setDepth(100);
     this.add.existing(this.player);

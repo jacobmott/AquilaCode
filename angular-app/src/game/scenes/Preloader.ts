@@ -39,6 +39,7 @@ export class Preloader extends Scene {
     this.load.image("64x64grid2", "64x64grid2.png");
     this.load.image("64x64bottom-iso-grid", "64x64bottom-iso-grid.png");
     this.load.image("singleskele", "singleskele.png");
+    this.load.image("ship3", "ship3.png");
 
     // this.game.events.addListener(
     //   Phaser.Core.Events.FOCUS,
