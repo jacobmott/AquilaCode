@@ -1,5 +1,6 @@
 import { EventBus } from "../EventBus";
 import { Scene } from "phaser";
+import * as spine from "@esotericsoftware/spine-phaser";
 
 export class Game2Scene extends Scene {
   camera: Phaser.Cameras.Scene2D.Camera;
@@ -23,8 +24,10 @@ export class Game2Scene extends Scene {
   isoDirectionPositiveY: Phaser.Geom.Point;
   isoDirectionNegativeY: Phaser.Geom.Point;
 
-  speed: number = 155;
+  speed: number = 10;
   ready: boolean = false;
+
+  spineObject: spine.SpineGameObject;
 
   constructor() {
     super("Game2");
@@ -85,7 +88,7 @@ export class Game2Scene extends Scene {
       right: Phaser.Input.Keyboard.KeyCodes.D,
     });
 
-    this.cameras.main.setZoom(1);
+    this.cameras.main.setZoom(0.3);
     this.cameras.main.setScroll(-200, 200);
     this.cameras.main.setSize(1920, 1080);
     this.iso.createLayer("1-ground", ["iso-64x64-outside"], 0, 0);
@@ -362,6 +365,8 @@ export class Game2Scene extends Scene {
       this.label2.y = pwy + yOffsetAmount + 20;
     });
 
+    this.loadSpineAssets();
+
     EventBus.emit("current-scene-ready", this);
   }
 
@@ -408,45 +413,173 @@ export class Game2Scene extends Scene {
   //     this.label.y = isoPointerPoint.y;
   //   }
 
+  loadSpineAssets() {
+    // Create a SpineGameObject through the GameObjectFactory and add it to the scene
+    this.spineObject = this.add.spine(
+      1545,
+      18,
+      "Ship3AllLayersAlignedCenter-data",
+      "Ship3AllLayersAlignedCenter-atlas",
+    );
+    this.spineObject.setDepth(101);
+    this.spineObject.skeleton.setSkinByName("DefaultSkin");
+    this.spineObject.scaleX = 0.75;
+    this.spineObject.scaleY = 0.75;
+    this.spineObject.setInteractive();
+
+    // const animations: string[] =
+    //   this.spineObject.animationState.data.skeletonData.animations[0].name;
+
+    // const index = Math.random();
+
+    this.input.enableDebug(this.spineObject, 0xff00ff);
+    this.spineObject.animationState.setAnimation(0, "downleft", true);
+    // this.spineObject.on("pointerdown", () =>
+    //   this.spineObject.animationState.setAnimation(0, "downleft", true),
+    // );
+    // // Create a SpineGameObject through the GameObjectCreator. It is not automatically
+    // // added to the scene.
+    // const spineObject2 = this.make.spine({
+    //   x: 200,
+    //   y: 500,
+    //   dataKey: "skeleton-data",
+    //   atlasKey: "skeleton-atlas",
+    // });
+
+    // // Manually add the game object to the scene
+    // this.add.existing(spineObject2);
+  }
+
   override update(time: number, delta: number) {
     // this.controls.update(delta);
     if (!this.ready) {
       return;
     }
-    if (this.keyA.isDown) {
+
+    const wDown = this.keyW.isDown; //upRight
+    const aDown = this.keyA.isDown; //upLeft
+    const sDown = this.keyS.isDown; //downLeft
+    const dDown = this.keyD.isDown; //downRight
+    // const wAndADown = wDown && aDown; //up(diagonal) upRight and upLeft
+    // const wAndDDown = wDown && dDown; //right(diagonal) upRight and downRight
+    // const sAndADown = sDown && aDown; //left(diagonal) downLeft and upLeft
+    // const sAndDDown = sDown && dDown; //down(diagonal) downLeft and downRight
+
+    // const aAndDDown = aDown && dDown; //upLeft and downRight, cancel movement
+    // const wAndSDown = wDown && sDown; //upRight and downLeft, cancel movement
+    // const wAndSAndAAndDDown = wDown && sDown && aDown && dDown; //all keys pressed, cancel movement
+    // if (wAndSAndAAndDDown) {
+    //   return;
+    // }
+
+    const previousPlayerXPosition = this.spineObject.x;
+    const previousPlayerYPosition = this.spineObject.y;
+    let moved = false;
+    if (aDown) {
+      moved = true;
       // this.x += this.direction.x * this.speed;
       // this.y += this.direction.y * this.speed;
-      this.player.x += this.isoDirectionNegativeX.x * this.speed;
-      this.player.y += this.isoDirectionNegativeX.y * this.speed;
+      // this.player.x += this.isoDirectionNegativeX.x * this.speed;
+      // this.player.y += this.isoDirectionNegativeX.y * this.speed;
+      this.spineObject.x += this.isoDirectionNegativeX.x * this.speed;
+      this.spineObject.y += this.isoDirectionNegativeX.y * this.speed;
+      // this.spineObject.animationState.setAnimation(0, "upleft", true);
       EventBus.emit("add-scrolled-data", this, {
         identifier: "console log info",
         data: "A key pressed",
       });
     }
-    if (this.keyS.isDown) {
-      this.player.x += this.isoDirectionPositiveY.x * this.speed;
-      this.player.y += this.isoDirectionPositiveY.y * this.speed;
+    if (sDown) {
+      moved = true;
+      // this.player.x += this.isoDirectionPositiveY.x * this.speed;
+      // this.player.y += this.isoDirectionPositiveY.y * this.speed;
+      this.spineObject.x += this.isoDirectionPositiveY.x * this.speed;
+      this.spineObject.y += this.isoDirectionPositiveY.y * this.speed;
+      // this.spineObject.animationState.setAnimation(0, "downleft", true);
       EventBus.emit("add-scrolled-data", this, {
         identifier: "console log info",
         data: "S key pressed",
       });
     }
-    if (this.keyD.isDown) {
-      this.player.x += this.isoDirectionPositiveX.x * this.speed;
-      this.player.y += this.isoDirectionPositiveX.y * this.speed;
+    if (dDown) {
+      moved = true;
+      // this.player.x += this.isoDirectionPositiveX.x * this.speed;
+      // this.player.y += this.isoDirectionPositiveX.y * this.speed;
+      this.spineObject.x += this.isoDirectionPositiveX.x * this.speed;
+      this.spineObject.y += this.isoDirectionPositiveX.y * this.speed;
+      // this.spineObject.animationState.setAnimation(0, "downright", true);
       EventBus.emit("add-scrolled-data", this, {
         identifier: "console log info",
         data: "D key pressed",
       });
     }
-    if (this.keyW.isDown) {
-      this.player.x += this.isoDirectionNegativeY.x * this.speed;
-      this.player.y += this.isoDirectionNegativeY.y * this.speed;
+    if (wDown) {
+      moved = true;
+      // this.player.x += this.isoDirectionNegativeY.x * this.speed;
+      // this.player.y += this.isoDirectionNegativeY.y * this.speed;
+      this.spineObject.x += this.isoDirectionNegativeY.x * this.speed;
+      this.spineObject.y += this.isoDirectionNegativeY.y * this.speed;
+      // this.spineObject.animationState.setAnimation(0, "upright", true);
       EventBus.emit("add-scrolled-data", this, {
         identifier: "console log info",
         data: "W key pressed",
       });
     }
+
+    const currentPlayerXPosition = this.spineObject.x;
+    const currentPlayerYPosition = this.spineObject.y;
+
+    let positiveXMovement = false;
+    let positiveYMovement = false;
+    let negativeYMovement = false;
+    let negativeXMovement = false;
+
+    if (moved) {
+      if (currentPlayerXPosition > previousPlayerXPosition) {
+        positiveXMovement = true;
+      } else if (currentPlayerXPosition < previousPlayerXPosition) {
+        negativeXMovement = true;
+      }
+      if (currentPlayerYPosition > previousPlayerYPosition) {
+        positiveYMovement = true;
+      } else if (currentPlayerYPosition < previousPlayerYPosition) {
+        negativeYMovement = true;
+      }
+
+      if (positiveXMovement && positiveYMovement) {
+        this.spineObject.animationState.setAnimation(0, "downright", true);
+      } else if (negativeXMovement && negativeYMovement) {
+        this.spineObject.animationState.setAnimation(0, "upleft", true);
+      } else if (positiveXMovement && negativeYMovement) {
+        this.spineObject.animationState.setAnimation(0, "upright", true);
+      } else if (negativeXMovement && positiveYMovement) {
+        this.spineObject.animationState.setAnimation(0, "downleft", true);
+      } else if (positiveXMovement) {
+        this.spineObject.animationState.setAnimation(0, "right", true);
+      } else if (negativeXMovement) {
+        this.spineObject.animationState.setAnimation(0, "left", true);
+      } else if (positiveYMovement) {
+        this.spineObject.animationState.setAnimation(0, "down", true);
+      } else if (negativeYMovement) {
+        this.spineObject.animationState.setAnimation(0, "up", true);
+      }
+    }
+
+    // if (movingLeft)
+    // if (aAndDDown || wAndSDown) {
+    //   return;
+    // }
+
+    // if (wAndADown) {
+    //   this.spineObject.animationState.setAnimation(0, "up", true);
+    // } else if (wAndDDown) {
+    //   this.spineObject.animationState.setAnimation(0, "right", true);
+    // } else if (sAndADown) {
+    //   this.spineObject.animationState.setAnimation(0, "left", true);
+    // } else if (sAndDDown) {
+    //   this.spineObject.animationState.setAnimation(0, "down", true);
+    // }
+
     EventBus.emit(
       "update-data-point",
       this,

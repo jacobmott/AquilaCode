@@ -5,6 +5,7 @@ import { Game2Scene } from "./scenes/Game2";
 import { MainMenu } from "./scenes/MainMenu";
 import { AUTO, Game, WEBGL } from "phaser";
 import { Preloader } from "./scenes/Preloader";
+import { SpinePlugin } from "@esotericsoftware/spine-phaser";
 
 //  Find out more information about the Game Config at:
 //  https://newdocs.phaser.io/docs/3.70.0/Phaser.Types.Core.GameConfig
@@ -22,6 +23,15 @@ const config: Phaser.Types.Core.GameConfig = {
       debug: true,
       gravity: { x: 0, y: 100 },
     },
+  },
+  plugins: {
+    scene: [
+      {
+        key: "spine.SpinePlugin",
+        plugin: SpinePlugin,
+        mapping: "spine",
+      },
+    ],
   },
   fps: {
     forceSetTimeOut: true,

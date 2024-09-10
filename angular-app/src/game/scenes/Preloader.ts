@@ -41,6 +41,16 @@ export class Preloader extends Scene {
     this.load.image("singleskele", "singleskele.png");
     this.load.image("ship3", "ship3.png");
 
+    this.load.setPath("");
+    this.load.spineJson(
+      "Ship3AllLayersAlignedCenter-data",
+      "src/spine/Ship3AllLayersAlignedCenter.json",
+    );
+    this.load.spineAtlas(
+      "Ship3AllLayersAlignedCenter-atlas",
+      "src/spine/Ship3AllLayersAlignedCenter.atlas",
+    );
+
     // this.game.events.addListener(
     //   Phaser.Core.Events.FOCUS,
     //   this.gainFocus,
