@@ -23,7 +23,7 @@ export class Game2Scene extends Scene {
   isoDirectionPositiveY: Phaser.Geom.Point;
   isoDirectionNegativeY: Phaser.Geom.Point;
 
-  speed: number = 8;
+  speed: number = 155;
   ready: boolean = false;
 
   constructor() {
@@ -164,6 +164,14 @@ export class Game2Scene extends Scene {
       0,
     ).setDepth(100);
     this.add.existing(this.player);
+    this.player = new Phaser.GameObjects.Image(
+      this,
+      930,
+      1066,
+      "ship3",
+      0,
+    ).setDepth(100);
+    this.add.existing(this.player);
     this.ready = true;
     const controlConfig = {
       camera: this.cameras.main,
@@ -180,7 +188,7 @@ export class Game2Scene extends Scene {
     this.input.on("wheel", (pointer, gameObjects, deltaX, deltaY, deltaZ) => {
       if (deltaY > 0) {
         const newZoom = this.cameras.main.zoom - 0.1;
-        if (newZoom > -1) {
+        if (newZoom > 0.00001) {
           this.cameras.main.zoom = newZoom;
         }
       }
