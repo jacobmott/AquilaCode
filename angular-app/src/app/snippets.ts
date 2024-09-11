@@ -130,3 +130,110 @@ CanActivate { isAuthenticated = false; activate: Observable<boolean
     }), // ); } }
   </boolean></boolean
 >
+
+
+
+
+
+
+
+
+    // const grid: Phaser.GameObjects.Grid = this.add.grid(
+    //   0,
+    //   0,
+    //   this.game.canvas.width,
+    //   this.game.canvas.height,
+    //   128,
+    //   64,
+    //   0x000000,
+    //   0,
+    //   0xff0000,
+    //   1,
+    // );
+    // grid.angle = 40;
+    // grid.setOrigin(0, 0);
+    // this.add.text(
+    //   0,
+    //   64,
+    //   "(grid Origin, x, y): " + grid.originX + " " + grid.originY,
+    //   {
+    //     fontFamily: '"Monospace"',
+    //   },
+    // );
+    // grid.setOrigin(0.5, 0.5);
+    // console.dir(map);'
+
+
+
+        // this.game.events.addListener(
+    //   Phaser.Core.Events.FOCUS,
+    //   this.gainFocus,
+    //   this,
+    // );
+    // this.game.events.addListener(Phaser.Core.Events.BLUR, this.lostFocus, this);
+
+
+
+
+    
+  //   override update(time: number, delta: number) {
+  //     this.controls.update(delta);
+
+  //     const cartPoint: Phaser.Geom.Point = new Phaser.Geom.Point(
+  //       this.pointer.x,
+  //       this.pointer.y,
+  //     );
+  //     const isoPointerPoint: Phaser.Geom.Point =
+  //       this.cartesianToIsometric(cartPoint);
+  //     this.label.setText(
+  //       "(" + isoPointerPoint.x + ", " + isoPointerPoint.y + ")",
+  //     );
+  //     this.label.x = isoPointerPoint.x;
+  //     this.label.y = isoPointerPoint.y;
+  //   }
+
+  //   override update(time: number, delta: number) {
+  //     this.controls.update(delta);
+  //     Phaser.Tilemaps.Components.IsometricTileToWorldXY()
+
+  //     const cartPoint: Phaser.Geom.Point = new Phaser.Geom.Point(
+  //       this.pointer.x,
+  //       this.pointer.y,
+  //     );
+  //     const isoPointerPoint: Phaser.Geom.Point =
+  //       this.cartesianToIsometric(cartPoint);
+  //     this.label.setText(
+  //       "(" + isoPointerPoint.x + ", " + isoPointerPoint.y + ")",
+  //     );
+  //     this.label.x = isoPointerPoint.x;
+  //     this.label.y = isoPointerPoint.y;
+  //   }
+
+
+      // if (movingLeft)
+    // if (aAndDDown || wAndSDown) {
+    //   return;
+    // }
+
+    // if (wAndADown) {
+    //   this.spineObject.animationState.setAnimation(0, "up", true);
+    // } else if (wAndDDown) {
+    //   this.spineObject.animationState.setAnimation(0, "right", true);
+    // } else if (sAndADown) {
+    //   this.spineObject.animationState.setAnimation(0, "left", true);
+    // } else if (sAndDDown) {
+    //   this.spineObject.animationState.setAnimation(0, "down", true);
+    // }
+
+
+        // const wAndADown = wDown && aDown; //up(diagonal) upRight and upLeft
+    // const wAndDDown = wDown && dDown; //right(diagonal) upRight and downRight
+    // const sAndADown = sDown && aDown; //left(diagonal) downLeft and upLeft
+    // const sAndDDown = sDown && dDown; //down(diagonal) downLeft and downRight
+
+    // const aAndDDown = aDown && dDown; //upLeft and downRight, cancel movement
+    // const wAndSDown = wDown && sDown; //upRight and downLeft, cancel movement
+    // const wAndSAndAAndDDown = wDown && sDown && aDown && dDown; //all keys pressed, cancel movement
+    // if (wAndSAndAAndDDown) {
+    //   return;
+    // }

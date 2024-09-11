@@ -17,13 +17,21 @@ const config: Phaser.Types.Core.GameConfig = {
   backgroundColor: "#4488aa",
   transparent: false,
   scene: [Boot, Preloader, MainMenu, MainGame, GameOver, Game2Scene],
-  physics: {
-    default: "arcade",
-    arcade: {
-      debug: true,
-      gravity: { x: 0, y: 100 },
-    },
-  },
+  // physics: {
+  //   default: "matter",
+  //   matter: {
+  //     gravity: {
+  //       y: 0,
+  //       x: 0,
+  //     },
+  //     debug: {
+  //       showBody: true,
+  //       showStaticBody: true,
+  //     },
+  //     //If you turn on this sleeping.. it affects collision when gravity is off
+  //     //enableSleeping: true,
+  //   },
+  // },
   plugins: {
     scene: [
       {

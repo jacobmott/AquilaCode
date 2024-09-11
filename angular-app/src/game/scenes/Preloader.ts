@@ -51,6 +51,12 @@ export class Preloader extends Scene {
       "src/spine/Ship3AllLayersAlignedCenter.atlas",
     );
 
+    //  Load body shapes from JSON file generated using PhysicsEditor
+    this.load.json(
+      "ship3-matter-physics",
+      "src/physicseditor/ship3-matter-physics.json",
+    );
+
     // this.game.events.addListener(
     //   Phaser.Core.Events.FOCUS,
     //   this.gainFocus,
