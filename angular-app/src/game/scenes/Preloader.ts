@@ -57,6 +57,11 @@ export class Preloader extends Scene {
       "src/physicseditor/ship3-matter-physics.json",
     );
 
+    this.load.json(
+      "ship3_dl_convex_sub_polygons",
+      "src/physicseditor/ship3_dl_convex_sub_polygons.json",
+    );
+
     // this.game.events.addListener(
     //   Phaser.Core.Events.FOCUS,
     //   this.gainFocus,
