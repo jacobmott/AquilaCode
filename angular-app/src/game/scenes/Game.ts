@@ -56,6 +56,7 @@ export class GameScene extends Scene {
   spineTrackEntry: spine.TrackEntry;
 
   rapierWorld: RAPIER.World;
+  largeWall: Phaser.GameObjects.Image;
 
   debugGraphics: Phaser.GameObjects.Graphics;
   playerRigidBody: RAPIER.RigidBody;
@@ -294,8 +295,6 @@ export class GameScene extends Scene {
 
     this.setupInputListeners();
 
-    this.setupCameras();
-
     await this.setupRapierPhysics();
 
     this.setupDebugRapierGraphics();
@@ -305,6 +304,8 @@ export class GameScene extends Scene {
     this.computeSinCosTables();
 
     this.characterController = this.rapierWorld.createCharacterController(0.01);
+
+    this.setupCameras();
 
     EventBus.emit("current-scene-ready", this);
   }
@@ -387,14 +388,14 @@ export class GameScene extends Scene {
   }
 
   setupObstacles() {
-    const obstacle = new Phaser.GameObjects.Image(
+    this.largeWall = new Phaser.GameObjects.Image(
       this,
       2000,
       1066,
       "largewall",
       0,
     ).setDepth(100);
-    this.add.existing(obstacle);
+    this.add.existing(this.largeWall);
 
     const data = this.cache.json.get("largewall-v1-plaintext_convex_sub");
 
@@ -419,10 +420,10 @@ export class GameScene extends Scene {
     const bodyDesc = RAPIER.RigidBodyDesc.fixed();
 
     // Set its initial position to match our Phaser Game Object
-    bodyDesc.setTranslation(obstacle.x, obstacle.y);
+    bodyDesc.setTranslation(this.largeWall.x, this.largeWall.y);
 
     // Store the Phaser Game Object in the rigid body's user data so we can sync its position and rotation
-    bodyDesc.setUserData(obstacle);
+    bodyDesc.setUserData(this.largeWall);
 
     // Finally, create the rigid body in the Rapier world from the body description
     const rigidBody = this.rapierWorld.createRigidBody(bodyDesc);
@@ -531,9 +532,16 @@ export class GameScene extends Scene {
   }
 
   setupCameras() {
-    this.cameras.main.setZoom(1);
-    this.cameras.main.setScroll(-200, 200);
+    this.cameras.main.setZoom(0.3);
+    // this.cameras.main.setScroll(-200, 200);
     this.cameras.main.setSize(1920, 1080);
+
+    // this.cameras.main.setBounds(0, 0, 3200, 3200, true);
+    // this.physics.world.setBounds(0, 0, 3200, 3200);
+    const cam2 = this.cameras.add(0, 0, 500, 500, false, "cam2");
+    cam2.setZoom(0.1);
+    cam2.startFollow(this.largeWall, true, 1, 1);
+    this.cameras.main.startFollow(this.spineObject);
   }
 
   setupInputListeners() {
@@ -602,7 +610,7 @@ export class GameScene extends Scene {
 
     this.input.on("pointermove", (pointer) => {
       if (!pointer.isDown) return;
-
+      this.cameras.main.stopFollow();
       this.cameras.main.scrollX -=
         (pointer.x - pointer.prevPosition.x) / this.cameras.main.zoom;
       this.cameras.main.scrollY -=
@@ -752,6 +760,10 @@ export class GameScene extends Scene {
 
     this.characterController.setSlideEnabled(true);
 
+    if (aDown || dDown || sDown || wDown) {
+      this.cameras.main.startFollow(this.spineObject);
+    }
+
     if (aDown) {
       rotated = true;
       this.currentRotation += this.rotationSpeed * (delta / 1000);
@@ -882,77 +894,6 @@ export class GameScene extends Scene {
         "\n" +
         rotationSpeed,
     );
-  }
-
-  animatePlayer(
-    moved,
-    currentPlayerXPosition,
-    currentPlayerYPosition,
-    previousPlayerXPosition,
-    previousPlayerYPosition,
-  ) {
-    if (!moved) {
-      return;
-    }
-
-    let positiveXMovement = false;
-    let positiveYMovement = false;
-    let negativeYMovement = false;
-    let negativeXMovement = false;
-
-    EventBus.emit(
-      "update-data-point",
-      this,
-      "player currentPlayerPosition position: " +
-        "X: " +
-        currentPlayerXPosition +
-        " Y: " +
-        currentPlayerYPosition +
-        "       player previousPlayerPosition position: " +
-        "X: " +
-        previousPlayerXPosition +
-        " Y: " +
-        previousPlayerYPosition,
-    );
-
-    if (currentPlayerXPosition > previousPlayerXPosition) {
-      positiveXMovement = true;
-    } else if (currentPlayerXPosition < previousPlayerXPosition) {
-      negativeXMovement = true;
-    }
-    if (currentPlayerYPosition > previousPlayerYPosition) {
-      positiveYMovement = true;
-    } else if (currentPlayerYPosition < previousPlayerYPosition) {
-      negativeYMovement = true;
-    }
-
-    this.playerCollider.setEnabled(false);
-    if (positiveXMovement && positiveYMovement) {
-      this.spineObject.animationState.setAnimation(0, "downright", true);
-      this.playerCollider = this.playerColliders["ship3IsoDR"];
-    } else if (negativeXMovement && negativeYMovement) {
-      this.spineObject.animationState.setAnimation(0, "upleft", true);
-      this.playerCollider = this.playerColliders["ship3IsoUL"];
-    } else if (positiveXMovement && negativeYMovement) {
-      this.spineObject.animationState.setAnimation(0, "upright", true);
-      this.playerCollider = this.playerColliders["ship3IsoUR"];
-    } else if (negativeXMovement && positiveYMovement) {
-      this.spineObject.animationState.setAnimation(0, "downleft", true);
-      this.playerCollider = this.playerColliders["ship3IsoDL"];
-    } else if (positiveXMovement) {
-      this.spineObject.animationState.setAnimation(0, "right", true);
-      this.playerCollider = this.playerColliders["ship3IsoR"];
-    } else if (negativeXMovement) {
-      this.spineObject.animationState.setAnimation(0, "left", true);
-      this.playerCollider = this.playerColliders["ship3IsoL"];
-    } else if (positiveYMovement) {
-      this.spineObject.animationState.setAnimation(0, "down", true);
-      this.playerCollider = this.playerColliders["ship3IsoD"];
-    } else if (negativeYMovement) {
-      this.spineObject.animationState.setAnimation(0, "up", true);
-      this.playerCollider = this.playerColliders["ship3IsoU"];
-    }
-    this.playerCollider.setEnabled(true);
   }
 
   debug() {

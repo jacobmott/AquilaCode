@@ -53,10 +53,14 @@ export class PlayComponent implements AfterViewInit, OnDestroy, OnInit {
       pan: "hold down left mouse button and drag",
     },
     playerControls: {
-      left: "a",
-      right: "d",
-      up: "w",
-      down: "s",
+      rotateLeft: "a",
+      rotateRight: "d",
+      forward: "w",
+      backwards: "s",
+      increaseSpeed: "e",
+      decreaseSpeed: "r",
+      increaseRotationSpeed: "c",
+      decreaseRotationSpeed: "v",
     },
   };
 
