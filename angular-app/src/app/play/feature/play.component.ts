@@ -15,7 +15,7 @@ import { EventBus } from "../../../game/EventBus";
 import { HomeComponent } from "../../home/feature/home.component";
 import { SocketTestComponent } from "../../shared/feature/socket-test/socket-test.component";
 import { SharedService } from "../../shared/data-access/shared.service";
-import { Game2Scene } from "../../../game/scenes/Game2";
+import { GameScene } from "../../../game/scenes/Game";
 import { PhaserDebuggerComponent } from "../../shared/feature/phaser-debugger/phaser-debugger.component";
 
 @Component({
@@ -70,7 +70,7 @@ export class PlayComponent implements AfterViewInit, OnDestroy, OnInit {
     });
     this.sharedService.getChatFocusedBS().subscribe((focused) => {
       if (this.phaserRef.scene) {
-        const scene = this.phaserRef.scene as Game2Scene;
+        const scene = this.phaserRef.scene as GameScene;
         if (focused) {
           scene.gainFocus();
         } else {

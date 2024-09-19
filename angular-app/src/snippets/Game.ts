@@ -2,14 +2,14 @@ import { EventBus } from "../EventBus";
 import { Scene } from "phaser";
 import * as spine from "@esotericsoftware/spine-phaser";
 import RAPIER from "@dimforge/rapier2d-compat";
+// import RAPIER from "@dimforge/rapier3d-compat";
 import { SkinsAndAnimationBoundsProvider } from "@esotericsoftware/spine-phaser";
-import { SinCosTable } from "../sincostabl";
-import { AngleConverter } from "../angleconverter";
 
 export class GameScene extends Scene {
   camera: Phaser.Cameras.Scene2D.Camera;
   background: Phaser.GameObjects.Image;
   gameText: Phaser.GameObjects.Text;
+  // game: Phaser.Game;
   label: Phaser.GameObjects.Text;
   label2: Phaser.GameObjects.Text;
   pointer: Phaser.Input.Pointer;
@@ -34,15 +34,6 @@ export class GameScene extends Scene {
   isoDirectionPositiveY: Phaser.Geom.Point;
   isoDirectionNegativeY: Phaser.Geom.Point;
 
-  playerDirection: Phaser.Math.Vector2;
-
-  // Generate sine and cosine tables with 360 steps (for a full circle)
-  rotationSinCosTable: Phaser.Types.Math.SinCosTable;
-  rotationSinTable: number;
-  rotationCosTable: number;
-
-  sinCosTable: SinCosTable;
-
   isoDirections: Map<number, Phaser.Geom.Point> = new Map();
 
   roof_five_layer: Phaser.Tilemaps.TilemapLayer;
@@ -60,6 +51,7 @@ export class GameScene extends Scene {
   debugGraphics: Phaser.GameObjects.Graphics;
   playerRigidBody: RAPIER.RigidBody;
   playerCollider: RAPIER.Collider;
+  // playerColliders: {} = { "defaut": RAPIER.Collider[]};
   playerColliders: {} = {};
 
   characterController: RAPIER.KinematicCharacterController;
@@ -189,6 +181,42 @@ export class GameScene extends Scene {
       x5++;
     }
 
+    // const list: number[] = [
+    //   315, 316, 317, 318, 319, 320, 321, 322, 323, 324, 325, 326, 327, 328, 329,
+    //   330, 331, 332, 333, 334, 335, 336, 337, 338, 339, 340, 341, 342, 343, 344,
+    //   345, 346, 347, 348, 349, 350, 351, 352, 353, 354, 355, 356, 357, 358, 359,
+    //   360, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+    //   20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37,
+    //   38, 39, 40, 41, 42, 43, 44, 45,
+    // ];
+    // console.log("LIST length");
+    // console.log(list.length);
+    // // 315 to 45 (315 to 360 - 0 to 45)
+    // let y1 = 0;
+    // let x1 = 90;
+    // list.forEach((number: number) => {
+    //   // X goes from -1 in the left direction.. to 0 in the down direction
+    //   let xpercent = 0;
+    //   if (x1 === 0) {
+    //     xpercent = 0;
+    //   } else {
+    //     xpercent = 90 / x1;
+    //   }
+
+    //   // Y goes from 0 in the left direction.. to 1 in the down direction
+    //   const ypercent = y1 === 0 ? 0 : y1 / 90;
+    //   this.isoDirections.set(
+    //     number,
+    //     this.cartesianToIsometric(
+    //       new Phaser.Geom.Point(-1 * xpercent, 1 * ypercent),
+    //     ),
+    //   );
+    //   y1++;
+    //   x1--;
+    // });
+    console.log("iso directions");
+    console.dir(this.isoDirections);
+
     this.editorCreate();
 
     this.iso.createLayer("1-ground", ["iso-64x64-outside"], 0, 0);
@@ -245,6 +273,14 @@ export class GameScene extends Scene {
     // 5_grid_1
     const grid_five_layer = this.iso.createLayer("5-grid", ["64x64grid"], 0, 0);
 
+    // this.player = new Phaser.GameObjects.Image(
+    //   this,
+    //   930,
+    //   1066,
+    //   "ship3",
+    //   0,
+    // ).setDepth(100);
+    // this.add.existing(this.player);
     this.enemy = new Phaser.GameObjects.Image(
       this,
       930,
@@ -302,47 +338,9 @@ export class GameScene extends Scene {
 
     this.setupObstacles();
 
-    this.computeSinCosTables();
-
     this.characterController = this.rapierWorld.createCharacterController(0.01);
 
     EventBus.emit("current-scene-ready", this);
-  }
-
-  computeSinCosTables() {
-    // Create a Vector2 to represent the direction (moving right, along the positive x axis
-    this.playerDirection = new Phaser.Math.Vector2(1, 0);
-    this.playerDirection = this.playerDirection.normalize();
-    console.log("playerDirection");
-    console.dir(this.playerDirection);
-
-    // // Generate sine and cosine tables with 360 steps (for a full circle)
-    // this.rotationSinCosTable = Phaser.Math.SinCosTableGenerator(360, 1, 1, 1);
-    // console.dir(this.rotationSinCosTable);
-    // this.rotationSinTable = this.rotationSinCosTable.sin;
-    // this.rotationCosTable = this.rotationSinCosTable.cos;
-
-    this.sinCosTable = new SinCosTable(361);
-    console.log("sinCosTable");
-    console.dir(this.sinCosTable);
-    //test if this works
-
-    const rotationTrunc = Math.trunc(this.currentRotation);
-    console.log("rotationTrunc " + rotationTrunc);
-
-    // let pdirection = new Phaser.Math.Vector2(
-    //   this.rotationCosTable[rotationTrunc],
-    //   this.rotationSinTable[rotationTrunc],
-    // );
-
-    let pdirection = new Phaser.Math.Vector2(
-      this.sinCosTable.getCos(rotationTrunc),
-      this.sinCosTable.getSin(rotationTrunc),
-    );
-
-    // pdirection = pdirection.normalize();
-    console.log("pdirection");
-    console.dir(pdirection);
   }
 
   async setupRapierPhysics() {
@@ -354,6 +352,8 @@ export class GameScene extends Scene {
     this.rapierWorld;
     this.eventQueue = new RAPIER.EventQueue(false);
     // Create a Rapier dynamic rigid body
+    // RAPIER.RigidBodyDesc.kinematicPositionBased()
+    // const bodyDesc = RAPIER.RigidBodyDesc.dynamic();
     const bodyDesc = RAPIER.RigidBodyDesc.kinematicPositionBased()
       .setCcdEnabled(true)
       .setCanSleep(false);
@@ -368,6 +368,14 @@ export class GameScene extends Scene {
     this.playerRigidBody.enableCcd(true);
 
     this.getPlayerColliderBox();
+    // const playerColliderBox = this.getPlayerColliderBox();
+    // console.dir(playerColliderBox);
+    // const playerColliderDesc =
+    //   RAPIER.ColliderDesc.convexHull(playerColliderBox); // Use a circle with radius 0.5
+    // this.playerCollider = this.rapierWorld.createCollider(
+    //   playerColliderDesc,
+    //   this.playerRigidBody,
+    // );
 
     const circleColliderDesc = RAPIER.ColliderDesc.ball(this.enemy.width / 2);
     const circleRigidBodyDesc = RAPIER.RigidBodyDesc.dynamic().setTranslation(
@@ -383,6 +391,7 @@ export class GameScene extends Scene {
       circleColliderDesc,
       this.enemyBody,
     );
+    // this.enemyCollider.setFriction(0);
     this.enemyCollider.setRestitution(1);
   }
 
@@ -399,6 +408,8 @@ export class GameScene extends Scene {
     const data = this.cache.json.get("largewall-v1-plaintext_convex_sub");
 
     const sprites: any[] = [];
+    console.log("json data");
+    console.dir(data);
     data.sprites.forEach((sprite) => {
       const spriteNew: any = {};
       spriteNew.name = sprite.name;
@@ -415,6 +426,8 @@ export class GameScene extends Scene {
       spriteNew.fullHull = shapesNew;
       sprites.push(spriteNew);
     });
+    console.log("sprites");
+    console.dir(sprites);
 
     const bodyDesc = RAPIER.RigidBodyDesc.fixed();
 
@@ -427,18 +440,45 @@ export class GameScene extends Scene {
     // Finally, create the rigid body in the Rapier world from the body description
     const rigidBody = this.rapierWorld.createRigidBody(bodyDesc);
 
+    // this.spineObject.updateSize;
     sprites.forEach((sprite) => {
+      // const shape = sprite.convexSubPolygons as Float32Array[];
       const name = sprite.name;
+      // console.log(score);
+      // const playerColliderBox = this.getPlayerColliderBox();
+      // console.dir(playerColliderBox);
+      // const playerColliderDesc = RAPIER.ColliderDesc.ball(500); // Use a circle with radius 0.5
+      //We have to do this for now so we have a single collider for character controller
+      //https://github.com/dimforge/rapier.js/issues/44
+      // sprite.convexSubPolygons.forEach((shape) => {
+      //   console.log("shape");
+      //   console.dir(shape);
+      //   const wallColliderDesc = RAPIER.ColliderDesc.polyline(shape); // Use a circle with radius 0.5
+      //   // playerColliderDesc.setTranslation(-512, -256);
+      //   const collider = this.rapierWorld.createCollider(
+      //     wallColliderDesc,
+      //     rigidBody,
+      //   );
+      //   // this.playerColliders[sprite.name as string] = collider;
+      //   // this.playerCollider = collider;
+      //   // this.playerCollider.setEnabled(false);
+      // });
+
       const colliderDesc = RAPIER.ColliderDesc.convexHull(sprite.fullHull); // Use a circle with radius 0.5
+      // playerColliderDesc.setTranslation(-512, -256);
       const collider = this.rapierWorld.createCollider(colliderDesc, rigidBody);
       collider.setActiveEvents(RAPIER.ActiveEvents.COLLISION_EVENTS);
     });
+
+    // RAPIER.ColliderDesc.cuboid(0.5, 0.2);
   }
 
   getPlayerColliderBox() {
     const data = this.cache.json.get("ship3-v1-plaintext_convex_sub");
 
     const sprites: any[] = [];
+    console.log("json data");
+    console.dir(data);
     data.sprites.forEach((sprite) => {
       const spriteNew: any = {};
       spriteNew.name = sprite.name;
@@ -455,14 +495,38 @@ export class GameScene extends Scene {
       spriteNew.fullHull = shapesNew;
       sprites.push(spriteNew);
     });
+    console.log("sprites");
+    console.dir(sprites);
 
+    // this.spineObject.updateSize;
     sprites.forEach((sprite) => {
+      // const shape = sprite.convexSubPolygons as Float32Array[];
       const name = sprite.name;
+      // console.log(score);
+      // const playerColliderBox = this.getPlayerColliderBox();
+      // console.dir(playerColliderBox);
+      // const playerColliderDesc = RAPIER.ColliderDesc.ball(500); // Use a circle with radius 0.5
+      //We have to do this for now so we have a single collider for character controller
+      //https://github.com/dimforge/rapier.js/issues/44
+      // sprite.convexSubPolygons.forEach((shape) => {
+      //   console.log("shape");
+      //   console.dir(shape);
+      //   const playerColliderDesc = RAPIER.ColliderDesc.polyline(shape); // Use a circle with radius 0.5
+      //   // playerColliderDesc.setTranslation(-512, -256);
+      //   const collider = this.rapierWorld.createCollider(
+      //     playerColliderDesc,
+      //     this.playerRigidBody,
+      //   );
+      //   this.playerColliders[sprite.name as string] = collider;
+      //   this.playerCollider = collider;
+      //   this.playerCollider.setEnabled(false);
+      // });
 
       this.playerColliders[sprite.name as string] = this.playerCollider;
       const playerColliderDesc = RAPIER.ColliderDesc.convexHull(
         sprite.fullHull,
       ); // Use a circle with radius 0.5
+      // playerColliderDesc.setTranslation(-512, -256);
       const playerCollider = this.rapierWorld.createCollider(
         playerColliderDesc,
         this.playerRigidBody,
@@ -470,6 +534,9 @@ export class GameScene extends Scene {
 
       playerCollider.setEnabled(false);
       this.playerColliders[sprite.name as string] = playerCollider;
+      // this.playerColliders[sprite.name as string].setCollisionGroups(
+      //   0x00010001,
+      // );
       this.playerColliders[sprite.name as string].setActiveEvents(
         RAPIER.ActiveEvents.COLLISION_EVENTS,
       );
@@ -493,23 +560,23 @@ export class GameScene extends Scene {
 
       eventQueue.drainCollisionEvents((handle1, handle2, started) => {
         /* Handle the collision event. */
-        // console.log("contact collision event");
-        // console.log("handle1");
-        // console.dir(handle1);
-        // console.log("handle2");
-        // console.dir(handle2);
-        // console.log("started");
-        // console.dir(started);
+        console.log("contact collision event");
+        console.log("handle1");
+        console.dir(handle1);
+        console.log("handle2");
+        console.dir(handle2);
+        console.log("started");
+        console.dir(started);
       });
 
       eventQueue.drainContactForceEvents((event) => {
         const handle1 = event.collider1(); // Handle of the first collider involved in the event.
         const handle2 = event.collider2(); // Handle of the second collider involved in the event.
-        // console.log("contact force event");
-        // console.log("handle1");
-        // console.dir(handle1);
-        // console.log("handle2");
-        // console.dir(handle2);
+        console.log("contact force event");
+        console.log("handle1");
+        console.dir(handle1);
+        console.log("handle2");
+        console.dir(handle2);
         /* Handle the contact force event. */
       });
     }
@@ -609,7 +676,27 @@ export class GameScene extends Scene {
         (pointer.y - pointer.prevPosition.y) / this.cameras.main.zoom;
     });
 
+    // this.controls = new Phaser.Cameras.Controls.SmoothedKeyControl(
+    //   controlConfig,
+    // );
+    // this.controls = new Phaser.Cameras.Controls.FixedKeyControl(controlConfig);
+
+    // this.gameText = this.add.text(512, 384, 'Make something fun!\nand share it with us:\nsupport@phaser.io', {
+    //     fontFamily: 'Arial Black', fontSize: 38, color: '#ffffff',
+    //     stroke: '#000000', strokeThickness: 8,
+    //     align: 'center'
+    // }).setOrigin(0.5).setDepth(100);
+    // const r1 = this.add.rectangle(200, 200, 148, 148, 0x6666ff);
     this.input.on("pointerup", (pointer) => {
+      // const tile = layer.getTileAtWorldXY(pointer.worldX, pointer.worldY);
+
+      // const x = pointer.worldX;
+      // const y = pointer.worldY;
+
+      // const tileXY = layer.worldToTileXY(pointer.worldX, pointer.worldY, true);
+
+      // const tile = layer.getTileAt(tileXY.x, tileXY.y);
+
       const tile = this.roof_five_layer.getIsoTileAtWorldXY(
         pointer.worldX,
         pointer.worldY,
@@ -619,9 +706,23 @@ export class GameScene extends Scene {
       if (tile) {
         tile.tint = 0xffffff;
       }
+
+      // const tileX = layer.worldToTileX(x, true);
+      // const tileY = layer.worldToTileX(y, true);
+      // console.log(tileXY, tileX, tileY);
+      // console.log(tileXY);
     });
 
     this.input.on("pointerdown", (pointer) => {
+      // const tile = layer.getTileAtWorldXY(pointer.worldX, pointer.worldY);
+
+      // const x = pointer.worldX;
+      // const y = pointer.worldY;
+
+      // const tileXY = layer.worldToTileXY(pointer.worldX, pointer.worldY, true);
+
+      // const tile = layer.getTileAt(tileXY.x, tileXY.y);
+
       const tile = this.roof_five_layer.getIsoTileAtWorldXY(
         pointer.worldX,
         pointer.worldY,
@@ -631,8 +732,16 @@ export class GameScene extends Scene {
       );
 
       if (tile) {
+        // if (tile.tint !== 0xff0000) {
+        //   this.tileTintOrig = tile.tint;
+        // }
         tile.tint = 0xff0000;
       }
+
+      // const tileX = layer.worldToTileX(x, true);
+      // const tileY = layer.worldToTileX(y, true);
+      // console.log(tileXY, tileX, tileY);
+      // console.log(tileXY);
     });
 
     this.input.on("pointermove", (pointer) => {
@@ -660,10 +769,12 @@ export class GameScene extends Scene {
   }
 
   lostFocus() {
+    // console.log("lost focus");
     this.input.keyboard.manager.enabled = true;
   }
 
   gainFocus() {
+    // console.log("gained focus");
     this.input.keyboard.manager.enabled = false;
   }
 
@@ -726,11 +837,10 @@ export class GameScene extends Scene {
     if (!this.characterController) {
       return;
     }
-
-    this.handleRapierPhysicsUpdate();
-
     const previousPlayerXPosition = this.playerRigidBody?.translation()?.x;
     const previousPlayerYPosition = this.playerRigidBody?.translation()?.y;
+
+    this.handleRapierPhysicsUpdate();
 
     // Render debug graphics
     this.debug();
@@ -751,13 +861,21 @@ export class GameScene extends Scene {
     const desiredTranslation = { x: 0, y: 0 };
 
     this.characterController.setSlideEnabled(true);
+    if (wDown) {
+      // moved = true;
+    }
+    if (sDown) {
+      // moved = true;
+    }
 
     if (aDown) {
       rotated = true;
-      this.currentRotation += this.rotationSpeed * (delta / 1000);
+      // this.spineTrackEntry.reverse = true;
+      this.currentRotation -= this.rotationSpeed * (delta / 1000);
     } else if (dDown) {
       rotated = true;
-      this.currentRotation -= this.rotationSpeed * (delta / 1000);
+      // this.spineTrackEntry.reverse = false;
+      this.currentRotation += this.rotationSpeed * (delta / 1000);
     }
 
     if (rotated) {
@@ -768,44 +886,95 @@ export class GameScene extends Scene {
         this.currentRotation = 360 + result;
       }
       const rotationTrunc = Math.trunc(this.currentRotation);
-
       const animation = rotationTrunc.toString();
       this.spineObject.animationState.setAnimation(0, animation, false);
-      console.log("currentRotation: " + this.currentRotation);
-      console.log("rotationTrunc: " + rotationTrunc);
     }
 
+    // this.spineTrackEntry.timeScale = delta / 1000;
+    // if (!moved) {
+    // this.spineTrackEntry.animationEnd;
+    // this.spineTrackEntry.timeScale = 0;
+    // this.spineObject.animationState.update(0);
+    // } else {
+    // this.spineTrackEntry.timeScale = this.rotationSpeed * (delta / 1000);
+    // console.log("timescale: " + this.spineTrackEntry.timeScale);
+    // this.spineTrackEntry.timeScale = 1;
+    // this.spineObject.animationState.update(delta);
+    // }
+
+    // if (aDown) {
+    //   moved = true;
+    //   // this.spineObject.x += this.isoDirectionNegativeX.x * this.speed;
+    //   // this.spineObject.y += this.isoDirectionNegativeX.y * this.speed;
+    //   desiredTranslation.x +=
+    //     this.isoDirectionNegativeX.x * this.speed * (delta / 1000);
+    //   desiredTranslation.y +=
+    //     this.isoDirectionNegativeX.y * this.speed * (delta / 1000);
+    //   EventBus.emit("add-scrolled-data", this, {
+    //     identifier: "console log info",
+    //     data: "A key pressed",
+    //   });
+    // }
     if (sDown) {
       moved = true;
+      // desiredTranslation.x +=
+      //   this.isoDirectionPositiveY.x * this.speed * (delta / 1000);
+      // desiredTranslation.y +=
+      //   this.isoDirectionPositiveY.y * this.speed * (delta / 1000);
+      //Get the direction we are facing based on our rotation, then add so we go backwrads
       const rotationTrunc = Math.trunc(this.currentRotation);
-      console.log("S down");
 
-      const direction = new Phaser.Math.Vector2(
-        this.sinCosTable.getCos(rotationTrunc),
-        this.sinCosTable.getSin(rotationTrunc),
-      );
-      desiredTranslation.x -= this.speed * (delta / 1000) * direction.x;
-      desiredTranslation.y -= this.speed * (delta / 1000) * direction.y;
+      const isoDirection = this.isoDirections.get(rotationTrunc);
+      const directionX = isoDirection.x;
+      const directionY = isoDirection.y;
+      console.log("directionX: " + directionX);
+      console.log("directionY: " + directionY);
 
+      desiredTranslation.x += this.speed * (delta / 1000) * directionX;
+      desiredTranslation.y += this.speed * (delta / 1000) * directionY;
+
+      // this.spineObject.x += this.isoDirectionPositiveY.x * this.speed;
+      // this.spineObject.y += this.isoDirectionPositiveY.y * this.speed;
       EventBus.emit("add-scrolled-data", this, {
         identifier: "console log info",
         data: "S key pressed",
       });
     }
+    // if (dDown) {
+    //   moved = true;
+    //   desiredTranslation.x +=
+    //     this.isoDirectionPositiveX.x * this.speed * (delta / 1000);
+    //   desiredTranslation.y +=
+    //     this.isoDirectionPositiveX.y * this.speed * (delta / 1000);
+    //   // this.spineObject.x += this.isoDirectionPositiveX.x * this.speed;
+    //   // this.spineObject.y += this.isoDirectionPositiveX.y * this.speed;
+    //   EventBus.emit("add-scrolled-data", this, {
+    //     identifier: "console log info",
+    //     data: "D key pressed",
+    //   });
+    // }
     if (wDown) {
       moved = true;
+      // this.spineObject.x += this.isoDirectionNegativeY.x * this.speed;
+      // this.spineObject.y += this.isoDirectionNegativeY.y * this.speed;
+      // desiredTranslation.x +=
+      //   this.isoDirectionNegativeY.x * this.speed * (delta / 1000);
+      // desiredTranslation.y +=
+      //   this.isoDirectionNegativeY.y * this.speed * (delta / 1000);
 
       //Get the direction we are facing based on our rotation, then subtract so we go forwards
       const rotationTrunc = Math.trunc(this.currentRotation);
+
       console.log("W down");
+      console.log("this.isoDirections");
+      const isoDirection = this.isoDirections.get(rotationTrunc);
+      const directionX = isoDirection.x;
+      const directionY = isoDirection.y;
+      console.log("directionX: " + directionX);
+      console.log("directionY: " + directionY);
 
-      const direction = new Phaser.Math.Vector2(
-        this.sinCosTable.getCos(rotationTrunc),
-        this.sinCosTable.getSin(rotationTrunc),
-      );
-
-      desiredTranslation.x += this.speed * (delta / 1000) * direction.x;
-      desiredTranslation.y += this.speed * (delta / 1000) * direction.y;
+      desiredTranslation.x -= this.speed * (delta / 1000) * directionX;
+      desiredTranslation.y -= this.speed * (delta / 1000) * directionY;
 
       EventBus.emit("add-scrolled-data", this, {
         identifier: "console log info",
@@ -840,6 +1009,14 @@ export class GameScene extends Scene {
       console.log("rotationSpeed: " + this.rotationSpeed);
     }
 
+    // console.log("currentPlayerXPosition: " + currentPlayerXPosition);
+    // console.log("currentPlayerYPosition: " + currentPlayerYPosition);
+    // console.log("previousPlayerXPosition: " + previousPlayerXPosition);
+    // console.log("previousPlayerYPosition: " + previousPlayerYPosition);
+
+    // const previousPlayerYPosition = this.playerRigidBody.translation().y;
+    // const previousPlayerXPosition = this.playerRigidBody.translation().x;
+
     // Compute the player's collider movement considering obstacles
     this.characterController.computeColliderMovement(
       this.playerCollider,
@@ -852,37 +1029,92 @@ export class GameScene extends Scene {
       y: this.playerRigidBody.translation().y + correctedMovement.y,
     });
 
-    this.updateGameObjectsForRapierPhysics();
-    this.updateAngularDebugPanel();
-  }
-
-  updateAngularDebugPanel() {
     const currentPlayerXPosition = this.playerRigidBody.translation().x;
     const currentPlayerYPosition = this.playerRigidBody.translation().y;
-    const rotationTrunc = Math.trunc(this.currentRotation);
 
-    const truncCurrentPlayerXPosition = currentPlayerXPosition.toFixed(2);
-    const truncCurrentPlayerYPosition = currentPlayerYPosition.toFixed(2);
-    // const truncPreviousPlayerXPosition = previousPlayerXPosition.toFixed(2);
-    // const truncPreviousPlayerYPosition = previousPlayerYPosition.toFixed(2);
-    const currPlayerPos = `curr player pos: X: ${truncCurrentPlayerXPosition} Y: ${truncCurrentPlayerYPosition}`;
-    // const prevPlayerPos = `previous player pos: X: ${truncPreviousPlayerXPosition} Y: ${truncPreviousPlayerYPosition}`;
-    const currPlayerRotation = `curr player rotation: ${rotationTrunc}`;
-    const rotationSpeed = `curr rotation speed: ${this.rotationSpeed}`;
-    const speed = `curr speed: ${this.speed}`;
+    // this.animatePlayer(
+    //   moved,
+    //   currentPlayerXPosition,
+    //   currentPlayerYPosition,
+    //   previousPlayerXPosition,
+    //   previousPlayerYPosition,
+    // );
 
-    EventBus.emit(
-      "update-data-point",
-      this,
-      currPlayerPos +
-        "\n" +
-        currPlayerRotation +
-        "\n" +
-        speed +
-        "\n" +
-        rotationSpeed,
-    );
+    this.updateGameObjectsForRapierPhysics();
   }
+
+  // animatePlayer(
+  //   moved,
+  //   currentPlayerXPosition,
+  //   currentPlayerYPosition,
+  //   previousPlayerXPosition,
+  //   previousPlayerYPosition,
+  // ) {
+  //   if (!moved) {
+  //     return;
+  //   }
+
+  //   let positiveXMovement = false;
+  //   let positiveYMovement = false;
+  //   let negativeYMovement = false;
+  //   let negativeXMovement = false;
+
+  //   EventBus.emit(
+  //     "update-data-point",
+  //     this,
+  //     "player currentPlayerPosition position: " +
+  //       "X: " +
+  //       currentPlayerXPosition +
+  //       " Y: " +
+  //       currentPlayerYPosition +
+  //       "       player previousPlayerPosition position: " +
+  //       "X: " +
+  //       previousPlayerXPosition +
+  //       " Y: " +
+  //       previousPlayerYPosition,
+  //   );
+
+  //   if (currentPlayerXPosition > previousPlayerXPosition) {
+  //     positiveXMovement = true;
+  //   } else if (currentPlayerXPosition < previousPlayerXPosition) {
+  //     negativeXMovement = true;
+  //   }
+  //   if (currentPlayerYPosition > previousPlayerYPosition) {
+  //     positiveYMovement = true;
+  //   } else if (currentPlayerYPosition < previousPlayerYPosition) {
+  //     negativeYMovement = true;
+  //   }
+
+  //   this.playerCollider.setEnabled(false);
+  //   if (positiveXMovement && positiveYMovement) {
+  //     this.spineObject.animationState.setAnimation(0, "downright", true);
+  //     this.playerCollider = this.playerColliders["ship3IsoDR"];
+  //   } else if (negativeXMovement && negativeYMovement) {
+  //     this.spineObject.animationState.setAnimation(0, "upleft", true);
+  //     this.playerCollider = this.playerColliders["ship3IsoUL"];
+  //   } else if (positiveXMovement && negativeYMovement) {
+  //     this.spineObject.animationState.setAnimation(0, "upright", true);
+  //     this.playerCollider = this.playerColliders["ship3IsoUR"];
+  //   } else if (negativeXMovement && positiveYMovement) {
+  //     this.spineObject.animationState.setAnimation(0, "downleft", true);
+  //     this.playerCollider = this.playerColliders["ship3IsoDL"];
+  //   } else if (positiveXMovement) {
+  //     this.spineObject.animationState.setAnimation(0, "right", true);
+  //     this.playerCollider = this.playerColliders["ship3IsoR"];
+  //   } else if (negativeXMovement) {
+  //     this.spineObject.animationState.setAnimation(0, "left", true);
+  //     this.playerCollider = this.playerColliders["ship3IsoL"];
+  //   } else if (positiveYMovement) {
+  //     this.spineObject.animationState.setAnimation(0, "down", true);
+  //     this.playerCollider = this.playerColliders["ship3IsoD"];
+  //   } else if (negativeYMovement) {
+  //     this.spineObject.animationState.setAnimation(0, "up", true);
+  //     this.playerCollider = this.playerColliders["ship3IsoU"];
+  //   }
+  //   this.playerCollider.setEnabled(true);
+  //   // console.log("bounds");
+  //   // console.dir(this.spineObject.skeleton.getBoundsRect());
+  // }
 
   animatePlayer(
     moved,
@@ -953,6 +1185,8 @@ export class GameScene extends Scene {
       this.playerCollider = this.playerColliders["ship3IsoU"];
     }
     this.playerCollider.setEnabled(true);
+    // console.log("bounds");
+    // console.dir(this.spineObject.skeleton.getBoundsRect());
   }
 
   debug() {

@@ -24,7 +24,7 @@ export class Preloader extends Scene {
 
   preload() {
     //  Load the assets for the game - Replace with your own assets
-    this.load.setPath("src");
+    this.load.setPath("src/");
 
     this.load.image("logo", "logo.png");
     this.load.image("star", "star.png");
@@ -41,25 +41,29 @@ export class Preloader extends Scene {
     this.load.image("singleskele", "singleskele.png");
     this.load.image("ship3", "ship3.png");
 
-    this.load.setPath("");
-    this.load.spineJson(
-      "Ship3AllLayersAlignedCenter-data",
-      "src/spine/Ship3AllLayersAlignedCenter.json",
-    );
-    this.load.spineAtlas(
-      "Ship3AllLayersAlignedCenter-atlas",
-      "src/spine/Ship3AllLayersAlignedCenter.atlas",
-    );
-
     //  Load body shapes from JSON file generated using PhysicsEditor
     this.load.json(
-      "ship3-matter-physics",
-      "src/physicseditor/ship3-matter-physics.json",
+      "ship3-v1-plaintext_convex_sub",
+      "physicseditor/ship3-v1-plaintext_convex_sub.json",
     );
 
     this.load.json(
-      "ship3_dl_convex_sub_polygons",
-      "src/physicseditor/ship3_dl_convex_sub_polygons.json",
+      "largewall-v1-plaintext_convex_sub",
+      "physicseditor/largewall-v1-plaintext_convex_sub.json",
+    );
+    this.load.image("largewall", "largewall.png");
+
+    this.load.setPath("");
+
+    // this.load.spineBinary("Ship3360-data", "src/spine/ship3360/Ship3360.skel");
+    // this.load.spineAtlas("Ship3360-atlas", "src/spine/ship3360/Ship3360.atlas");
+    this.load.spineBinary(
+      "Ship0-360-data",
+      "src/spine/ship0-360/Ship0-360.skel",
+    );
+    this.load.spineAtlas(
+      "Ship0-360-atlas",
+      "src/spine/ship0-360/Ship0-360.atlas",
     );
 
     // this.game.events.addListener(
