@@ -1,4 +1,5 @@
 import { Scene } from "phaser";
+import { environment } from "../../environments/environment";
 
 export class Preloader extends Scene {
   constructor() {
@@ -23,8 +24,9 @@ export class Preloader extends Scene {
   }
 
   preload() {
+    const hostedAssetsUrl: string = environment.hostedAssetsUrl;
     //  Load the assets for the game - Replace with your own assets
-    this.load.setPath("src/");
+    this.load.setPath(`${hostedAssetsUrl}/`);
 
     this.load.image("logo", "logo.png");
     this.load.image("star", "star.png");
@@ -55,15 +57,13 @@ export class Preloader extends Scene {
 
     this.load.setPath("");
 
-    // this.load.spineBinary("Ship3360-data", "src/spine/ship3360/Ship3360.skel");
-    // this.load.spineAtlas("Ship3360-atlas", "src/spine/ship3360/Ship3360.atlas");
     this.load.spineBinary(
       "Ship0-360-data",
-      "src/spine/ship0-360/Ship0-360.skel",
+      `${hostedAssetsUrl}/spine/ship0-360/Ship0-360.skel`,
     );
     this.load.spineAtlas(
       "Ship0-360-atlas",
-      "src/spine/ship0-360/Ship0-360.atlas",
+      `${hostedAssetsUrl}/spine/ship0-360/Ship0-360.atlas`,
     );
 
     // this.game.events.addListener(

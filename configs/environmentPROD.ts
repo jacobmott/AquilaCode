@@ -15,6 +15,7 @@ export const environment = {
   url: "https://aquilacode.io",
   socketUrl: "https://aquilacode.io",
   socketUrlPath: "/chat/socket.io",
+  hostedAssetsUrl: "https://s3.amazonaws.com/aquilacode.io/assets/hosted",
   auth: {
     domain,
     clientId,

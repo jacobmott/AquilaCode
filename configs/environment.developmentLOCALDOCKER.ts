@@ -16,6 +16,7 @@ export const environment = {
   url: "http://localhost",
   socketUrl: "http://localhost",
   socketUrlPath: "/chat/socket.io",
+  hostedAssetsUrl: "src/hosted",
   auth: {
     domain,
     clientId,

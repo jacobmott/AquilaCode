@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { TopNavLightSliderComponent } from "../../shared/feature/top-nav-light-slider/top-nav-light-slider.component";
+import { environment } from "../../../environments/environment";
 
 @Component({
   selector: "app-aquila-home",
@@ -12,6 +13,8 @@ import { TopNavLightSliderComponent } from "../../shared/feature/top-nav-light-s
 })
 export class HomeComponent implements OnInit {
   scrollToTop = 0;
+  hostedAssetsUrl: string = environment.hostedAssetsUrl;
+  adventureImgUrl: string = this.hostedAssetsUrl + "/Adventure.gif";
   ngOnInit(): void {
     this.scrollToTop = 0;
     setInterval(() => {

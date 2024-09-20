@@ -6,9 +6,10 @@ export class Boot extends Scene {
   }
 
   preload() {
+    const hostedPath = "src/hosted";
     //  The Boot Scene is typically used to load in any assets you require for your Preloader, such as a game logo or background.
     //  The smaller the file size of the assets, the better, as the Boot Scene itself has no preloader.
-    this.load.setPath("src");
+    this.load.setPath(`${hostedPath}/`);
     this.load.image("background", "bg.png");
   }
 
