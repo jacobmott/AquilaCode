@@ -15,7 +15,7 @@ export const environment = {
   url: "http://localhost:4200",
   socketUrl: "http://localhost:3000",
   socketUrlPath: "/socket.io",
-  hostedAssetsUrl: "src/hosted",
+  hostedAssetsUrl: "https://s3.amazonaws.com/aquilacode.io/assets/hosted",
   auth: {
     domain,
     clientId,
