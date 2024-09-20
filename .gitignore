@@ -8,8 +8,6 @@ Secrets
 Assets
 Tiled
 
-!angular-app/assets
-
 # Adding all our secrets and config files to gitignore since we never should change them
 # They are generated now via the config scripts in configs directory and saved in other places
 #Cant ignore these since we want the shells/placeholder files commited
