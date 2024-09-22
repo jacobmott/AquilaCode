@@ -48,6 +48,10 @@ export class Preloader extends Scene {
       "ship3-v1-plaintext_convex_sub",
       "physicseditor/ship3-v1-plaintext_convex_sub.json",
     );
+    this.load.json(
+      "ship0-360-v1-plaintext_convex_sub",
+      "physicseditor/ship0-360-v1-plaintext_convex_sub.json",
+    );
 
     this.load.json(
       "largewall-v1-plaintext_convex_sub",

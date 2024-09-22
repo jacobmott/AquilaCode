@@ -1,4 +1,5 @@
 import { Scene } from "phaser";
+import { environment } from "../../environments/environment";
 
 export class Boot extends Scene {
   constructor() {
@@ -6,10 +7,10 @@ export class Boot extends Scene {
   }
 
   preload() {
-    const hostedPath = "src/hosted";
+    const hostedAssetsUrl: string = environment.hostedAssetsUrl;
     //  The Boot Scene is typically used to load in any assets you require for your Preloader, such as a game logo or background.
     //  The smaller the file size of the assets, the better, as the Boot Scene itself has no preloader.
-    this.load.setPath(`${hostedPath}/`);
+    this.load.setPath(`${hostedAssetsUrl}/`);
     this.load.image("background", "bg.png");
   }
 
