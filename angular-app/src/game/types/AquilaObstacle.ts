@@ -67,7 +67,7 @@ export class AquilaObstacle extends UserComponent {
 
   // override update(time: number, delta: number) {}
 
-  override updateManually(time: number, delta: number) {}
+  // override updateManually(time: number, delta: number) {}
 
   // override destroy() {}
 }

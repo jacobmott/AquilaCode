@@ -5,6 +5,7 @@ export class UserComponent {
   scene: Phaser.Scene;
   aquilaInputService: AquilaInputService;
   rapierWorld: RAPIER.World;
+  gameObject: Phaser.GameObjects.GameObject;
   constructor(
     gameObject: Phaser.GameObjects.GameObject,
     inputService: AquilaInputService,
@@ -13,6 +14,7 @@ export class UserComponent {
     this.scene = gameObject.scene;
     this.aquilaInputService = inputService;
     this.rapierWorld = rapierWorld;
+    this.gameObject = gameObject;
 
     const listenAwake = this.awake !== UserComponent.prototype.awake;
     const listenStart = this.start !== UserComponent.prototype.start;

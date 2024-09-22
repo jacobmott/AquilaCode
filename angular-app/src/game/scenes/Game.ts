@@ -37,9 +37,9 @@ export class GameScene extends Scene {
 
     this.setupCameras();
 
-    this.events.emit("scene-awake");
     this.ready = true;
     EventBus.emit("current-scene-ready", this);
+    this.events.emit("scene-awake");
   }
 
   setupWorld() {
@@ -173,12 +173,9 @@ export class GameScene extends Scene {
     if (!this.ready) {
       return;
     }
-    this.aquilaInputService?.update();
-    this.aquilaPlayer?.updateManually(time, delta);
-    // this.aquilaEnemy?.updateManually(time, delta);
-    // this.aquilaObstacleWall?.updateManually(time, delta);
+    this.aquilaInputService.update();
+    this.aquilaPlayer.updateManually(time, delta);
     this.stepRapierPhysics();
-    // Render debug graphics
     this.debugRapierPhysics();
     this.syncGameObjectsWithRapierPhysics();
   }

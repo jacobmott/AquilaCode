@@ -6,16 +6,20 @@ import { SinCosTable } from "../sincostabl";
 import { EventBus } from "../EventBus";
 
 type CastShape = {
-  shape: Phaser.GameObjects.Image;
+  shape: Phaser.GameObjects.Polygon;
   maxToi: number;
   direction: RAPIER.Vector;
+};
+
+type ColliderMap = {
+  [key: string]: RAPIER.Collider;
 };
 
 export class AquilaPlayer extends UserComponent {
   spineObject: spine.SpineGameObject;
   spineTrackEntry: spine.TrackEntry;
   playerRigidBody: RAPIER.RigidBody;
-  playerColliders: {} = {};
+  playerColliders: Map<string, RAPIER.Collider>;
   playerCollider: RAPIER.Collider;
   graphics: Phaser.GameObjects.Graphics;
   sinCosTable: SinCosTable;
@@ -36,6 +40,8 @@ export class AquilaPlayer extends UserComponent {
   cDown: boolean = false;
   vDown: boolean = false;
   fDown: boolean = false;
+
+  canDoFAction: boolean = true;
 
   constructor(
     gameObject: Phaser.GameObjects.GameObject,
@@ -74,6 +80,7 @@ export class AquilaPlayer extends UserComponent {
         this.fDown = key.isDown;
       }
     });
+    this.playerColliders = new Map<string, RAPIER.Collider>();
   }
 
   // override awake() {}
@@ -120,6 +127,7 @@ export class AquilaPlayer extends UserComponent {
     this.setupCharacterController();
 
     this.graphics = this.scene.add.graphics();
+    this.spineObject.animationState.setAnimation(0, "0", false);
   }
 
   setupCharacterController() {
@@ -183,11 +191,9 @@ export class AquilaPlayer extends UserComponent {
         this.playerRigidBody,
       );
 
+      playerCollider.setActiveEvents(RAPIER.ActiveEvents.COLLISION_EVENTS);
       playerCollider.setEnabled(false);
-      this.playerColliders[name] = playerCollider;
-      this.playerColliders[name].setActiveEvents(
-        RAPIER.ActiveEvents.COLLISION_EVENTS,
-      );
+      this.playerColliders.set(name, playerCollider);
       // this.rapierWorld.contactPair(
       //   this.playerColliders[name],
       //   this.enemyCollider,
@@ -205,7 +211,7 @@ export class AquilaPlayer extends UserComponent {
       // );
     });
 
-    this.playerCollider = this.playerColliders["0"];
+    this.playerCollider = this.playerColliders.get("0");
     this.playerCollider.setEnabled(true);
 
     this.setupCamera();
@@ -228,8 +234,8 @@ export class AquilaPlayer extends UserComponent {
     }
 
     this.castShapes.forEach((shape) => {
-      shape.shape.x += shape.direction.x * 8000 * (delta / 1000);
-      shape.shape.y += shape.direction.y * 8000 * (delta / 1000);
+      shape.shape.x += shape.direction.x * 200 * (delta / 1000);
+      shape.shape.y += shape.direction.y * 200 * (delta / 1000);
     });
 
     let moved = false;
@@ -238,7 +244,7 @@ export class AquilaPlayer extends UserComponent {
 
     this.characterController.setSlideEnabled(true);
 
-    if (this.aDown || this.dDown || this.sDown || this.wDown) {
+    if (this.sDown || this.wDown) {
       this.scene.cameras.main.startFollow(this.spineObject);
       moved = true;
     }
@@ -282,7 +288,7 @@ export class AquilaPlayer extends UserComponent {
       // this.movePlayer(desiredTranslation2);
 
       this.playerCollider.setEnabled(false);
-      this.playerCollider = this.playerColliders[animation];
+      this.playerCollider = this.playerColliders.get(animation);
       this.playerCollider.setEnabled(true);
 
       // const direction = new Phaser.Math.Vector2(
@@ -358,16 +364,25 @@ export class AquilaPlayer extends UserComponent {
     }
 
     if (this.fDown) {
-      this.castShape();
+      if (this.canDoFAction) {
+        setTimeout(() => {
+          this.canDoFAction = true;
+        }, 1000);
+        this.canDoFAction = false;
+        this.castShape(delta);
+      }
     }
 
-    this.movePlayer(desiredTranslation);
+    this.movePlayer(desiredTranslation, moved);
     this.updateAngularDebugPanel();
   }
 
   // override update(time: number, delta: number) {}
 
-  movePlayer(desiredTranslation: any) {
+  movePlayer(desiredTranslation: any, moved: boolean) {
+    if (!moved) {
+      return;
+    }
     // Compute the player's collider movement considering obstacles
     this.characterController.computeColliderMovement(
       this.playerCollider,
@@ -381,9 +396,34 @@ export class AquilaPlayer extends UserComponent {
     });
   }
 
-  castShape() {
+  castShape(delta: number) {
+    const collider: RAPIER.Collider = this.playerCollider;
+    const shape: RAPIER.ConvexPolygon = collider.shape as RAPIER.ConvexPolygon;
+
+    console.log("Shape:");
+    console.dir(shape);
+
+    let shapeVertices: string = shape.vertices.toString();
+    shapeVertices = shapeVertices.replace(/,/g, " ");
+    console.log("Vertices:" + shapeVertices);
+    console.log(
+      "Collider Position:" +
+        this.playerCollider.translation().x +
+        " " +
+        this.playerCollider.translation().y,
+    );
+    const polygon: Phaser.GameObjects.Polygon = new Phaser.GameObjects.Polygon(
+      this.scene,
+      this.playerCollider.translation().x,
+      this.playerCollider.translation().y,
+      shapeVertices,
+      0x0000ff,
+      0.5,
+    );
+    polygon.alpha = 1;
+    polygon.setOrigin(0, 0);
     // Create two example shapes: one dynamic and one static
-    const dynamicShape = new RAPIER.Cuboid(10, 10);
+    const dynamicShape = new RAPIER.Cuboid(50, 50);
     // const staticShape = new RAPIER.Cuboid(1.0, 1.0);
     // Position and rotation of the dynamic shape (shape being cast)
     const dynamicPosition = new RAPIER.Vector2(
@@ -406,7 +446,7 @@ export class AquilaPlayer extends UserComponent {
       dynamicPosition,
       dynamicRotation,
       castDirection,
-      dynamicShape,
+      shape,
       0,
       castMaxToi,
       false,
@@ -415,7 +455,9 @@ export class AquilaPlayer extends UserComponent {
       undefined,
       undefined,
       (collider: RAPIER.Collider) => {
-        return true;
+        if (collider === this.playerCollider) {
+          return false;
+        } else return true;
       }, // Collision filter function (returns true for all colliders)
     );
 
@@ -427,24 +469,25 @@ export class AquilaPlayer extends UserComponent {
       console.log(`TOI (time of impact): ${hit.normal1}`);
       // console.log(`Impact point: ${hit.witness1.toArray()}`);
       // console.log(`Normal at impact: ${hit.normal1.toArray()}`);
+      const normal1 = hit.normal1;
+      const desiredTranslation = { x: 0, y: 0 };
+      desiredTranslation.x += this.speed * (delta / 1000) * normal1.x;
+      desiredTranslation.y += this.speed * (delta / 1000) * normal1.y;
+      this.movePlayer(desiredTranslation, true);
     } else {
       console.log("No collision detected.");
     }
 
-    this.drawShapeCast(
-      dynamicPosition,
-      castDirection,
-      castMaxToi,
-      dynamicShape,
-      [hit],
-    );
+    this.drawShapeCast(dynamicPosition, castDirection, castMaxToi, polygon, [
+      hit,
+    ]);
   }
 
   drawShapeCast(
     start: RAPIER.Vector,
     direction: RAPIER.Vector,
     maxToi: number,
-    shape: RAPIER.Shape,
+    shape: Phaser.GameObjects.Polygon,
     hits: RAPIER.ColliderShapeCastHit[],
   ) {
     this.graphics.clear();
@@ -462,7 +505,7 @@ export class AquilaPlayer extends UserComponent {
     const line = new Phaser.Geom.Line(start.x, start.y, endX, endY);
     this.graphics.strokeLineShape(line);
     // Draw cast shape at start
-    this.drawShape(start.x, start.y, shape, 0x0000ff, 0.3);
+    // this.drawShape(start.x, start.y, shape, 0x0000ff, 0.3);
     const shapeObject = new Phaser.GameObjects.Image(
       this.scene,
       start.x,
@@ -471,16 +514,17 @@ export class AquilaPlayer extends UserComponent {
       0,
     ).setDepth(100);
     this.castShapes.push({
-      shape: shapeObject,
+      shape: shape,
       maxToi: maxToi,
       direction: direction,
     });
-    this.scene.add.existing(shapeObject);
+    this.scene.add.existing(shape);
     // Draw hits
     hits.forEach((hit, index) => {
       if (!(hit !== null && hit.witness1 !== null)) {
         return;
       }
+      console.log("Hit:");
       console.dir(hit);
       // const hitX = start.x + (direction.x * hit.time_of_impact) / maxToi;
       // const hitY = start.y + (direction.y * hit.time_of_impact) / maxToi;
