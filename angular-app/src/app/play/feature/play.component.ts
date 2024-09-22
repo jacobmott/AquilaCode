@@ -52,6 +52,9 @@ export class PlayComponent implements AfterViewInit, OnDestroy, OnInit {
       zoomout: "mousewheel down",
       pan: "hold down left mouse button and drag",
     },
+    debug: {
+      toggleRapierPhysicsDebugGraphics: "t",
+    },
     playerControls: {
       rotateLeft: "a",
       rotateRight: "d",
@@ -61,6 +64,7 @@ export class PlayComponent implements AfterViewInit, OnDestroy, OnInit {
       decreaseSpeed: "r",
       increaseRotationSpeed: "c",
       decreaseRotationSpeed: "v",
+      castRapierPhysicsShape: "f",
     },
   };
 

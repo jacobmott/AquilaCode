@@ -14,6 +14,7 @@ export class GameScene extends Scene {
 
   rapierWorld: RAPIER.World;
   eventQueue: RAPIER.EventQueue;
+  debugRapierGraphicsEnabled: boolean = false;
 
   aquilaInputService: AquilaInputService;
   aquilaPlayer: AquilaPlayer;
@@ -22,6 +23,17 @@ export class GameScene extends Scene {
   aquilaEnemy: AquilaEnemy;
 
   tileMap: AquilaTileMap;
+
+  wDown: boolean = false;
+  aDown: boolean = false;
+  sDown: boolean = false;
+  dDown: boolean = false;
+  eDown: boolean = false;
+  rDown: boolean = false;
+  cDown: boolean = false;
+  vDown: boolean = false;
+  fDown: boolean = false;
+  tDown: boolean = false;
 
   ready: boolean = false;
 
@@ -36,6 +48,8 @@ export class GameScene extends Scene {
     this.setupWorld();
 
     this.setupCameras();
+
+    this.setupInput();
 
     this.ready = true;
     EventBus.emit("current-scene-ready", this);
@@ -90,6 +104,41 @@ export class GameScene extends Scene {
       })
       .setOrigin(0.5)
       .setDepth(100);
+  }
+
+  setupInput() {
+    this.aquilaInputService.getKeys().subscribe((key) => {
+      if (key.key === "w") {
+        this.wDown = key.isDown;
+      }
+      if (key.key === "a") {
+        this.aDown = key.isDown;
+      }
+      if (key.key === "s") {
+        this.sDown = key.isDown;
+      }
+      if (key.key === "d") {
+        this.dDown = key.isDown;
+      }
+      if (key.key === "e") {
+        this.eDown = key.isDown;
+      }
+      if (key.key === "r") {
+        this.rDown = key.isDown;
+      }
+      if (key.key === "c") {
+        this.cDown = key.isDown;
+      }
+      if (key.key === "v") {
+        this.vDown = key.isDown;
+      }
+      if (key.key === "f") {
+        this.fDown = key.isDown;
+      }
+      if (key.key === "t") {
+        this.tDown = key.isDown;
+      }
+    });
   }
 
   async setupRapierPhysics() {
@@ -173,6 +222,7 @@ export class GameScene extends Scene {
     if (!this.ready) {
       return;
     }
+    this.checkInput();
     this.aquilaInputService.update();
     this.aquilaPlayer.updateManually(time, delta);
     this.stepRapierPhysics();
@@ -180,8 +230,20 @@ export class GameScene extends Scene {
     this.syncGameObjectsWithRapierPhysics();
   }
 
+  checkInput() {
+    if (this.tDown) {
+      this.debugRapierGraphicsEnabled = !this.debugRapierGraphicsEnabled;
+      if (!this.debugRapierGraphicsEnabled) {
+        this.debugGraphics?.clear();
+      }
+    }
+  }
+
   debugRapierPhysics() {
     // Clear the previous debug graphics
+    if (!this.debugRapierGraphicsEnabled) {
+      return;
+    }
     if (!this.debugGraphics) {
       return;
     }
