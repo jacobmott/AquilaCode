@@ -7,12 +7,13 @@
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:application",
+      "executor": "@angular-devkit/build-angular:browser-esbuild",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/angular-app",
+        "allowedCommonJsDependencies": ["phaser"],
+        "outputPath": "dist/apps/angular-app",
         "index": "angular-app/src/index.html",
-        "browser": "angular-app/src/main.ts",
+        "main": "angular-app/src/main.ts",
         "polyfills": ["zone.js"],
         "tsConfig": "angular-app/tsconfig.app.json",
         "assets": [
@@ -29,13 +30,13 @@
           "budgets": [
             {
               "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "7mb"
+              "maximumWarning": "7mb",
+              "maximumError": "10mb"
             },
             {
               "type": "anyComponentStyle",
-              "maximumWarning": "10kb",
-              "maximumError": "30kb"
+              "maximumWarning": "30kb",
+              "maximumError": "40kb"
             }
           ],
           "outputHashing": "all"

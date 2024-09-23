@@ -15,7 +15,7 @@ export const routes: Route[] = [
       import("./play/feature/play-shell/play-shell-routes").then(
         (routes) => routes.routes,
       ),
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: "home",
@@ -31,7 +31,7 @@ export const routes: Route[] = [
       import("./ships/feature/ship-shell/ship-shell-routes").then(
         (routes) => routes.routes,
       ),
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: "profile",

@@ -6,6 +6,25 @@
       "type": "node",
       "request": "attach",
       "processId": "14772"
+    },
+    {
+      "name": "Attach Main Process",
+      "type": "node",
+      "request": "attach",
+      "port": 5858,
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "Attach tO nODE.js chrome Process",
+      "type": "chrome",
+      "request": "attach",
+      "port": 9223,
+      "webRoot": "${workspaceFolder}/src/app",
+      "sourceMaps": true,
+      "sourceMapPathOverrides": {
+        "webpack:///./~/*": "${workspaceFolder}/node_modules/*",
+        "webpack:///./src/*": "${workspaceFolder}/src/*"
+      }
     }
   ]
 }

@@ -2,7 +2,16 @@
   "name": "@aquila-code/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "postinstall": "electron-builder install-app-deps",
+    "app:dir": "electron-builder --dir",
+    "app:dist": "electron-builder",
+    "serve:main": "nx serve --inspect=inspect-brk"
+  },
+  "build": {
+    "appId": "com.aquila-code.source",
+    "productName": "AquilaCode"
+  },
   "private": true,
   "devDependencies": {
     "@angular-devkit/build-angular": "~18.1.0",
@@ -41,6 +50,8 @@
     "@typescript-eslint/parser": "^7.16.0",
     "@typescript-eslint/utils": "^7.16.0",
     "autoprefixer": "^10.4.0",
+    "electron": "^30.5.1",
+    "electron-builder": "^25.0.5",
     "eslint": "~8.57.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-playwright": "^0.15.3",
@@ -49,6 +60,7 @@
     "jest-environment-node": "^29.4.1",
     "jest-preset-angular": "~14.1.0",
     "nx": "19.5.1",
+    "nx-electron": "^18.0.1",
     "postcss": "^8.4.5",
     "prettier": "3.0.3",
     "prettier-plugin-tailwindcss": "^0.6.5",
@@ -85,6 +97,7 @@
     "axios": "^1.6.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
+    "electron-debug": "^4.0.1",
     "fastify-swagger": "^5.2.0",
     "json-to-pretty-yaml": "^1.2.2",
     "jwks-rsa": "^3.1.0",

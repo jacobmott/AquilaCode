@@ -81,5 +81,6 @@
     "@nx/angular:component": {
       "style": "css"
     }
-  }
+  },
+  "defaultProject": "electron"
 }

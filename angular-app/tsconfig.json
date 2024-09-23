@@ -10,7 +10,9 @@
     "noFallthroughCasesInSwitch": true,
     "resolveJsonModule": true,
     "noImplicitAny": false,
-    "strictNullChecks": false
+    "strictNullChecks": false,
+    "moduleResolution": "node",
+    "sourceMap": true
   },
   "files": [],
   "include": [],

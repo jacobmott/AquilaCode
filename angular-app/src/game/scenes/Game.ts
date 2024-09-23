@@ -62,7 +62,7 @@ export class GameScene extends Scene {
     this.tileMap = new AquilaTileMap(this, this.aquilaInputService);
 
     this.aquilaPlayer = new AquilaPlayer(
-      this.add.spine(1545, 100, "Ship0-360-data", "Ship0-360-atlas"),
+      this.add.spine(1545, 200, "Ship0-360-data", "Ship0-360-atlas"),
       this.aquilaInputService,
       this.rapierWorld,
     );
